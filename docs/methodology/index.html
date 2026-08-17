@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script>(function(){try{var p=localStorage.getItem("secplus-palette");if(p)document.documentElement.setAttribute("data-palette",p);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>Metodologia – Security+ Hub</title>
+  <meta name="description" content="Como o Security+ Hub foi construído: a metodologia de curadoria do conteúdo de estudo para o CompTIA Security+ SY0-701.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Metodologia – Security+ Hub">
+  <meta property="og:description" content="Como o Security+ Hub foi construído: a metodologia de curadoria do conteúdo de estudo para o CompTIA Security+ SY0-701.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/AtkinsonHyperlegible-Regular.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/AtkinsonHyperlegible-Bold.woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body data-page="methodology">
+  <a href="#content" class="skip-link">Pular para o conteúdo</a>
+  <nav>
+        <button class="nav-burger" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C10.51 3.81 13 5 15 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Hub</a></li>
+      <li><a href="../questions/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Questões</a></li>
+      <li><a href="../acronyms/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/></svg>Siglas</a></li>
+      <li><a href="../concepts/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>Conceitos</a></li>
+      <li><a href="../exam/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="12" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>Simulado</a></li>
+      <li><a href="../methodology/" class="active"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Metodologia</a></li>
+  </ul>
+    <div class="nav-tools">
+      <div class="lang" data-lang="pt">
+        <button class="lang-btn" type="button" aria-label="Trocar idioma (em breve)" title="Idioma">
+          <svg class="flag flag-br" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" fill="#009c3b"/><path d="M14 3 25.5 10 14 17 2.5 10Z" fill="#ffdf00"/><circle cx="14" cy="10" r="4.2" fill="#002776"/></svg>
+          <svg class="flag flag-us" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" fill="#fff"/><g fill="#b22234"><rect width="28" height="1.54" y="0"/><rect width="28" height="1.54" y="3.08"/><rect width="28" height="1.54" y="6.15"/><rect width="28" height="1.54" y="9.23"/><rect width="28" height="1.54" y="12.31"/><rect width="28" height="1.54" y="15.38"/><rect width="28" height="1.54" y="18.46"/></g><rect width="12" height="10.77" fill="#3c3b6e"/></svg>
+        </button>
+      </div>
+      <div class="donate" data-open="false">
+        <button class="donate-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Apoiar o projeto" title="Apoiar o projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></button>
+        <div class="donate-menu" role="menu">
+          <iframe class="donate-widget" data-src="https://widget.livepix.gg/embed/c08f0806-b283-43b6-a6c8-7e44fef57aa9" title="Doação via LivePix (Pix)" width="240" height="276" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <span class="donate-note">Agradeça via Pix ;-)</span>
+        </div>
+      </div>
+      <div class="pal" data-open="false"><button class="pal-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Trocar paleta de cores" title="Paleta de cores"><svg class="pal-ico pal-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="pal-ico pal-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button><div class="pal-menu" role="menu"><button class="pal-opt" type="button" role="menuitemradio" data-p="black-pearl" aria-checked="true"><span class="pal-sw"></span>Black Pearl</button><button class="pal-opt" type="button" role="menuitemradio" data-p="black-aura" aria-checked="false"><span class="pal-sw"></span>Black Aura</button><button class="pal-opt" type="button" role="menuitemradio" data-p="light" aria-checked="false"><span class="pal-sw"></span>Light Mode</button></div></div>
+    </div>
+
+  </nav>
+
+  <main id="content">
+    <header class="hero">
+      <p class="eyebrow">Como este material é construído</p>
+      <h1>Auditado contra a prova oficial — não “achismo”</h1>
+      <p class="lede">Todo conteúdo aqui foi checado contra os <b>Exam Objectives oficiais do CompTIA Security+ SY0-701</b> e a lista oficial de acrônimos. O que segue é o processo — dezenas de iterações com times de agentes revisores, verificação adversarial e testes automatizados — para você confiar que está estudando o que realmente cai.</p>
+    </header>
+
+    <div class="stats">
+      <div class="stat"><div class="n" id="mt-q">&ndash;</div><div class="l">Questões estilo prova</div></div>
+      <div class="stat"><div class="n" id="mt-c">&ndash;</div><div class="l">Conceitos-chave</div></div>
+      <div class="stat"><div class="n" id="mt-s">&ndash;</div><div class="l">Siglas oficiais</div></div>
+      <div class="stat"><div class="n" id="mt-total">&ndash;</div><div class="l">Itens auditados 1-a-1</div></div>
+    </div>
+
+    <h2>Como usar este material</h2>
+    <div class="findings usar">
+      <div class="finding"><h4>Questões</h4><p>Questões no estilo da prova, cada uma com a explicação do porquê. A seleção é adaptativa — prioriza os domínios e os itens em que você mais erra. É onde se treina a leitura capciosa e o “escolha a MELHOR”.</p></div>
+      <div class="finding"><h4>Siglas</h4><p>Os acrônimos oficiais em flashcards. Muitos aparecem dentro de uma frase de bastidor de TI — para você reconhecer a sigla em uso, não só decorar a expansão. Tem consulta A–Z e revisão guiada pela sua autoconfiança — as siglas em que você se sente menos seguro voltam com mais frequência.</p></div>
+      <div class="finding"><h4>Conceitos</h4><p>Reconhecer, não decorar: você lê uma situação real e diz que conceito ou controle ela descreve — a habilidade que a prova mais cobra, de cabeça e sem alternativas. Quase todo card aponta o objetivo oficial que o sustenta.</p></div>
+      <div class="finding"><h4>Simulado</h4><p>Prova cronometrada no formato oficial (<span id="mt-eq"></span> questões em <span id="mt-emin"></span> minutos), com resultado por domínio para você ver onde já está pronto e onde falta. A nota é uma estimativa na escala <span id="mt-escala-a"></span>–<span id="mt-escala-b"></span>.</p></div>
+    </div>
+
+    <h2>O processo, passo a passo</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>Fundado na fonte oficial <span class="tag" id="mt-s-tag"></span></h3>
+        <p>As <b><span id="mt-s2"></span> siglas</b> do baralho <b>são</b> a Acronym List oficial do SY0-701, verbatim — a mesma lista, conferida item a item (são 330 acrônimos distintos; 6 entram com mais de um sentido, como MAC e PAM, exatamente como na lista oficial). As questões e conceitos são organizados pelos <b>5 domínios oficiais e seus pesos</b> (1.0 a 5.0), com o domínio 4.0 (Operações) como o maior, exatamente como na prova.</p>
+      </div>
+      <div class="step">
+        <h3>Auditoria de escopo em dupla verificação <span class="tag">180 agentes</span></h3>
+        <p>Cada um dos <b><span id="mt-total2"></span> itens</b> foi classificado <b>duas vezes de forma independente</b> contra os Exam Objectives V7.0, com um juiz relendo e desempatando as divergências. O que ficou fora do escopo foi removido ou convertido para o conceito equivalente — o <b>banco atual não tem nada que a auditoria tenha identificado fora de escopo</b>. E não parou aí: cada questão, sigla e conceito passou por <b>centenas de rodadas</b> de autoria e revisão adversarial — do gabarito à acentuação —, somando <b>mais de 1.500 passes de agentes</b> e <b>mais de 150 milhões de tokens</b> só em revisão técnica e textual.</p>
+      </div>
+      <div class="step">
+        <h3>Alinhado ao que a prova cobra de fato <span class="tag">SY0-701</span></h3>
+        <p>Times de <b>agentes de IA</b> sintetizaram o que é amplamente documentado e relatado sobre a <b>versão SY0-701</b> — o consenso de examinandos e da comunidade técnica sobre o que a prova cobra de fato, em vez de achismo. Essas conclusões (abaixo) moldaram diretamente a curadoria, em especial o tratamento de ferramentas e de compliance.</p>
+      </div>
+      <div class="step">
+        <h3>Gabaritos e verificação a cada iteração <span class="tag">verificado</span></h3>
+        <p>Gabaritos revisados por <b>equipes de agentes de IA</b> que pesquisaram o conteúdo <b>item a item</b> — questão, sigla e conceito — para elevar a confiança na resposta correta de cada um (sem erros conhecidos nos conjuntos auditados); alternativas <b>embaralhadas a cada exibição</b> (mata o vício de “é sempre a C”), checadas contra <b>enunciados duplicados</b> e quanto a viés de comprimento (a correta não pode entregar a resposta por ser a mais longa). E nada entra por “acho que sim”: cada achado é <b>refutado por um agente cético independente</b> antes de virar ação, e um linter próprio roda <b>dezenas de checagens automatizadas</b> a cada mudança — foram <b>dezenas de loops</b> assim.</p>
+      </div>
+      <div class="step">
+        <h3>Reincidência por curva do esquecimento <span class="tag">~29,8M de revisões sintéticas</span></h3>
+        <p>O que reaparece para você — questão, sigla ou conceito — é decidido por um <b>modelo único de curva do esquecimento com meia-vida</b>: cada item guarda uma <b>meia-vida de memória</b> (<code>h</code>, em dias) e quando você o viu por último, e a chance de você lembrar dele agora segue <code>R = piso + (recall_fresco − piso)·2^(−Δt/h)</code> — o esquecido volta, o dominado descansa, e a meia-vida cresce a cada acerto <b>espaçado</b> (imune a cramming). O modelo, desenhado por um <b>fluxo dinâmico de agentes estatísticos</b>, foi validado num <b>laboratório Monte Carlo com alunos sintéticos</b> — memórias verdadeiras que esquecem no tempo real —, medindo <b>calibração</b>, <b>retenção de longo prazo</b>, <b>varredura de escassez de revisões</b>, <b>cinco perfis de aluno</b> (rápido, lento, autoavaliação ruidosa, esquecimento tipo lei-de-potência), além de <b>checagens determinísticas de monotonicidade e casos-limite</b>.</p>
+      </div>
+    </div>
+
+    <h2>O que aprendemos sobre a SY0-701 (e como isso guia o conteúdo)</h2>
+    <div class="findings">
+      <div class="finding"><h4>É vendor-neutral e conceitual</h4><p>A prova não cobra a sintaxe de nenhuma ferramenta de fornecedor. Ela quer o <i>conceito</i>: o que é capturar pacotes, o que é varrer portas, e quando usar cada um — independente da marca do software.</p></div>
+      <div class="finding"><h4>Ferramenta = só exemplo</h4><p>Quando um Nmap ou Wireshark aparece, é só para ilustrar a ideia (varrer a rede, capturar tráfego), nunca para você decorar as opções dele. Por isso, aqui, nome de ferramenta vira um popup que explica “o que faz” — sem linha de comando.</p></div>
+      <div class="finding"><h4>“Escolha a MELHOR”</h4><p>O truque é de leitura: quase sempre duas ou três alternativas parecem “tecnicamente certas”, e vence a que <i>melhor</i> resolve o problema — a que reduz mais risco ou atende o objetivo do negócio, não a mais rápida ou barata.</p></div>
+      <div class="finding"><h4>PBQs testam decisão</h4><p>As PBQs (questões baseadas em desempenho) são cenários interativos, tipo arrastar-e-soltar: segmentar uma rede, pôr as etapas de resposta a incidente na ordem certa, atribuir permissões. Testam a sua <i>decisão</i>, não operar um programa.</p></div>
+      <div class="finding"><h4>Largura &gt; profundidade</h4><p>A prova cobre <i>muitos</i> assuntos de forma rasa-a-média, em vez de poucos a fundo. A dificuldade é reconhecer centenas de conceitos e não cair no enunciado capcioso — estudar amplo vence estudar fundo.</p></div>
+      <div class="finding"><h4>Compliance internacional coberto</h4><p>Normas internacionais caem em cenário — com destaque para o GDPR (privacidade na UE) e o PCI-DSS (dados de cartão), ambos na lista oficial de acrônimos do SY0-701. A prova trata conformidade genericamente, não leis puramente locais de um país.</p></div>
+    </div>
+
+    <div class="disclaimer">
+      <b>Transparência.</b> Este é um material de estudo independente, <b>não afiliado nem endossado pela CompTIA</b>. “CompTIA” e “Security+” são marcas de seus donos; os Exam Objectives SY0-701 (V7.0) são © CompTIA e usados apenas como referência de escopo. As notas do simulado são <b>estimativas</b> numa escala <span id="mt-escala-a2"></span>–<span id="mt-escala-b2"></span> (aprovação de referência <span id="mt-pass"></span>), não a pontuação oficial. Recomendamos sempre cruzar com os <a href="https://www.comptia.org/certifications/security" target="_blank" rel="noopener">objetivos oficiais</a> mais recentes.
+    </div>
+
+    <p class="updated">Processo iterativo e contínuo — auditado em agosto de 2026.</p>
+  </main>
+
+  <footer>&copy; 2026 Security+ Hub &mdash; Material de estudo independente para a CompTIA Security+ (SY0-701). Não afiliado à CompTIA&reg;.</footer>
+  <script src="../assets/js/counts.js"></script>
+  <script src="../assets/js/domains.js"></script>
+  <script>
+    // Inject live content counts and exam constants into the page's placeholder elements.
+    (function () {
+      var c = window.SECPLUS_COUNTS || {};
+      var ex = (window.SECPLUS && window.SECPLUS.EXAM) || {};
+      /** Set an element's text by id, skipping missing elements or null values. */
+      function set(id, v) { var e = document.getElementById(id); if (e && v != null) e.textContent = v; }
+      set('mt-q', c.questions); set('mt-c', c.concepts); set('mt-s', c.acronyms); set('mt-s2', c.acronyms);
+      var total = (c.questions || 0) + (c.concepts || 0) + (c.acronyms || 0);
+      if (total) { set('mt-total', total); set('mt-total2', total); }
+      if (c.acronyms != null) set('mt-s-tag', c.acronyms + ' siglas');
+      set('mt-eq', ex.maxQuestions); set('mt-emin', ex.minutes);
+      set('mt-escala-a', ex.scaleMin); set('mt-escala-b', ex.scaleMax);
+      set('mt-escala-a2', ex.scaleMin); set('mt-escala-b2', ex.scaleMax);
+      set('mt-pass', ex.passingScore);
+    })();
+  </script>
+  <script src="../assets/js/theme.js"></script>
+</body>
+</html>

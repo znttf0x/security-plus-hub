@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script>(function(){try{var p=localStorage.getItem("secplus-palette");if(p)document.documentElement.setAttribute("data-palette",p);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>Security+ Hub</title>
+  <meta name="description" content="Hub de estudos em português para a certificação CompTIA Security+ (SY0-701): questões comentadas, flashcards de conceitos e siglas, e simulado no formato do exame.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Security+ Hub">
+  <meta property="og:description" content="Hub de estudos em português para a certificação CompTIA Security+ (SY0-701): questões comentadas, flashcards de conceitos e siglas, e simulado no formato do exame.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="index.css">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/AtkinsonHyperlegible-Regular.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/AtkinsonHyperlegible-Bold.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body data-page="hub">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+  <nav>
+        <button class="nav-burger" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="active"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C10.51 3.81 13 5 15 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Hub</a></li>
+      <li><a href="questions/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Questões</a></li>
+      <li><a href="acronyms/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/></svg>Siglas</a></li>
+      <li><a href="concepts/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>Conceitos</a></li>
+      <li><a href="exam/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="12" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>Simulado</a></li>
+      <li><a href="methodology/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Metodologia</a></li>
+  </ul>
+    <div class="nav-tools">
+      <div class="lang" data-lang="pt">
+        <button class="lang-btn" type="button" aria-label="Trocar idioma (em breve)" title="Idioma">
+          <svg class="flag flag-br" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" fill="#009c3b"/><path d="M14 3 25.5 10 14 17 2.5 10Z" fill="#ffdf00"/><circle cx="14" cy="10" r="4.2" fill="#002776"/></svg>
+          <svg class="flag flag-us" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" fill="#fff"/><g fill="#b22234"><rect width="28" height="1.54" y="0"/><rect width="28" height="1.54" y="3.08"/><rect width="28" height="1.54" y="6.15"/><rect width="28" height="1.54" y="9.23"/><rect width="28" height="1.54" y="12.31"/><rect width="28" height="1.54" y="15.38"/><rect width="28" height="1.54" y="18.46"/></g><rect width="12" height="10.77" fill="#3c3b6e"/></svg>
+        </button>
+      </div>
+      <div class="donate" data-open="false">
+        <button class="donate-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Apoiar o projeto" title="Apoiar o projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></button>
+        <div class="donate-menu" role="menu">
+          <iframe class="donate-widget" data-src="https://widget.livepix.gg/embed/c08f0806-b283-43b6-a6c8-7e44fef57aa9" title="Doação via LivePix (Pix)" width="240" height="276" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <span class="donate-note">Agradeça via Pix ;-)</span>
+        </div>
+      </div>
+      <div class="pal" data-open="false"><button class="pal-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Trocar paleta de cores" title="Paleta de cores"><svg class="pal-ico pal-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="pal-ico pal-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button><div class="pal-menu" role="menu"><button class="pal-opt" type="button" role="menuitemradio" data-p="black-pearl" aria-checked="true"><span class="pal-sw"></span>Black Pearl</button><button class="pal-opt" type="button" role="menuitemradio" data-p="black-aura" aria-checked="false"><span class="pal-sw"></span>Black Aura</button><button class="pal-opt" type="button" role="menuitemradio" data-p="light" aria-checked="false"><span class="pal-sw"></span>Light Mode</button></div></div>
+    </div>
+
+  </nav>
+
+  <main id="content">
+    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Security+ Hub</h1>
+
+    <!-- MODULES (single card, 4 quadrants) -->
+    <section class="card">
+      <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Módulos de estudo</div>
+      <div class="mods">
+        <a class="mod" href="questions/">
+          <span class="m-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>
+          <div>
+            <h3>Questões</h3>
+            <p><span id="q-total"></span> questões no estilo SY0-701, com explicação em cada uma e seleção que prioriza o que você erra.</p>
+            <div class="m-prog" id="mod-q">Comece a praticar →</div>
+          </div>
+        </a>
+        <a class="mod" href="acronyms/">
+          <span class="m-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/></svg></span>
+          <div>
+            <h3>Siglas</h3>
+            <p><span id="s-total"></span> acrônimos oficiais em flashcards, com modo de consulta A–Z.</p>
+            <div class="m-prog" id="mod-s">Comece a memorizar →</div>
+          </div>
+        </a>
+        <a class="mod" href="concepts/">
+          <span class="m-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></span>
+          <div>
+            <h3>Conceitos</h3>
+            <p><span id="c-total"></span> flashcards de conceitos-chave do SY0-701, com filtro por domínio.</p>
+            <div class="m-prog" id="mod-c">Comece a revisar →</div>
+          </div>
+        </a>
+        <a class="mod" href="exam/">
+          <span class="m-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="12" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg></span>
+          <div>
+            <h3>Simulado</h3>
+            <p>Prova cronometrada no formato oficial: <span id="sim-q1"></span> questões em <span id="sim-min1"></span> minutos, com resultado por domínio.</p>
+            <div class="m-prog"><span id="sim-q2"></span> questões · <span id="sim-min2"></span> min · nota <span id="sim-pass"></span>/<span id="sim-scale"></span> →</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- EXAM FORMAT + YOUR PROGRESS (grouped) -->
+    <section class="card">
+      <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M9 15h6"/></svg>Seu progresso rumo à SY0-701</div>
+      <div class="exam-facts" id="exam-facts"></div>
+      <div class="dom-table-wrap">
+        <table class="dom-table">
+          <thead><tr><th>Domínio</th><th class="num">Peso</th><th class="num">Precisão</th><th class="num">Vistas</th></tr></thead>
+          <tbody id="dom-rows"></tbody>
+        </table>
+      </div>
+      <div class="prog-hint" id="prog-hint">
+        <div><b>Peso</b> — peso oficial do domínio na prova (somam 100%; a nota 750/900 é ponderada, não % fixo de acertos).</div>
+        <div><b>Precisão</b> — acertos ÷ (acertos + erros).</div>
+        <div><b>Vistas</b> — questões daquele domínio já vistas.</div>
+        <div>Toque num domínio para praticar só ele.</div>
+      </div>
+    </section>
+
+
+    <!-- TAKING THE EXAM? -->
+    <section class="card">
+      <div class="section-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg>Vai fazer a prova?</div>
+      <p class="prose">As <b>PBQs abrem o exame</b> e consomem tempo: <b>marque-as e faça as múltiplas-escolhas primeiro</b> (~55 min) para garantir os pontos rápidos, e só depois volte às PBQs com o tempo que sobrou — <b>teto de ~8 min cada</b>, responda todas as sub-partes (há <b>crédito parcial</b>) e siga em frente se travar (o progresso é salvo). Grife os qualificadores — <b>BEST / MOST / FIRST</b> e <b>NOT / EXCEPT / LEAST</b> — e, na dúvida entre duas respostas, escolha a <b>da CompTIA</b> (o controle mais seguro, não a gambiarra que "funciona" no mundo real); <b>não troque sua primeira resposta</b> sem um motivo concreto, e <b>nunca deixe em branco</b> (não há penalidade por chute).</p>
+      <table class="exam-table"><tbody>
+        <tr><td class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td class="nm">Documento</td><td>1 oficial com foto, nome idêntico à inscrição (digital/cópia/expirado não valem)</td></tr>
+        <tr><td class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td class="nm">Check-in</td><td>30 min antes; 15 min de atraso cancela a prova e perde a taxa</td></tr>
+        <tr><td class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td class="nm">Banheiro</td><td>vá antes — é sessão única, sem pausas programadas</td></tr>
+        <tr><td class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td class="nm">Proibidos</td><td>celular, smartwatch, fones, notas fora de vista — só a lousa digital do exame</td></tr>
+        <tr><td class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td class="nm">OnVUE</td><td>rode o teste de sistema antes (1 monitor, sem VPN/VM; mesa só com bebida sem rótulo)</td></tr>
+        <tr><td class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td class="nm">Véspera</td><td>pare de estudar ~24h antes e durma bem</td></tr>
+        <tr><td class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td class="nm">Revisão</td><td>use a tela de revisão no fim para conferir as questões marcadas</td></tr>
+        <tr><td class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></td><td class="nm">PBQs cobram</td><td>firewall/ACL, análise de log, hardening, ataque→mitigação, cifra</td></tr>
+      </tbody></table>
+    </section>
+
+    <!-- UNIFIED BACKUP -->
+    <section class="backup-row">
+      <div>
+        <div class="backup-title">Backup do progresso</div>
+        <div class="backup-sub">Seu progresso (questões, siglas, conceitos, simulado) vive só neste navegador. Exporte de vez em quando — ou antes de trocar de máquina/limpar dados.</div>
+      </div>
+      <div class="backup-actions">
+        <button class="backup-btn" id="btn-export-all" type="button">Exportar tudo</button>
+        <button class="backup-btn" id="btn-import-all" type="button">Importar</button>
+        <input type="file" id="import-all-file" accept="application/json,.json" hidden>
+      </div>
+    </section>
+    <div class="ls-banner" id="ls-banner" role="alert" aria-live="polite"></div>
+  </main>
+
+  <footer>
+    &copy; 2026 Security+ Hub &mdash; Material de estudo independente para a CompTIA Security+ (SY0-701). Não afiliado à CompTIA&reg;.
+  </footer>
+
+  <script src="assets/js/counts.js"></script>
+  <script src="assets/js/domains.js"></script>
+  <script>
+  /**
+   * Hub landing page controller: fills the module/exam counts from the shared
+   * counts + domains data, renders the per-domain progress from localStorage,
+   * and wires the unified secplus:* backup export/import.
+   */
+  (function () {
+    'use strict';
+    const $ = (id) => document.getElementById(id);
+    const { DOMAINS, EXAM } = window.SECPLUS;
+
+    // SINGLE SOURCE for the counts (assets/js/counts.js, generated by gen_counts.py/validate.py).
+    // No hardcoded totals here: the real fetches (loadMeta/loadConceptsTotal) still refine them when possible.
+    const CN = window.SECPLUS_COUNTS || {};
+    const QUESTIONS_TOTAL = CN.questions || 0, ACRONYMS_TOTAL = CN.acronyms || 0;
+    let DOM_TOTAL_Q = QUESTIONS_TOTAL;   // recomputed from the real bank in loadMeta()
+    let CONCEPTS_TOTAL = CN.concepts || 0;   // recomputed from the real file
+    /** Fill the card count labels from the best value currently available. */
+    function applyCounts() {
+      if ($('q-total')) $('q-total').textContent = DOM_TOTAL_Q || QUESTIONS_TOTAL;
+      if ($('s-total')) $('s-total').textContent = ACRONYMS_TOTAL;
+      if ($('c-total')) $('c-total').textContent = CONCEPTS_TOTAL;
+    }
+    applyCounts();
+
+
+    // ── exam facts (single source domains.js) — per-domain weights live in the table below ──
+    /** Render the exam-fact spans and summary line from the single source (domains.js EXAM). */
+    function renderExam() {
+      const setSpan = (id, v) => { const e = $(id); if (e) e.textContent = v; };
+      setSpan('sim-q1', EXAM.maxQuestions); setSpan('sim-min1', EXAM.minutes);
+      setSpan('sim-q2', EXAM.maxQuestions); setSpan('sim-min2', EXAM.minutes);
+      setSpan('sim-pass', EXAM.passingScore); setSpan('sim-scale', EXAM.scaleMax);
+      const el = $('exam-facts'); if (!el) return;
+      el.innerHTML =
+        '<span><strong>' + EXAM.code + '</strong></span>' +
+        '<span><strong>' + EXAM.maxQuestions + '</strong> questões (máx.)</span>' +
+        '<span><strong>' + EXAM.minutes + '</strong> minutos</span>' +
+        '<span>Aprovação <strong>' + EXAM.passingScore + '</strong> / ' + EXAM.scaleMax + '</span>' +
+        '<span>' + EXAM.types + '</span>' +
+        '<span>Lançado ' + EXAM.releaseDate + ' · validade ' + EXAM.validityYears + ' anos</span>';
+    }
+
+    // ── localStorage read + sanitisation ──
+    // Read-only mode on a READ failure; a valid card = {seen:int>=0, correct:int>=0, wrong:int>=0}.
+    let READ_ONLY = false;
+    /** Parse a localStorage JSON key; return fallback (and flag read-only) on error. */
+    function readLS(key, fallback) {
+      try { const v = JSON.parse(localStorage.getItem(key)); return v == null ? fallback : v; }
+      catch (e) { READ_ONLY = true; return fallback; }
+    }
+    function intGE0(x) { return (typeof x === 'number' && isFinite(x) && x >= 0) ? Math.floor(x) : 0; }
+    /** Read a card map, keeping only seen/correct/wrong (ignores legacy box/due fields). */
+    function readCards(key) {
+      const o = readLS(key, { cards: {} });
+      const raw = (o && o.cards && typeof o.cards === 'object' && !Array.isArray(o.cards)) ? o.cards : {};
+      const out = {};
+      Object.keys(raw).forEach(id => {
+        const c = raw[id];
+        if (c && typeof c === 'object') out[id] = { seen: intGE0(c.seen), correct: intGE0(c.correct), wrong: intGE0(c.wrong) };
+      });
+      return out;
+    }
+
+    // ── id→domain map + real bank totals (fetched, cached) ──
+    let META = null;
+    /** Fetch each domain's question file to build id→domain and per-domain totals (cached). */
+    async function loadMeta() {
+      if (META) return META;
+      const idToDom = {}, domTotal = {};
+      DOMAINS.forEach(d => domTotal[d.id] = 0);
+      try {
+        for (const d of DOMAINS.map(x => x.id)) {
+          const res = await fetch('questions/' + d + '.txt');
+          if (!res.ok) continue;
+          const txt = await res.text();
+          txt.split('\n').forEach(line => {
+            line = line.trim(); if (!line) return;
+            try { const q = JSON.parse(line); idToDom[q.id] = q.domain; domTotal[q.domain] = (domTotal[q.domain] || 0) + 1; } catch (e) {}
+          });
+        }
+      } catch (e) {}
+      META = { idToDom, domTotal };
+      return META;
+    }
+    let conceptsLoaded = false;
+    /** Fetch the concepts file once to refine CONCEPTS_TOTAL from the real count. */
+    async function loadConceptsTotal() {
+      if (conceptsLoaded) return;   // cache: don't re-fetch on every re-render (e.g. 'storage' event)
+      try {
+        const rc = await fetch('concepts/concepts.txt');
+        if (rc.ok) { const n = (await rc.text()).split('\n').filter(l => l.trim()).length; if (n > 0) CONCEPTS_TOTAL = n; conceptsLoaded = true; }
+      } catch (e) {}
+    }
+
+    // ── lightweight progress summary ──
+    /** Render the module progress lines and per-domain table from localStorage + fetched totals. */
+    async function renderProgress() {
+      const meta = await loadMeta();
+      await loadConceptsTotal();
+      const realTotal = DOMAINS.reduce((s, d) => s + (meta.domTotal[d.id] || 0), 0);
+      DOM_TOTAL_Q = realTotal > 0 ? realTotal : QUESTIONS_TOTAL;
+      applyCounts();   // refine the card labels with the real fetched total (concepts/questions)
+
+      const qcards = readCards('secplus:progress:questoes:v2');
+      const scards = readCards('secplus:siglas:v2');
+      const ccards = readCards('secplus:conceitos:v1');
+
+      // question aggregates
+      let qSeen = 0, corr = 0, wrong = 0;
+      const per = {};
+      DOMAINS.forEach(d => per[d.id] = { total: meta.domTotal[d.id] || 0, seen: 0, correct: 0, wrong: 0 });
+      Object.keys(qcards).forEach(id => {
+        const dom = meta.idToDom[id];
+        if (!dom || !per[dom]) return;   // skip orphan ids outside the current bank (avoids "seen > total")
+        const c = qcards[id];
+        if (c.seen > 0) { qSeen++; per[dom].seen++; }
+        corr += c.correct; wrong += c.wrong;
+        per[dom].correct += c.correct; per[dom].wrong += c.wrong;
+      });
+      const qAnswered = corr + wrong;
+      const acc = qAnswered ? corr / qAnswered : null;
+
+      // acronyms / concepts (only the seen count for the module cards)
+      const sSeen = Object.keys(scards).filter(k => scards[k].seen > 0).length;
+      const cSeen = Object.keys(ccards).filter(k => ccards[k].seen > 0).length;
+
+      // progress lines on the module cards
+      $('mod-q').textContent = qSeen ? (qSeen + '/' + DOM_TOTAL_Q + ' vistas' + (acc != null ? ' · ' + Math.round(acc * 100) + '% de precisão' : '')) : 'Comece a praticar →';
+      $('mod-s').textContent = sSeen ? (sSeen + '/' + ACRONYMS_TOTAL + ' vistas') : 'Comece a memorizar →';
+      $('mod-c').textContent = cSeen ? (cSeen + '/' + CONCEPTS_TOTAL + ' vistos') : 'Comece a revisar →';
+
+      // per-domain list: precision bar + seen/total
+      $('dom-rows').innerHTML = DOMAINS.map(d => {
+        const p = per[d.id];
+        const answered = p.correct + p.wrong;
+        const precisionCell = answered === 0
+          ? '<span class="muted-cell">—</span>'
+          : '<span class="done"><b>' + Math.round(p.correct / answered * 100) + '%</b></span>';
+        return '<tr class="dom-row" data-dom="' + d.id + '" tabindex="0" role="link" aria-label="' + d.namePt + ' — praticar">' +
+          '<td><span class="dom-id">' + d.id + '</span> ' + d.namePt + '</td>' +
+          '<td class="num weight">' + d.weight + '%</td>' +
+          '<td class="num">' + precisionCell + '</td>' +
+          '<td class="num muted-cell">' + p.seen + '/' + p.total + '</td>' +
+          '</tr>';
+      }).join('');
+      // Totals row (replaces the old tiles): weight 100%, overall precision, total seen
+      const totalWeight = DOMAINS.reduce((s, d) => s + d.weight, 0);
+      $('dom-rows').innerHTML += '<tr class="dom-total">' +
+        '<td>Total</td>' +
+        '<td class="num weight">' + totalWeight + '%</td>' +
+        '<td class="num">' + (acc == null ? '<span class="muted-cell">—</span>' : '<b>' + Math.round(acc * 100) + '%</b>') + '</td>' +
+        '<td class="num"><b>' + qSeen + '</b>/' + DOM_TOTAL_Q + '</td>' +
+        '</tr>';
+
+      // deep-link: filter the quiz to the clicked domain (table row — click or Enter/Space)
+      Array.prototype.forEach.call(document.querySelectorAll('.dom-row'), row => {
+        const go = () => {
+          try { localStorage.setItem('secplus:filter:questoes:v1', JSON.stringify([row.getAttribute('data-dom')])); } catch (e) {}
+          location.href = 'questions.html';
+        };
+        row.addEventListener('click', go);
+        row.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); go(); } });
+      });
+    }
+
+    // ── unified backup of ALL secplus:* keys ──
+    function showBanner(msg) { const b = $('ls-banner'); if (b) { b.innerHTML = msg; b.classList.add('show'); } }
+    /** Dump every secplus:* key into a downloadable JSON backup file. */
+    function exportAll() {
+      const dump = { app: 'security-plus-hub', v: 1, ts: Date.now(), data: {} };
+      try {
+        for (let i = 0; i < localStorage.length; i++) {
+          const k = localStorage.key(i);
+          if (k && k.indexOf('secplus:') === 0) dump.data[k] = localStorage.getItem(k);
+        }
+      } catch (e) {}
+      const blob = new Blob([JSON.stringify(dump, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = 'securityplus-backup-completo.json';
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+    /** Restore a JSON backup atomically (all-or-nothing), rolling back on quota failure. */
+    function importAll(file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const o = JSON.parse(reader.result);
+          const data = o && o.data && typeof o.data === 'object' && !Array.isArray(o.data) ? o.data : null;
+          if (!data) throw new Error('formato');
+          // snapshot the current state for an ATOMIC rollback (all-or-nothing)
+          const snapshot = {};
+          for (let i = 0; i < localStorage.length; i++) { const kk = localStorage.key(i); if (kk && kk.indexOf('secplus:') === 0) snapshot[kk] = localStorage.getItem(kk); }
+          let n = 0;
+          try {
+            Object.keys(data).forEach(k => {
+              // don't restore legacy keys already removed from the app (activity/exam date)
+              if (k === 'secplus:activity:v1' || k === 'secplus:examdate:v1') return;
+              if (k.indexOf('secplus:') === 0 && typeof data[k] === 'string') { localStorage.setItem(k, data[k]); n++; }
+            });
+          } catch (e) {
+            // rollback: remove secplus:* keys and restore the snapshot (now "nothing changed" holds true)
+            try {
+              for (let i = localStorage.length - 1; i >= 0; i--) { const kk = localStorage.key(i); if (kk && kk.indexOf('secplus:') === 0) localStorage.removeItem(kk); }
+              Object.keys(snapshot).forEach(kk => localStorage.setItem(kk, snapshot[kk]));
+            } catch (_) {}
+            throw new Error('quota');
+          }
+          if (!n) throw new Error('vazio');
+          alert('Backup importado: ' + n + ' itens restaurados. Recarregando…');
+          location.reload();
+        } catch (e) {
+          if (e && e.message === 'quota') { showBanner('<b>Não foi possível gravar o backup.</b> O armazenamento do navegador está cheio ou bloqueado — libere espaço e tente de novo. Nada foi alterado de forma confiável.'); }
+          else { alert('Arquivo de backup inválido — nada foi alterado.'); }
+        }
+      };
+      reader.readAsText(file);
+    }
+    /** Wire the export/import backup buttons. */
+    (function wireBackup() {
+      const be = $('btn-export-all'), bi = $('btn-import-all'), fi = $('import-all-file');
+      if (be) be.addEventListener('click', exportAll);
+      if (bi && fi) {
+        bi.addEventListener('click', () => fi.click());
+        fi.addEventListener('change', (e) => { const f = e.target.files && e.target.files[0]; if (f) importAll(f); e.target.value = ''; });
+      }
+    })();
+
+    // multi-tab guard: re-render the summary when progress changes in another tab
+    window.addEventListener('storage', (e) => {
+      if (!e.key || e.key.indexOf('secplus:') === 0) renderProgress();
+    });
+
+    // initial render
+    renderExam();
+    renderProgress().then(() => {
+      if (READ_ONLY) showBanner('<b>Não foi possível ler o progresso salvo.</b> O navegador pode estar em modo privado ou com o armazenamento bloqueado — o conteúdo de estudo funciona, mas o resumo de progresso pode aparecer zerado.');
+    });
+  })();
+  </script>
+
+  <script src="assets/js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Security+ study platform">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#0d1c33"/>
+      <stop offset="1" stop-color="#050b16"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0.2" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#5fd0fb"/>
+      <stop offset="0.55" stop-color="#38a8f5"/>
+      <stop offset="1" stop-color="#2b7ef0"/>
+    </linearGradient>
+    <linearGradient id="page" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.72" stop-color="#f3f8ff"/>
+      <stop offset="1" stop-color="#dceafc"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" ry="112" fill="url(#bg)"/>
+
+  <!-- escudo -->
+  <path d="M256 74
+           C 214 118, 162 136, 106 136
+           L 106 286
+           C 106 372, 172 428, 256 452
+           C 340 428, 406 372, 406 286
+           L 406 136
+           C 350 136, 298 118, 256 74 Z"
+        fill="none" stroke="url(#accent)" stroke-width="26"
+        stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- cruz -->
+  <path d="M241 148 h30 a9 9 0 0 1 9 9 v25 h25 a9 9 0 0 1 9 9 v30 a9 9 0 0 1 -9 9 h-25 v25 a9 9 0 0 1 -9 9 h-30 a9 9 0 0 1 -9 -9 v-25 h-25 a9 9 0 0 1 -9 -9 v-30 a9 9 0 0 1 9 -9 h25 v-25 a9 9 0 0 1 9 -9 Z"
+        fill="url(#accent)"/>
+
+  <!-- capa do livro -->
+  <path d="M256 312 C 230 288, 192 276, 162 276 L 162 380 C 200 380, 234 392, 256 412
+           C 278 392, 312 380, 350 380 L 350 276 C 320 276, 282 288, 256 312 Z"
+        fill="url(#accent)"/>
+
+  <!-- páginas -->
+  <path d="M256 300 C 232 276, 198 266, 178 266 L 178 358 C 212 358, 240 368, 256 388 Z"
+        fill="url(#page)"/>
+  <path d="M256 300 C 280 276, 314 266, 334 266 L 334 358 C 300 358, 272 368, 256 388 Z"
+        fill="url(#page)"/>
+</svg>

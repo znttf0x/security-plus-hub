@@ -1,0 +1,2410 @@
+/* ==========================================================================
+   theme.css — LEDGER / RÉGUAS identity + 3 palettes
+   Black Pearl (default) · Black Aura (warm) · Light Mode
+   Design-team output (workflow). Linked after each page's inline <style>;
+   per-page identity scoped via [data-page].
+   ========================================================================== */
+
+/* ---------- PALETTES (tokens) ---------- */
+/* ==================================================================
+   LEDGER — TOKEN CONTRACT ACROSS 3 PALETTES
+   :root = Black Pearl (default) · [data-palette="black-aura"] · [data-palette="light"]
+   Concatenated AFTER each page's inline <style> → wins by order.
+   Fonts live only in :root (identical across all 3 palettes → inherited).
+   ================================================================== */
+:root{
+  /* fonts (shared) */
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+
+  /* ---- BLACK PEARL (default) ---- */
+  --bg:#0d1117;
+  --surface:#0f151d;
+  --surface-2:#121a24;
+  --surface-sunken:#0c1219;
+  --surface-hover:#111923;
+  --nav-bg:rgba(13,17,23,.92);
+
+  --border:#232a33;
+  --rule-strong:#333c47;
+
+  --heading:#e8e6e1;
+  --text:#e8e6e1;
+  --text-muted:#9aa0a8;
+  --ink-mute:#5c636d;
+
+  --accent:#e63946;
+
+  --green:#3fb950;  --green-text:#7ee787;
+  --red:#da3633;    --red-text:#f85149;
+  --blue:#58a6ff;
+  --amber:#d29922;
+
+  --hover-tint:rgba(255,255,255,.04);
+  --accent-soft:rgba(230,57,70,.12);
+  --green-soft:rgba(63,185,80,.13);
+  --red-soft:rgba(218,54,51,.13);
+  --blue-soft:rgba(88,166,255,.13);
+  --amber-soft:rgba(210,153,34,.13);
+}
+
+/* ---- BLACK AURA (warm graphite) ---- */
+[data-palette="black-aura"]{
+  --bg:#14110f;
+  --surface:#191512;
+  --surface-2:#1f1a16;
+  --surface-sunken:#1a1613;
+  --surface-hover:#1f1a16;
+  --nav-bg:rgba(20,17,15,.92);
+
+  --heading:#f2ebe4;
+  --text:#f2ebe4;
+  --text-muted:#cdc3ba;
+  --ink-mute:#6f655c;
+
+  --accent:#e63946;
+
+  --green:#3fb950;  --green-text:#7ee787;
+  --red:#da3633;    --red-text:#f85149;
+  --blue:#58a6ff;
+  --amber:#d29922;
+
+  --hover-tint:rgba(255,255,255,.04);
+  --accent-soft:rgba(230,57,70,.12);
+  --green-soft:rgba(63,185,80,.13);
+  --red-soft:rgba(218,54,51,.13);
+  --blue-soft:rgba(88,166,255,.13);
+  --amber-soft:rgba(210,153,34,.13);
+}
+
+/* ---- LIGHT MODE (paper) — DARK status colors for reading on white ---- */
+[data-palette="light"]{
+  --bg:#f6f7f9;
+  --surface:#ffffff;
+  --surface-2:#eef1f6;
+  --surface-sunken:#e9edf2;
+  --surface-hover:#f2f4f7;
+  --nav-bg:rgba(255,255,255,.82);
+
+  --border:#e3e6ea;
+  --rule-strong:#cfd4da;
+
+  --heading:#0e1620;
+  --text:#1b2430;
+  --text-muted:#545e6b;
+  --ink-mute:#5f6874;
+
+  --accent:#c1121f;
+
+  --green:#1a7f37;  --green-text:#1a7f37;
+  --red:#b3261e;    --red-text:#b3261e;
+  --blue:#0969da;
+  --amber:#9a6700;
+
+  --hover-tint:rgba(0,0,0,.045);
+  --accent-soft:rgba(193,18,31,.10);
+  --green-soft:rgba(26,127,55,.10);
+  --red-soft:rgba(179,38,30,.10);
+  --blue-soft:rgba(9,105,218,.10);
+  --amber-soft:rgba(154,103,0,.10);
+}
+
+/* ---------- BASE / SHARED ---------- */
+/* ==================================================================
+   SHARED BASE IDENTITY (global — do NOT scope by [data-page])
+   Only redeclares token-bound properties; inherits the rest from inline
+   (e.g. body display:flex/min-height so the footer sticks to the bottom).
+   ================================================================== */
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  font-weight:400;
+  line-height:1.6;
+  letter-spacing:.01em;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+h1,h2,h3,h4,h5,h6{color:var(--heading)}
+
+/* skip-link — ledger, token-based (works across all 3 palettes) */
+.skip-link{
+  position:absolute; left:-9999px; top:0; z-index:300;
+  background:var(--bg); color:var(--accent);
+  border:1px solid var(--accent);
+  padding:.7em 1.2em;
+  text-transform:uppercase; letter-spacing:.2em;
+  font-size:.72rem; font-weight:300; text-decoration:none;
+  border-radius:0;
+}
+.skip-link:focus{left:1rem; top:1rem}
+
+/* footer — top hairline + faint text */
+footer{
+  border-top:1px solid var(--border);
+  padding:2rem clamp(1rem,4vw,2rem) 3rem;
+  color:var(--ink-mute);
+  font-size:.72rem; line-height:1.7;
+  letter-spacing:.02em; text-align:center;
+}
+
+/* base ledger button — hairline frame + red underline growing from center */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  position:relative;
+  padding:.7rem 1.3rem;
+  background:transparent;
+  color:var(--text-muted);
+  border:1px solid var(--rule-strong);
+  border-radius:0;
+  font-family:var(--sans);
+  text-transform:uppercase; font-weight:300;
+  font-size:.68rem; letter-spacing:.16em;
+  text-decoration:none; cursor:pointer;
+  transition:color .25s ease,border-color .25s ease;
+}
+.btn::after{
+  content:""; position:absolute; left:50%; right:50%; bottom:-1px;
+  height:1px; background:var(--accent);
+  transition:left .28s ease,right .28s ease;
+}
+.btn:hover{color:var(--heading)}
+.btn:hover::after{left:0; right:0}
+.btn:focus-visible{outline:1px solid var(--accent); outline-offset:2px}
+
+/* ---------- NAV (Ledger) — hamburger · centered links · tools ---------- */
+/* ==================================================================
+   NAV — 3-column grid (1fr | auto | 1fr): left column = burger
+   (mobile only), center = centered links, right = tools
+   (language · donation · palette). On mobile links become a vertical dropdown.
+   ================================================================== */
+nav{
+  position:sticky; top:0; z-index:100;
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch;
+  height:auto;
+  padding:0 clamp(.75rem,3vw,1.5rem);
+  background:var(--nav-bg);
+  -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule-strong);
+}
+
+/* hamburger — left column; shown on mobile only */
+nav .nav-burger{
+  grid-column:1; justify-self:start; align-self:center;
+  display:none; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  width:2.15rem; height:2.15rem; padding:0;
+  background:transparent; border:1px solid var(--border); border-radius:0;
+  color:var(--text-muted); cursor:pointer;
+  transition:color .2s ease,border-color .2s ease;
+}
+nav .nav-burger span{ display:block; width:1.05rem; height:1px; background:currentColor; transition:transform .2s ease,opacity .2s ease; }
+nav .nav-burger:hover{ color:var(--heading); border-color:var(--rule-strong); }
+nav .nav-burger:focus-visible{ outline:1px solid var(--accent); outline-offset:2px; }
+nav .nav-burger[aria-expanded="true"] span:nth-child(1){ transform:translateY(5px) rotate(45deg); }
+nav .nav-burger[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+nav .nav-burger[aria-expanded="true"] span:nth-child(3){ transform:translateY(-5px) rotate(-45deg); }
+
+/* links — center column, centered; thin uppercase text, center hairline */
+nav .nav-links{
+  grid-column:2; justify-self:center;
+  display:flex; align-items:stretch; gap:0;
+  list-style:none; margin:0; padding:0; max-width:100%;
+  overflow-x:auto; scrollbar-width:none;
+}
+nav .nav-links::-webkit-scrollbar{display:none}
+nav .nav-links li{flex:0 0 auto; display:flex}
+nav .nav-links a{
+  position:relative; display:flex; align-items:center;
+  padding:1.15rem 1.15rem 1.1rem;
+  color:var(--text-muted); text-decoration:none;
+  text-transform:uppercase; font-weight:300; font-size:.72rem; letter-spacing:.2em;
+  white-space:nowrap; background:transparent; border-radius:0;
+  -webkit-tap-highlight-color:transparent; transition:color .25s ease;
+}
+nav .nav-links a::after{ content:""; position:absolute; left:50%; right:50%; bottom:.7rem; height:1px; background:var(--accent); transition:left .28s ease,right .28s ease; }
+nav .nav-links a:hover{ color:var(--heading); }
+nav .nav-links a:hover::after{ left:1.15rem; right:1.15rem; }
+nav .nav-links a.active{ color:var(--heading); }
+nav .nav-links a.active::after{ left:1.15rem; right:1.15rem; }
+nav .nav-links a:focus-visible{ outline:1px solid var(--accent); outline-offset:-4px; }
+nav .nav-links svg.nav-ico{display:none}
+
+/* tools — right column: language · donation · palette */
+nav .nav-tools{
+  grid-column:3; justify-self:end; align-self:center;
+  display:inline-flex; align-items:center; gap:.4rem;
+}
+
+/* ---------- CONTROLS (palette · donation · language) ---------- */
+/* square buttons with the same footprint (the palette toggle is the reference) */
+.pal-btn,.donate-btn,.lang-btn{
+  display:flex; align-items:center; justify-content:center;
+  width:2.15rem; height:2.15rem; padding:0;
+  background:transparent; border:1px solid var(--border); color:var(--text-muted);
+  cursor:pointer; border-radius:0;
+  transition:color .2s ease,border-color .2s ease;
+}
+.pal-btn:hover,.donate-btn:hover,.lang-btn:hover{ color:var(--heading); border-color:var(--rule-strong); }
+.pal-btn:focus-visible,.donate-btn:focus-visible,.lang-btn:focus-visible{ outline:1px solid var(--accent); outline-offset:2px; }
+.pal,.donate,.lang{ position:relative; }
+
+/* flat icons (moon/sun and donation cup) */
+.pal-ico{width:1.05rem; height:1.05rem; display:block; stroke-width:1.6}
+.pal-sun{display:none}
+:root[data-palette="light"] .pal-moon{display:none}
+:root[data-palette="light"] .pal-sun{display:block}
+.donate-btn svg{width:1.1rem; height:1.1rem; display:block}
+
+/* language flag (BR by default, US on toggle; no functional effect yet) */
+.lang-btn .flag{width:1.4rem; height:auto; display:block; border:1px solid rgba(0,0,0,.15)}
+.lang-btn .flag-us{display:none}
+.lang[data-lang="en"] .flag-br{display:none}
+.lang[data-lang="en"] .flag-us{display:block}
+
+/* donation popover — LivePix (Pix) widget */
+/* opens to the LEFT (right:0 anchors the right edge to the button) and never overflows the viewport */
+.donate-menu{
+  position:absolute; top:calc(100% + .55rem); right:0; left:auto;
+  display:flex; flex-direction:column; align-items:center; gap:.6rem;
+  padding:.8rem; max-width:calc(100vw - 1rem);
+  background:var(--surface); border:1px solid var(--rule-strong);
+  box-shadow:0 10px 28px rgba(0,0,0,.28);
+  opacity:0; visibility:hidden; transform:translateY(-.35rem);
+  transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+  z-index:130;
+}
+.donate[data-open="true"] .donate-menu{ opacity:1; visibility:visible; transform:translateY(0); }
+.donate-widget{ width:240px; height:276px; max-width:calc(100vw - 2.5rem); border:1px solid var(--rule-strong); border-radius:.3rem; display:block; background:var(--surface-2); }
+/* same footprint as the link, no hover underline (it's a span, not a link) */
+.donate-note{ font-family:var(--mono); font-size:.72rem; letter-spacing:.02em; color:var(--accent); }
+
+/* palette popover */
+.pal-menu{
+  position:absolute; top:calc(100% + .55rem); right:0;
+  min-width:12.5rem;
+  display:flex; flex-direction:column; gap:1px;
+  padding:.4rem;
+  background:var(--surface); border:1px solid var(--rule-strong);
+  box-shadow:0 10px 28px rgba(0,0,0,.28);
+  opacity:0; visibility:hidden; transform:translateY(-.35rem);
+  transition:opacity .18s ease,transform .18s ease,visibility .18s ease;
+  z-index:130;
+}
+.pal-btn[aria-expanded="true"] ~ .pal-menu,
+.pal[data-open="true"] .pal-menu{ opacity:1; visibility:visible; transform:translateY(0); }
+.pal-opt{
+  position:relative;
+  display:flex; align-items:center; gap:.7rem;
+  width:100%; text-align:left;
+  padding:.6rem .7rem;
+  background:transparent; border:0;
+  color:var(--text);
+  font-family:var(--sans);
+  text-transform:uppercase; font-weight:300;
+  font-size:.68rem; letter-spacing:.14em;
+  cursor:pointer;
+  transition:background .18s ease,color .18s ease;
+}
+.pal-opt:hover{background:var(--hover-tint); color:var(--heading)}
+.pal-opt:focus-visible{outline:1px solid var(--accent); outline-offset:-2px}
+.pal-opt[aria-checked="true"]{color:var(--heading)}
+.pal-opt[aria-checked="true"]::before{
+  content:""; position:absolute; left:0; top:.55rem; bottom:.55rem;
+  width:1px; background:var(--accent);
+}
+.pal-opt[aria-checked="true"] .pal-sw{box-shadow:0 0 0 1.5px var(--accent)}
+.pal-sw{
+  flex:0 0 auto; width:.95rem; height:.95rem;
+  border:1px solid var(--rule-strong);
+  border-radius:0; display:block;
+}
+.pal-opt[data-p="black-pearl"] .pal-sw{background:#0d1117}
+.pal-opt[data-p="black-aura"]  .pal-sw{background:#14110f}
+.pal-opt[data-p="light"]       .pal-sw{background:#f6f7f9}
+
+/* ---------- MOBILE: hamburger + links as vertical dropdown ---------- */
+@media (max-width:820px){
+  nav .nav-burger{ display:flex; }
+  /* nav gets some vertical breathing room on mobile (not flush against the icons) */
+  nav{ padding-top:.5rem; padding-bottom:.5rem; }
+  nav .nav-links{
+    grid-column:1 / -1; justify-self:stretch;
+    position:absolute; top:100%; left:0; right:0;
+    flex-direction:column; align-items:stretch;
+    background:var(--surface);   /* solid: quiz content doesn't bleed through behind the menu */
+    border-bottom:1px solid var(--rule-strong);
+    box-shadow:0 12px 24px rgba(0,0,0,.35);
+    max-height:0; overflow:hidden; opacity:0;
+    transition:max-height .28s ease,opacity .2s ease;
+  }
+  nav .nav-links.open{ max-height:24rem; overflow-y:auto; opacity:1; }
+  nav .nav-links a{ width:100%; justify-content:flex-start; padding:.95rem clamp(1rem,4vw,1.5rem); letter-spacing:.16em; }
+  nav .nav-links a::after{ display:none; }
+  nav .nav-links a:hover, nav .nav-links a.active{ background:var(--hover-tint); }
+}
+
+/* ---------- PAGE: hub (index.html) ---------- */
+/* ============================================================
+   "LEDGER / RÉGUAS" IDENTITY — HUB (index.html)
+   Scope: [data-page="hub"] on every rule (beats the inline by
+   specificity and isolates from the other pages).
+   Contract tokens only; no hardcoded color.
+   ============================================================ */
+
+/* ---------- CARD / editorial ruler frame ---------- */
+[data-page="hub"] .card{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--rule-strong);
+  padding:clamp(1.4rem,4vw,2.4rem);
+}
+/* inset inner hairline — ledger */
+[data-page="hub"] .card::before{
+  content:"";
+  position:absolute;inset:8px;
+  border:1px solid var(--border);
+  pointer-events:none;
+}
+[data-page="hub"] .card > *{position:relative}
+@media (max-width:640px){
+  [data-page="hub"] .card::before{inset:6px}
+}
+
+/* ---------- SECTION TITLE — thin uppercase + hairline ---------- */
+[data-page="hub"] .section-title{
+  display:flex;align-items:center;gap:.75rem;
+  text-transform:uppercase;
+  font-weight:300;
+  font-size:.82rem;
+  letter-spacing:.22em;
+  color:var(--heading);
+  padding-bottom:1rem;
+  margin-bottom:1.6rem;
+  border-bottom:1px solid var(--rule-strong);
+}
+[data-page="hub"] .section-title svg{
+  width:18px;height:18px;flex:0 0 auto;
+  color:var(--accent);stroke-width:1.6;
+}
+
+/* ---------- MODULES (4 quadrants) ---------- */
+[data-page="hub"] .mods{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:0;
+}
+@media (max-width:34rem){
+  [data-page="hub"] .mods{grid-template-columns:1fr}
+}
+[data-page="hub"] .mod{
+  position:relative;
+  display:flex;gap:1rem;align-items:flex-start;
+  background:var(--surface);
+  padding:1.5rem 1.4rem;
+  text-decoration:none;color:inherit;
+  transition:background .25s ease;
+}
+/* red underline growing from center */
+[data-page="hub"] .mod::after{
+  content:"";
+  position:absolute;left:50%;right:50%;bottom:0;
+  height:2px;background:var(--accent);
+  transition:left .3s ease,right .3s ease;
+}
+[data-page="hub"] .mod:hover{background:var(--hover-tint)}   /* re-declares rgba(255,255,255,.04) */
+[data-page="hub"] .mod:hover::after{left:1.4rem;right:1.4rem}
+[data-page="hub"] .mod .m-ico{flex:0 0 auto;padding-top:.15rem;color:var(--accent)}
+[data-page="hub"] .mod .m-ico svg{width:22px;height:22px;color:var(--accent);stroke-width:1.5}
+[data-page="hub"] .mod h3{
+  margin:0 0 .5rem;
+  font-weight:400;
+  font-size:1.02rem;
+  letter-spacing:.02em;
+  color:var(--heading);   /* re-declares #fff */
+}
+[data-page="hub"] .mod p{
+  margin:0 0 .9rem;
+  font-size:.86rem;
+  line-height:1.55;
+  color:var(--text-muted);
+}
+/* counts in monospace */
+[data-page="hub"] .mod p span{
+  font-family:var(--mono);
+  color:var(--heading);
+  font-size:.9em;
+}
+[data-page="hub"] .mod .m-prog{
+  margin-top:0;
+  text-transform:uppercase;
+  font-size:.68rem;
+  font-weight:300;
+  letter-spacing:.16em;
+  color:var(--accent);   /* re-declares var(--blue) as brand accent */
+}
+
+/* ---------- EXAM FACTS — hairline dividers ---------- */
+[data-page="hub"] .exam-facts{
+  display:flex;flex-wrap:wrap;
+  gap:.6rem 1.2rem;
+  padding-bottom:1.5rem;
+  margin-bottom:1.5rem;
+  border-bottom:1px solid var(--border);
+  color:var(--text-muted);
+  font-size:.78rem;
+}
+[data-page="hub"] .exam-facts span{
+  letter-spacing:.03em;
+  padding-right:1.2rem;
+  border-right:1px solid var(--border);
+}
+[data-page="hub"] .exam-facts span:last-child{border-right:none;padding-right:0}
+/* numbers in monospace */
+[data-page="hub"] .exam-facts strong{
+  font-family:var(--mono);
+  font-weight:500;
+  color:var(--heading);
+  letter-spacing:0;
+}
+@media (max-width:640px){
+  [data-page="hub"] .exam-facts span{border-right:none;padding-right:0}
+}
+
+/* ---------- DOMAIN TABLE (ledger) ---------- */
+[data-page="hub"] .dom-table-wrap{
+  margin-top:1rem;
+  overflow-x:auto;
+  border:1px solid var(--rule-strong);
+}
+[data-page="hub"] .dom-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.85rem;
+}
+[data-page="hub"] .dom-table th{
+  text-transform:uppercase;
+  font-weight:300;
+  font-size:.66rem;
+  letter-spacing:.16em;
+  color:var(--ink-mute);
+  text-align:left;
+  padding:.85rem 1rem;
+  border-bottom:1px solid var(--rule-strong);
+  background:var(--surface-sunken);   /* sunken header */
+  white-space:nowrap;
+}
+[data-page="hub"] .dom-table th.num{text-align:right}
+[data-page="hub"] .dom-table td{
+  padding:.8rem 1rem;
+  border-bottom:1px solid var(--border);
+  color:var(--heading);
+  vertical-align:middle;
+}
+/* vertical hairlines between columns (ledger) */
+[data-page="hub"] .dom-table th + th,
+[data-page="hub"] .dom-table td + td{border-left:1px solid var(--border)}
+[data-page="hub"] .dom-row{cursor:pointer;transition:background .15s}
+[data-page="hub"] .dom-row:hover td{background:var(--hover-tint)}   /* re-declares rgba(255,255,255,.04) */
+/* domain ID — mono + red accent */
+[data-page="hub"] .dom-row .dom-id{
+  font-family:var(--mono);
+  font-weight:400;
+  color:var(--accent);   /* re-declares var(--blue) */
+  font-size:.9em;
+  margin-right:.5em;
+}
+/* numbers (weight/precision/seen) in monospace */
+[data-page="hub"] .dom-table td.num{
+  text-align:right;
+  font-family:var(--mono);
+  font-size:.9em;
+  letter-spacing:0;
+  color:var(--heading);
+}
+[data-page="hub"] .dom-row .weight,
+[data-page="hub"] .dom-table td.weight{color:var(--text-muted)}
+[data-page="hub"] .dom-row .done b{color:var(--heading)}   /* re-declares #fff */
+[data-page="hub"] .dom-row .muted-cell,
+[data-page="hub"] .dom-table td.muted-cell{color:var(--ink-mute)}
+/* Totals row — sunken surface */
+[data-page="hub"] .dom-total td{
+  padding:.85rem 1rem;
+  border-top:1px solid var(--rule-strong);
+  border-bottom:none;
+  font-weight:400;
+  color:var(--heading);   /* re-declares #fff */
+  background:var(--surface-sunken);
+}
+[data-page="hub"] .dom-total td.weight{color:var(--accent)}
+[data-page="hub"] .dom-total b{font-family:var(--mono);color:var(--heading);font-weight:600}
+
+/* ---------- PROGRESS HINT — ruler bullets ---------- */
+[data-page="hub"] .prog-hint{
+  margin-top:1.3rem;
+  display:grid;gap:.5rem;
+  font-size:.75rem;
+  line-height:1.5;
+  color:var(--ink-mute);
+}
+[data-page="hub"] .prog-hint div{padding-left:1rem;position:relative}
+[data-page="hub"] .prog-hint div::before{
+  content:"";
+  position:absolute;left:0;top:.55em;
+  width:.4rem;height:1px;background:var(--accent);
+}
+[data-page="hub"] .prog-hint b{color:var(--text-muted);font-weight:500}
+
+/* ---------- PROSE ---------- */
+[data-page="hub"] .prose{
+  font-size:.9rem;
+  line-height:1.75;
+  color:var(--text-muted);
+  margin:0 0 1.6rem;
+  text-align:justify;
+  hyphens:auto;
+}
+[data-page="hub"] .prose b{color:var(--heading);font-weight:500}   /* re-declares #fff */
+
+/* ---------- EXAM TABLE (checklist) ---------- */
+[data-page="hub"] .exam-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.85rem;
+  border:1px solid var(--rule-strong);
+  text-align:left;
+}
+[data-page="hub"] .exam-table td{
+  padding:.75rem 1rem;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+  color:var(--text-muted);
+  line-height:1.5;
+}
+[data-page="hub"] .exam-table tr:last-child td{border-bottom:none}
+[data-page="hub"] .exam-table td + td{border-left:1px solid var(--border)}
+[data-page="hub"] .exam-table tr:hover td{background:var(--hover-tint)}
+[data-page="hub"] .exam-table td.chk{
+  width:1px;white-space:nowrap;
+  text-align:center;
+  border-left:none;
+  padding-right:.5rem;padding-left:.9rem;
+}
+/* check in semantic green (item satisfied) */
+[data-page="hub"] .exam-table td.chk svg{
+  width:15px;height:15px;
+  color:var(--green);stroke-width:2.5;
+  vertical-align:middle;
+}
+[data-page="hub"] .exam-table td.nm{
+  text-transform:uppercase;
+  font-weight:300;
+  font-size:.7rem;
+  letter-spacing:.14em;
+  color:var(--heading);   /* re-declares #fff */
+  white-space:nowrap;
+  width:1%;
+  padding-right:.8rem;
+}
+@media (max-width:34rem){
+  [data-page="hub"] .exam-table td.nm{white-space:normal}
+}
+
+/* ---------- BACKUP ---------- */
+[data-page="hub"] .backup-row{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1.5rem;flex-wrap:wrap;
+  border:1px solid var(--rule-strong);
+  border-radius:0;
+  padding:clamp(1.2rem,3vw,1.8rem);
+  background:var(--surface);
+}
+[data-page="hub"] .backup-title{
+  text-transform:uppercase;
+  font-weight:300;
+  font-size:.8rem;
+  letter-spacing:.2em;
+  color:var(--heading);
+  margin-bottom:.5rem;
+}
+[data-page="hub"] .backup-sub{
+  font-size:.78rem;
+  line-height:1.55;
+  color:var(--ink-mute);
+  max-width:52ch;
+  margin-top:0;
+  text-align:justify;
+  hyphens:auto;
+}
+[data-page="hub"] .backup-actions{display:flex;gap:.7rem;flex:none;flex-wrap:wrap}
+[data-page="hub"] .backup-btn{
+  position:relative;
+  background:transparent;
+  color:var(--text-muted);
+  border:1px solid var(--rule-strong);
+  border-radius:0;
+  padding:.7rem 1.3rem;
+  font-family:inherit;
+  text-transform:uppercase;
+  font-weight:300;
+  font-size:.68rem;
+  letter-spacing:.16em;
+  cursor:pointer;
+  transition:color .25s ease,border-color .25s ease;
+}
+/* red underline growing from center */
+[data-page="hub"] .backup-btn::after{
+  content:"";
+  position:absolute;left:50%;right:50%;bottom:-1px;
+  height:1px;background:var(--accent);
+  transition:left .28s ease,right .28s ease;
+}
+[data-page="hub"] .backup-btn:hover{color:var(--heading);border-color:var(--rule-strong)}   /* re-declares #fff */
+[data-page="hub"] .backup-btn:hover::after{left:0;right:0}
+
+/* ---------- LS BANNER (write failure — semantic red) ---------- */
+[data-page="hub"] .ls-banner{
+  margin-top:.5rem;
+  padding:.7rem 1rem;
+  border:1px solid var(--red);              /* re-declares rgba(248,81,73,.5) */
+  background:var(--red-soft);               /* re-declares rgba(248,81,73,.08) */
+  border-radius:0;
+  color:var(--text);
+  font-size:.8rem;
+  line-height:1.5;
+}
+[data-page="hub"] .ls-banner b{color:var(--heading)}   /* re-declares #fff */
+
+@media (max-width:640px){
+  [data-page="hub"] .backup-row{flex-direction:column;align-items:flex-start}
+  [data-page="hub"] .backup-actions{width:100%}
+  [data-page="hub"] .backup-btn{flex:1}
+}
+
+/* ---------- PAGE: questoes (questions.html) ---------- */
+/* ============================================================
+   LEDGER / RÉGUAS — QUESTÕES page (quiz)
+   All rules scoped to [data-page="questions"] to beat the inline
+   by specificity and not leak to other pages.
+   Core handles nav/footer — not restyled here.
+   ============================================================ */
+
+/* ── filter/stats bar: sunken surface + thin uppercase label ── */
+[data-page="questions"] .stats-bar {
+  background: var(--surface-sunken);
+  border-bottom: 1px solid var(--rule-strong);
+}
+[data-page="questions"] .filter-affordance {
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: .2em;
+  font-size: clamp(.66rem, 1.8vw, .74rem);
+  color: var(--ink-mute);
+}
+[data-page="questions"] .prog-label {
+  font-family: var(--mono);
+  color: var(--text-muted);
+  letter-spacing: .02em;
+}
+
+/* ── progress bars: flat (removes hardcoded white stripes) ── */
+[data-page="questions"] .prog-wrap {
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+}
+[data-page="questions"] .prog-green,
+[data-page="questions"] .prog-red { background-image: none; }
+[data-page="questions"] .prog-green { background-color: var(--green); }
+[data-page="questions"] .prog-red   { background-color: var(--red); }
+
+/* ── domain dropdown: strong hairline + palette-aware translucent hover ── */
+[data-page="questions"] .domain-dropdown {
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule-strong);
+}
+[data-page="questions"] .domain-legend { color: var(--text-muted); }
+[data-page="questions"] .domain-row { border-radius: 0; }
+[data-page="questions"] .domain-row:hover { background: var(--hover-tint); }
+/* domain ID in red mono (ledger signature); numbers in mono */
+[data-page="questions"] .domain-num {
+  font-family: var(--mono);
+  color: var(--accent);
+  letter-spacing: 0;
+}
+[data-page="questions"] .domain-name { color: var(--text); }
+[data-page="questions"] .domain-weight {
+  font-family: var(--mono);
+  color: var(--text-muted);
+  letter-spacing: 0;
+}
+[data-page="questions"] .prog-toolbar { border-top: 1px solid var(--rule-strong); }
+
+/* ── tool buttons (reset/export/import): hairline + uppercase + center underline ── */
+[data-page="questions"] .tool-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 0;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: .14em;
+  font-size: .68rem;
+  position: relative;
+}
+[data-page="questions"] .tool-btn:hover {
+  color: var(--heading);
+  border-color: var(--rule-strong);
+}
+[data-page="questions"] .tool-btn::after,
+[data-page="questions"] .btn::after {
+  content: "";
+  position: absolute;
+  left: 50%; right: 50%; bottom: -1px;
+  height: 1px;
+  background: var(--accent);
+  transition: left .28s ease, right .28s ease;
+}
+[data-page="questions"] .tool-btn:hover::after,
+[data-page="questions"] .btn:hover:not(:disabled)::after { left: 0; right: 0; }
+
+/* ── read-only notice: palette-aware soft red (removes fixed rgba) ── */
+[data-page="questions"] .readonly-notice {
+  background: var(--red-soft);
+  border: 1px solid var(--red);
+  color: var(--red-text);
+  border-radius: 0;
+}
+[data-page="questions"] .readonly-notice button {
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red-text);
+  border-radius: 0;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: .12em;
+}
+[data-page="questions"] .readonly-notice button:hover { background: var(--red-soft); }
+
+/* card meta: domain badge (fc-dom), state (fc-box) and id (fc-id) were unified
+   with Siglas/Conceitos in the "Unified header" block at the end of this file. */
+
+/* ── stem: card with inner editorial ruler frame ── */
+[data-page="questions"] .quiz-stem {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--rule-strong);
+  border-radius: 0;
+  color: var(--heading);
+  font-weight: 500;
+}
+[data-page="questions"] .quiz-stem::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid var(--border);
+  pointer-events: none;
+}
+
+/* ── options: hairline, red-accent hover + tint; green/red soft feedback ── */
+[data-page="questions"] .option-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--text);
+}
+[data-page="questions"] .option-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--heading);
+  background: var(--hover-tint);
+}
+[data-page="questions"] .opt-key {
+  font-family: var(--mono);
+  color: var(--text-muted);
+}
+[data-page="questions"] .opt-mark { font-family: var(--mono); }
+[data-page="questions"] .option-btn.correct {
+  background: var(--green-soft);
+  border-color: var(--green);
+  color: var(--green-text);
+}
+[data-page="questions"] .option-btn.correct .opt-key { color: var(--green-text); }
+[data-page="questions"] .option-btn.wrong {
+  background: var(--red-soft);
+  border-color: var(--red);
+  color: var(--red-text);
+}
+[data-page="questions"] .option-btn.wrong .opt-key { color: var(--red-text); }
+
+/* ── textual right/wrong verdict: uppercase label ── */
+[data-page="questions"] .quiz-result {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-weight: 600;
+}
+[data-page="questions"] .quiz-result.correct { color: var(--green-text); }
+[data-page="questions"] .quiz-result.wrong   { color: var(--red-text); }
+[data-page="questions"] .quiz-result.reveal,
+[data-page="questions"] .quiz-result.review  { color: var(--blue); }
+
+/* ── undo: subtle hairline ── */
+[data-page="questions"] .btn-undo {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+[data-page="questions"] .btn-undo:hover {
+  color: var(--heading);
+  border-color: var(--rule-strong);
+}
+
+/* ── explanation/hint: sunken panel (removes fixed white rgba); status hairline ── */
+[data-page="questions"] .quiz-explanation {
+  background: var(--surface-sunken);
+  color: var(--text);
+  border-radius: 0;
+}
+[data-page="questions"] .quiz-explanation.correct { border-color: var(--green); }
+[data-page="questions"] .quiz-explanation.wrong   { border-color: var(--red); }
+[data-page="questions"] .quiz-explanation.reveal,
+[data-page="questions"] .quiz-explanation.review  { border-color: var(--blue); }
+
+/* ── term tooltip: near-flat (removes fixed black shadow) ── */
+[data-page="questions"] #term-tip {
+  background: var(--surface);
+  border: 1px solid var(--blue);
+  color: var(--text);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-page="questions"] #term-tip b { color: var(--blue); }
+[data-page="questions"] #term-tip .tt-ex { color: var(--text-muted); }
+
+/* ── actions: thin uppercase buttons with hairline; Next = red accent ── */
+[data-page="questions"] .btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 0;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: .12em;
+}
+[data-page="questions"] .btn:hover:not(:disabled) {
+  color: var(--heading);
+  border-color: var(--rule-strong);
+}
+/* neutral buttons (dont-know / skip / prev / undo): no red underline on hover —
+   the bottom keeps the same gray border (rule-strong) as the other three sides */
+[data-page="questions"] .btn-dontknow::after,
+[data-page="questions"] .btn-skip::after,
+[data-page="questions"] .btn-prev::after,
+[data-page="questions"] .btn-undo::after{ display: none; }
+[data-page="questions"] .btn-next {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--red-text);
+  margin-left: auto;
+}
+[data-page="questions"] .btn-next:hover:not(:disabled) {
+  background: var(--accent-soft);
+  color: var(--red-text);
+  border-color: var(--accent);
+  opacity: 1;
+}
+
+/* ── empty/error state ── */
+[data-page="questions"] .quiz-empty h2 {
+  color: var(--heading);
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: .18em;
+}
+[data-page="questions"] .quiz-empty button {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--red-text);
+  border-radius: 0;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: .12em;
+}
+[data-page="questions"] .quiz-empty button:hover { background: var(--accent-soft); }
+
+/* ── keyboard hint: keys in mono ── */
+[data-page="questions"] .kbd-hint { color: var(--text-muted); }
+[data-page="questions"] .kbd-hint kbd {
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  font-family: var(--mono);
+  color: var(--text);
+}
+
+/* ---------- PAGE: siglas (acronyms.html) ---------- */
+/* ============================================================
+   LEDGER / RÉGUAS — SIGLAS (scope [data-page="acronyms"])
+   Acronym flashcards, A–Z index, search, term popups.
+   1px hairlines, thin small-caps, monospace numbers,
+   red only as an accent, surfaces via tokens (3 palettes).
+   ============================================================ */
+
+/* ── OPTIONS BAR: ledger toolbar, thin small-caps label ── */
+[data-page="acronyms"] .stats-bar{ background:var(--surface); border-bottom:1px solid var(--border); }
+[data-page="acronyms"] .bar-affordance{
+  text-transform:uppercase; font-weight:300; letter-spacing:.2em;
+  font-size:clamp(.66rem,1.7vw,.75rem); color:var(--text-muted);
+}
+
+/* Progress track: sunken hairline + FLAT fill (no hardcoded white stripe) */
+[data-page="acronyms"] .prog-wrap{ background:var(--surface-sunken); border:1px solid var(--border); height:.5rem; border-radius:0; }
+[data-page="acronyms"] .prog-green{ background-image:none; background-color:var(--green); }
+[data-page="acronyms"] .prog-label{ font-family:var(--mono); letter-spacing:0; color:var(--text-muted); }
+
+/* ── PANEL ── */
+[data-page="acronyms"] .panel{ background:var(--surface); border-bottom:1px solid var(--border); }
+[data-page="acronyms"] .seg{
+  background:transparent; border:1px solid var(--border); color:var(--text-muted); border-radius:0;
+  text-transform:uppercase; font-weight:300; letter-spacing:.16em; font-size:.72rem;
+}
+[data-page="acronyms"] .seg.active{
+  color:var(--heading); border-color:var(--accent); background:var(--accent-soft); font-weight:400;
+}
+[data-page="acronyms"] .prog-detail{ color:var(--text-muted); }
+[data-page="acronyms"] .prog-detail b{ color:var(--text); font-family:var(--mono); font-weight:600; }
+[data-page="acronyms"] .prog-toolbar{ border-top:1px solid var(--border); }
+
+/* Tool buttons: editorial outline + underline growing from center */
+[data-page="acronyms"] .tool-btn{
+  position:relative; background:transparent; border:1px solid var(--border); color:var(--text-muted);
+  border-radius:0; text-transform:uppercase; font-weight:300; letter-spacing:.14em; font-size:.68rem;
+}
+[data-page="acronyms"] .tool-btn::after{
+  content:""; position:absolute; left:50%; right:50%; bottom:-1px; height:1px; background:var(--accent);
+  transition:left .28s ease, right .28s ease;
+}
+[data-page="acronyms"] .tool-btn:hover{ color:var(--heading); border-color:var(--rule-strong); }
+[data-page="acronyms"] .tool-btn:hover::after{ left:0; right:0; }
+
+/* ── READ-ONLY NOTICE (red rgba → semantic tokens) ── */
+[data-page="acronyms"] .readonly-notice{
+  background:var(--red-soft); border:1px solid var(--red); color:var(--red-text); border-radius:0;
+}
+[data-page="acronyms"] .readonly-notice button{
+  background:var(--red); color:#fff; border-radius:0;
+  text-transform:uppercase; font-weight:400; letter-spacing:.12em; font-size:.72rem;
+}
+
+/* ── FLASHCARD: ledger card with an inner RULER FRAME ── */
+[data-page="acronyms"] .flashcard{
+  position:relative; background:var(--surface); border:1px solid var(--rule-strong); border-radius:0;
+}
+[data-page="acronyms"] .flashcard::before{
+  content:""; position:absolute; inset:8px; border:1px solid var(--border); pointer-events:none;
+}
+[data-page="acronyms"] .flashcard > *{ position:relative; }
+
+/* State chip: thin label + monospace counters */
+[data-page="acronyms"] .fc-box{
+  background:var(--blue-soft); border:1px solid var(--blue); color:var(--blue); border-radius:0;
+  text-transform:uppercase; letter-spacing:.12em; font-family:var(--mono); font-weight:600;
+}
+
+/* Giant acronym = near-white/near-black title, monospace (code) */
+[data-page="acronyms"] .fc-acronym{ color:var(--heading); font-family:var(--mono); }
+[data-page="acronyms"] .fc-acronym.sentence-mode{ color:var(--text); font-family:var(--sans); }
+[data-page="acronyms"] .fc-acronym.sentence-mode mark{ background:var(--accent-soft); color:var(--heading); border-radius:0; }
+[data-page="acronyms"] .fc-hint{ color:var(--text-muted); }
+
+/* Back: correct expansions in semantic green (green rgba → tokens) */
+[data-page="acronyms"] .fc-back li{
+  background:var(--green-soft); border:1px solid var(--green); color:var(--green-text); border-radius:0;
+}
+[data-page="acronyms"] .fc-back .en-note{ color:var(--text-muted); }
+[data-page="acronyms"] .fc-explanation{ border-top:1px solid var(--border); color:var(--text); }
+
+/* Cross-link terms + popup: info blue, flat (no heavy shadow) */
+[data-page="acronyms"] .term{ color:var(--blue); border-bottom:1px dotted var(--blue); }
+[data-page="acronyms"] #term-tip{
+  background:var(--surface); border:1px solid var(--blue); border-radius:0; color:var(--text); box-shadow:none;
+}
+[data-page="acronyms"] #term-tip b{ color:var(--blue); }
+[data-page="acronyms"] #term-tip .tt-ex{ color:var(--text-muted); }
+
+/* Card buttons */
+[data-page="acronyms"] .btn{
+  background:var(--surface); border:1px solid var(--border); color:var(--text); border-radius:0;
+  text-transform:uppercase; font-weight:400; letter-spacing:.12em;
+}
+[data-page="acronyms"] .btn:hover:not(:disabled){ border-color:var(--rule-strong); color:var(--heading); }
+[data-page="acronyms"] .btn-flip{ background:var(--accent); border-color:var(--accent); color:#fff; }
+
+/* Confidence ramp: neutral hairlines; semantic color only on the number (mono) and label.
+   Fixes the hardcoded pastel hex (#ff9a93…#7ee787) that broke Light Mode.
+   Buckets aligned with the JS logic: 1–2 wrong (red) · 3 middle (amber) · 4–5 right (green). */
+[data-page="acronyms"] .conf{
+  background:transparent; border:1px solid var(--border); border-radius:0; color:var(--c-tx,var(--text));
+}
+[data-page="acronyms"] .conf:hover{ background:var(--hover-tint); }
+[data-page="acronyms"] .conf .num{
+  background:var(--surface-sunken); border:1px solid var(--c-tx,var(--border)); color:var(--c-tx,var(--text));
+  border-radius:0; font-family:var(--mono);
+}
+[data-page="acronyms"] .conf .sub{ color:var(--text-muted); }
+[data-page="acronyms"] .conf-1{ --c-tx:var(--red-text); }
+[data-page="acronyms"] .conf-2{ --c-tx:var(--red-text); }
+[data-page="acronyms"] .conf-3{ --c-tx:var(--amber); }
+[data-page="acronyms"] .conf-4{ --c-tx:var(--green-text); }
+[data-page="acronyms"] .conf-5{ --c-tx:var(--green-text); }
+
+[data-page="acronyms"] .kbd-hint{ color:var(--text-muted); }
+[data-page="acronyms"] .kbd-hint kbd{ background:var(--surface-sunken); border:1px solid var(--border); border-radius:0; font-family:var(--mono); }
+
+/* "all caught up" state / load error */
+[data-page="acronyms"] .allcaught{ color:var(--text-muted); }
+[data-page="acronyms"] .allcaught h2{ color:var(--heading); text-transform:uppercase; font-weight:300; letter-spacing:.18em; }
+[data-page="acronyms"] .allcaught button{
+  background:var(--accent); color:#fff; border-radius:0;
+  text-transform:uppercase; letter-spacing:.12em; font-weight:400;
+}
+
+/* ── A–Z LOOKUP: acronym book, rows with hairline hover ── */
+[data-page="acronyms"] .search-box{
+  background:var(--surface); border:1px solid var(--border); color:var(--text); border-radius:0;
+}
+[data-page="acronyms"] .search-box:focus{ border-color:var(--accent); }
+[data-page="acronyms"] .search-box::placeholder{ color:var(--text-muted); }
+[data-page="acronyms"] .list-count{ color:var(--text-muted); text-transform:uppercase; letter-spacing:.14em; font-size:.7rem; }
+[data-page="acronyms"] .list-item{
+  background:var(--surface); border:1px solid var(--border); border-radius:0; transition:background .15s ease;
+}
+[data-page="acronyms"] .list-item:hover{ background:var(--hover-tint); }
+[data-page="acronyms"] .list-acronym{ color:var(--heading); font-family:var(--mono); font-weight:700; }
+[data-page="acronyms"] .list-expansion{ color:var(--text); }
+[data-page="acronyms"] .list-explanation{ color:var(--text-muted); }
+[data-page="acronyms"] .list-empty{ color:var(--text-muted); }
+
+/* ---------- PAGE: conceitos (concepts.html) ---------- */
+/* ===== LEDGER / RÉGUAS — CONCEITOS (isolated scope) ===== */
+
+/* ---- STATS BAR ---- */
+[data-page="concepts"] .stats-bar { background: var(--surface); border-bottom: 1px solid var(--border); }
+[data-page="concepts"] .bar-affordance { text-transform: uppercase; font-weight: 300; letter-spacing: .18em; color: var(--ink-mute); font-size: clamp(.68rem,1.9vw,.76rem); }
+[data-page="concepts"] .prog-wrap { height: .4rem; border-radius: 0; background: var(--surface-sunken); border: 1px solid var(--border); }
+[data-page="concepts"] .prog-green { border-radius: 0; background-color: var(--green); background-image: none; } /* removes rgba(255,255,255,.15) stripes, near-flat */
+[data-page="concepts"] .prog-label { font-family: var(--mono); color: var(--text-muted); letter-spacing: .04em; font-weight: 500; }
+
+/* ---- PANEL ---- */
+[data-page="concepts"] .panel { background: var(--surface); border-bottom: 1px solid var(--border); }
+/* (46) Flashcards/Lookup buttons = same skin as Siglas (plain border, no animated underline) */
+[data-page="concepts"] .seg { background: transparent; border: 1px solid var(--border); color: var(--text-muted); border-radius: 0; text-transform: uppercase; font-weight: 300; letter-spacing: .16em; font-size: .72rem; }
+[data-page="concepts"] .seg.active { color: var(--heading); border-color: var(--accent); background: var(--accent-soft); font-weight: 400; }
+
+[data-page="concepts"] .prog-detail { color: var(--text-muted); }
+[data-page="concepts"] .prog-detail b { color: var(--heading); font-family: var(--mono); font-weight: 500; } /* seen/precision numbers in mono */
+[data-page="concepts"] .filter-label { text-transform: uppercase; font-weight: 300; letter-spacing: .18em; color: var(--ink-mute); }
+
+[data-page="concepts"] .dom-chip { background: transparent; border: 1px solid var(--rule-strong); color: var(--text-muted); border-radius: 0; font-weight: 400; letter-spacing: .04em; }
+[data-page="concepts"] .dom-chip:hover { color: var(--heading); border-color: var(--rule-strong); background: var(--hover-tint); }
+[data-page="concepts"] .dom-chip.on { color: var(--heading); border-color: var(--accent); background: var(--accent-soft); } /* was #fff + rgba(230,57,70,.12) */
+
+[data-page="concepts"] .prog-toolbar { border-top: 1px solid var(--border); }
+[data-page="concepts"] .tool-btn { position: relative; overflow: hidden; background: transparent; border: 1px solid var(--rule-strong); color: var(--text-muted); border-radius: 0; text-transform: uppercase; font-weight: 300; letter-spacing: .16em; font-size: .68rem; }
+[data-page="concepts"] .tool-btn::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: 0; height: 1px; background: var(--accent); transition: left .28s ease, right .28s ease; }
+[data-page="concepts"] .tool-btn:hover { color: var(--heading); border-color: var(--rule-strong); } /* was #fff */
+[data-page="concepts"] .tool-btn:hover::after { left: 0; right: 0; }
+
+/* ---- READ-ONLY NOTICE ---- */
+[data-page="concepts"] .readonly-notice { background: var(--red-soft); border: 1px solid var(--red); color: var(--red-text); border-radius: 0; } /* was rgba(218,54,51,.12)/.4 */
+[data-page="concepts"] .readonly-notice button { background: transparent; border: 1px solid var(--red); color: var(--red-text); border-radius: 0; text-transform: uppercase; font-weight: 300; letter-spacing: .14em; } /* was var(--red) fill + #fff */
+
+/* ---- FLASHCARD (editorial ruler frame) ---- */
+[data-page="concepts"] .flashcard { position: relative; background: var(--surface); border: 1px solid var(--rule-strong); border-radius: 0; }
+[data-page="concepts"] .flashcard::before { content: ""; position: absolute; inset: 8px; border: 1px solid var(--border); pointer-events: none; }
+
+[data-page="concepts"] .fc-meta { color: var(--text-muted); }
+[data-page="concepts"] .fc-box { background: transparent; border: 1px solid var(--border); color: var(--text-muted); border-radius: 0; font-family: var(--mono); font-weight: 500; } /* ✓/✗ counter in mono; was rgba(88,166,255,...) */
+[data-page="concepts"] .fc-front { color: var(--heading); font-weight: 500; } /* was #fff */
+[data-page="concepts"] .fc-hint { color: var(--text-muted); text-transform: uppercase; font-weight: 300; letter-spacing: .16em; font-size: .7rem; }
+
+[data-page="concepts"] .fc-back-body { background: var(--surface-sunken); border: 1px solid var(--border); border-left: 2px solid var(--accent); color: var(--text); border-radius: 0; } /* sunken panel with accent ruler; was rgba(46,160,67,.08)/.28 */
+
+/* ---- CROSS-LINK / POPUP ---- */
+[data-page="concepts"] .term { color: var(--blue); border-bottom: 1px dotted var(--blue); }
+[data-page="concepts"] #term-tip { background: var(--surface); border: 1px solid var(--blue); color: var(--text); border-radius: 0; box-shadow: none; } /* near-flat; was box-shadow rgba(0,0,0,.45) */
+[data-page="concepts"] #term-tip b { color: var(--blue); }
+[data-page="concepts"] #term-tip .tt-ex { color: var(--text-muted); }
+
+/* ---- CARD BUTTONS ---- */
+[data-page="concepts"] .btn { position: relative; overflow: hidden; background: transparent; border: 1px solid var(--rule-strong); color: var(--text); border-radius: 0; text-transform: uppercase; font-weight: 300; letter-spacing: .16em; font-size: clamp(.74rem,2vw,.8rem); }
+[data-page="concepts"] .btn::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: 0; height: 1px; background: var(--accent); transition: left .28s ease, right .28s ease; }
+[data-page="concepts"] .btn:hover:not(:disabled) { border-color: var(--rule-strong); color: var(--heading); }
+[data-page="concepts"] .btn:hover:not(:disabled)::after { left: 0; right: 0; }
+[data-page="concepts"] .btn-flip { background: transparent; border: 1px solid var(--accent); color: var(--heading); } /* was var(--accent) fill + #fff */
+[data-page="concepts"] .btn-flip::after { left: 0; right: 0; }
+[data-page="concepts"] .btn-flip:hover { opacity: 1; background: var(--accent-soft); }
+
+/* ---- CONFIDENCE RAMP 1..5 (semantic tokens, legible across all 3 palettes) ---- */
+[data-page="concepts"] .conf { border-radius: 0; background: var(--c-bg, var(--surface)); border: 1px solid var(--c-bd, var(--border)); color: var(--c-tx, var(--text)); }
+[data-page="concepts"] .conf .num { font-family: var(--mono); background: var(--surface-sunken); border: 1px solid var(--c-bd, var(--border)); color: var(--c-tx, var(--text)); border-radius: 0; }
+[data-page="concepts"] .conf .sub { color: var(--text-muted); }
+[data-page="concepts"] .conf:hover { background: var(--c-hover, var(--hover-tint)); } /* was rgba(255,255,255,.05) */
+[data-page="concepts"] .conf-1 { --c-bd: var(--red); --c-tx: var(--red-text); --c-bg: var(--red-soft); --c-hover: var(--red-soft); }
+[data-page="concepts"] .conf-2 { --c-bd: var(--red); --c-tx: var(--red-text); --c-bg: var(--red-soft); --c-hover: var(--red-soft); }
+[data-page="concepts"] .conf-3 { --c-bd: var(--amber); --c-tx: var(--amber); --c-bg: var(--amber-soft); --c-hover: var(--amber-soft); }
+[data-page="concepts"] .conf-4 { --c-bd: var(--green); --c-tx: var(--green-text); --c-bg: var(--green-soft); --c-hover: var(--green-soft); }
+[data-page="concepts"] .conf-5 { --c-bd: var(--green); --c-tx: var(--green-text); --c-bg: var(--green-soft); --c-hover: var(--green-soft); }
+
+[data-page="concepts"] .kbd-hint { color: var(--text-muted); }
+[data-page="concepts"] .kbd-hint kbd { background: var(--surface-sunken); border: 1px solid var(--border); border-radius: 0; font-family: var(--mono); color: var(--text); }
+
+/* ---- ALL CAUGHT ---- */
+[data-page="concepts"] .allcaught { color: var(--text-muted); }
+[data-page="concepts"] .allcaught h2 { color: var(--heading); text-transform: uppercase; font-weight: 300; letter-spacing: .18em; } /* was #fff */
+[data-page="concepts"] .allcaught button { background: transparent; border: 1px solid var(--accent); color: var(--heading); border-radius: 0; text-transform: uppercase; font-weight: 300; letter-spacing: .14em; } /* was var(--accent) fill + #fff */
+
+/* ---- LOOKUP / LIST ---- */
+[data-page="concepts"] .search-box { background: var(--surface); border: 1px solid var(--rule-strong); color: var(--text); border-radius: 0; }
+[data-page="concepts"] .search-box::placeholder { color: var(--text-muted); }
+[data-page="concepts"] .list-count { color: var(--text-muted); font-family: var(--mono); text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; } /* count in mono */
+[data-page="concepts"] .list-item { background: var(--surface); border: 1px solid var(--border); border-radius: 0; transition: background .15s, border-color .15s; }
+[data-page="concepts"] .list-item:hover { background: var(--surface-hover); border-color: var(--rule-strong); } /* row hover */
+[data-page="concepts"] .list-dom { color: var(--accent); font-family: var(--mono); font-weight: 500; } /* ID in mono/red; was var(--blue) */
+[data-page="concepts"] .list-front { color: var(--heading); font-weight: 500; } /* was #fff */
+[data-page="concepts"] .list-back { color: var(--text-muted); }
+[data-page="concepts"] .list-empty { color: var(--text-muted); text-transform: uppercase; font-weight: 300; letter-spacing: .16em; }
+
+/* ---------- PAGE: simulado (exam.html) ---------- */
+/* ============================================================
+   LEDGER / RÉGUAS · SIMULADO
+   All rules scoped by [data-page="exam"] to beat the inline
+   by specificity and not leak to other pages. Contract tokens
+   only. Core handles the nav/footer.
+   ============================================================ */
+
+/* ---------- editorial ruler frame on cards ---------- */
+[data-page="exam"] .card{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--rule-strong);
+  border-radius:0;
+}
+[data-page="exam"] .card::before{
+  content:"";
+  position:absolute;inset:8px;
+  border:1px solid var(--border);
+  pointer-events:none;
+}
+[data-page="exam"] .card > *{position:relative}
+@media (max-width:640px){
+  [data-page="exam"] .card::before{inset:6px}
+}
+
+/* ---------- facts (uppercase labels, mono numbers) ---------- */
+[data-page="exam"] .facts,
+[data-page="exam"] .res-facts{
+  color:var(--text-muted);
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+}
+[data-page="exam"] .facts b,
+[data-page="exam"] .res-facts b{
+  color:var(--heading);
+  font-family:var(--mono);
+  font-weight:600;
+  letter-spacing:0;
+}
+
+/* ---------- rules (section icons in accent) ---------- */
+[data-page="exam"] .rules li{
+  font-size:.84rem;
+  color:var(--text);
+}
+[data-page="exam"] .rules li svg{color:var(--accent)}
+
+/* ---------- size selector (segmented ruler) ---------- */
+[data-page="exam"] .opt-row label{
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:.7rem;
+  color:var(--ink-mute);
+}
+[data-page="exam"] .seg-group{
+  border:1px solid var(--border);
+  border-radius:0;
+}
+[data-page="exam"] .seg-group button{
+  background:var(--surface);
+  color:var(--text-muted);
+  border-right:1px solid var(--border);
+  text-transform:uppercase;
+  font-weight:300;
+  letter-spacing:.1em;
+  font-size:.74rem;
+}
+[data-page="exam"] .seg-group button.on{
+  background:var(--accent-soft);
+  color:var(--heading);
+}
+
+/* ---------- primary CTA (the only allowed accent fill) ---------- */
+[data-page="exam"] .btn-primary{
+  background:var(--accent);
+  color:#fff;                 /* on-accent: legible in all 3 modes */
+  border-radius:0;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-weight:600;
+  font-size:.85rem;
+}
+
+/* ---------- last result ---------- */
+[data-page="exam"] .last-result{
+  color:var(--text-muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.72rem;
+}
+[data-page="exam"] .last-result b{
+  color:var(--blue);
+  font-family:var(--mono);
+  letter-spacing:0;
+}
+
+/* ---------- exam topbar ---------- */
+[data-page="exam"] .exam-top{
+  background:var(--bg);
+  border-bottom:1px solid var(--rule-strong);
+}
+
+/* timer — monospace numbers, accent icon */
+[data-page="exam"] .timer{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:0;
+  color:var(--heading);
+  font-family:var(--mono);
+  font-weight:600;
+  letter-spacing:.02em;
+}
+[data-page="exam"] .timer svg{color:var(--accent)}
+[data-page="exam"] .timer.warn{border-color:var(--amber);color:var(--amber)}
+[data-page="exam"] .timer.warn svg{color:var(--amber)}
+[data-page="exam"] .timer.crit{border-color:var(--red);color:var(--red)}
+[data-page="exam"] .timer.crit svg{color:var(--red)}
+
+/* progress — mono counters */
+[data-page="exam"] .exam-prog{
+  color:var(--ink-mute);
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.68rem;
+}
+[data-page="exam"] .exam-prog b{
+  color:inherit;
+  font-family:var(--mono);
+  font-weight:600;
+  letter-spacing:.02em;
+}
+
+/* mini-buttons (thin uppercase, hairline) */
+[data-page="exam"] .mini-btn{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:0;
+  color:var(--text-muted);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-weight:300;
+  font-size:.7rem;
+}
+[data-page="exam"] .mini-btn:hover{
+  color:var(--heading);
+  border-color:var(--rule-strong);
+  background:var(--hover-tint);
+}
+[data-page="exam"] .mini-btn.danger:hover{
+  color:var(--red);
+  border-color:var(--red);
+}
+
+/* ---------- question (stem in a box, same as the Questões tab) ---------- */
+[data-page="exam"] .q-stem{
+  background:var(--surface);
+  border:1px solid var(--rule-strong);
+  border-radius:0;
+  padding:clamp(1rem, 3vw, 1.5rem);
+  color:var(--heading);
+  font-weight:500;
+  letter-spacing:.01em;
+}
+
+/* flag for review */
+[data-page="exam"] .flag-btn{
+  border:1px solid var(--border);
+  border-radius:0;
+  color:var(--text-muted);
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-weight:300;
+  font-size:.68rem;
+}
+[data-page="exam"] .flag-btn.on{
+  color:var(--amber);
+  border-color:var(--amber);
+  background:var(--amber-soft);
+}
+
+/* ---------- options ---------- */
+[data-page="exam"] .option{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:0;
+  color:var(--text);
+}
+[data-page="exam"] .option:hover{
+  border-color:var(--rule-strong);
+  background:var(--hover-tint);
+}
+[data-page="exam"] .option.sel{
+  border-color:var(--blue);
+  background:var(--blue-soft);
+}
+[data-page="exam"] .option .letter{
+  background:var(--surface-2);
+  border:1px solid var(--border);
+  border-radius:0;
+  color:var(--text-muted);
+  font-family:var(--mono);
+  font-weight:600;
+}
+[data-page="exam"] .option.sel .letter{
+  background:var(--blue);
+  color:#fff;                 /* on-blue: legible semantic fill */
+  border-color:var(--blue);
+}
+
+/* ---------- prev/next navigation ---------- */
+[data-page="exam"] .nav-row button{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:0;
+  color:var(--text);
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-weight:400;
+  font-size:.8rem;
+}
+[data-page="exam"] .nav-row button:hover:not(:disabled){
+  border-color:var(--rule-strong);
+  background:var(--hover-tint);
+}
+[data-page="exam"] .nav-row .primary{
+  background:var(--accent);
+  color:#fff;                 /* on-accent */
+  border-color:var(--accent);
+}
+
+/* keyboard hint */
+[data-page="exam"] .kbd-hint{color:var(--text-muted)}
+[data-page="exam"] .kbd-hint kbd{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:0;
+  font-family:var(--mono);
+}
+
+/* ---------- navigation grid (ledger) ---------- */
+[data-page="exam"] .grid-wrap{
+  border-top:1px solid var(--rule-strong);
+}
+/* (48) grid anchored to the exam footer (like the Questões options): in the 20-question exam
+   it drops to the bottom of the viewport; in the 90 (tall grid) auto-margin becomes 0 and nothing changes. */
+[data-page="exam"] main{ display: flex; flex-direction: column; }
+[data-page="exam"] #exam{ flex: 1 1 auto; display: flex; flex-direction: column; }
+[data-page="exam"] #exam .grid-wrap{ margin-top: auto; }
+/* (49) space between "Desempenho por domínio" and "Conteúdos para estudar" */
+[data-page="exam"] #study-card{ margin-top: 1.25rem; }
+
+/* ---------- SIMULADO on mobile ---------- */
+@media (max-width: 640px){
+  /* exam top: timer · Sair · Finalizar in 3 equal columns; progress on the 2nd row */
+  [data-page="exam"] .exam-top{ display: grid; grid-template-columns: repeat(3, 1fr); align-items: stretch; gap: .5rem; }
+  [data-page="exam"] .exam-top .timer{ justify-content: center; min-width: 0; }
+  [data-page="exam"] .exam-top .top-actions{ display: contents; }   /* promotes Sair/Finalizar to grid items */
+  [data-page="exam"] .exam-top .top-actions .mini-btn{ min-width: 0; justify-content: center; display: flex; align-items: center; }
+  [data-page="exam"] .exam-top .exam-prog{ grid-row: 2; grid-column: 1 / -1; min-width: 0; text-align: center; }
+  /* pins the 3 buttons' height to that of "Marcar p/ revisão" (2 lines) — no jump when it becomes "Marcada" */
+  [data-page="exam"] .nav-row button{ min-height: 4.4rem; }
+  /* distance between the navigation buttons and the question grid */
+  [data-page="exam"] #exam .grid-wrap{ margin-top: 1rem; }
+}
+[data-page="exam"] .grid-title{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  text-transform:uppercase;
+  font-weight:300;
+  letter-spacing:.2em;
+  font-size:.72rem;
+  color:var(--heading);
+}
+[data-page="exam"] .grid-title::before{
+  content:"";
+  flex:none;
+  width:1.1rem;
+  height:1px;
+  background:var(--accent);
+}
+[data-page="exam"] .qgrid button{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:0;
+  color:var(--text-muted);
+  font-family:var(--mono);
+  font-weight:600;
+  font-size:.74rem;
+}
+[data-page="exam"] .qgrid button:hover{
+  background:var(--hover-tint);
+  border-color:var(--rule-strong);
+  color:var(--heading);
+}
+[data-page="exam"] .qgrid button.answered{
+  background:var(--blue-soft);
+  color:var(--heading);
+  border-color:var(--blue);
+}
+[data-page="exam"] .qgrid button.current{
+  outline:2px solid var(--accent);
+  outline-offset:1px;
+}
+
+/* legend — re-declares the hardcoded swatch from the markup */
+[data-page="exam"] .legend{
+  color:var(--text-muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.66rem;
+}
+[data-page="exam"] .legend span:nth-child(1) i{
+  background:var(--blue) !important;
+}
+[data-page="exam"] .legend span:nth-child(3) i{
+  background:var(--surface-2) !important;
+  border:1px solid var(--border);
+}
+
+/* ---------- result ---------- */
+[data-page="exam"] .res-pct{
+  font-family:var(--mono);
+  font-weight:700;
+  letter-spacing:-.02em;
+}
+[data-page="exam"] .res-verdict{
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-weight:300;
+  font-size:.78rem;
+  color:var(--heading);
+}
+[data-page="exam"] .res-sub{color:var(--text-muted)}
+
+/* ledger-style domain table */
+[data-page="exam"] .res-dom{
+  border-bottom:1px solid var(--border);
+}
+[data-page="exam"] .res-dom:hover{background:var(--hover-tint)}
+[data-page="exam"] .res-dom-id{
+  color:var(--accent);
+  font-family:var(--mono);
+  font-weight:600;
+}
+[data-page="exam"] .res-dom-name{color:var(--text)}
+[data-page="exam"] .res-dom-stat{
+  color:var(--text-muted);
+  font-family:var(--mono);
+  letter-spacing:0;
+}
+[data-page="exam"] .res-dom-stat b{color:var(--heading)}
+[data-page="exam"] .res-dom-bar{
+  background:var(--surface-2);
+  border-radius:0;
+}
+[data-page="exam"] .res-dom-bar > span{border-radius:0}
+
+/* ---------- review ---------- */
+[data-page="exam"] .rev-item{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:0;
+}
+[data-page="exam"] .rev-item .rv-q{
+  color:var(--heading);
+  font-weight:500;
+  text-align:justify;
+  hyphens:auto;
+}
+[data-page="exam"] .rev-item .rv-tag{
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-weight:600;
+  border-radius:0;
+}
+[data-page="exam"] .rv-tag.wrong{
+  background:var(--red-soft);
+  color:var(--red);
+}
+[data-page="exam"] .rv-tag.blank{
+  background:var(--hover-tint);
+  color:var(--text-muted);
+}
+[data-page="exam"] .rv-opt{border-radius:0}
+[data-page="exam"] .rv-opt.correct{
+  background:var(--green-soft);
+  color:var(--green-text);
+  border:1px solid var(--green);
+}
+[data-page="exam"] .rv-opt.chosen-wrong{
+  background:var(--red-soft);
+  color:var(--red-text);
+  border:1px solid var(--red);
+}
+[data-page="exam"] .rv-expl{
+  color:var(--text-muted);
+  border-top:1px dashed var(--border);
+  text-align:justify;
+  hyphens:auto;
+}
+
+/* ---------- result actions ---------- */
+[data-page="exam"] .res-actions .primary{
+  background:var(--accent);
+  color:#fff;                 /* on-accent */
+  border:none;
+  border-radius:0;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-weight:600;
+  font-size:.78rem;
+}
+[data-page="exam"] .res-actions .ghost{
+  background:var(--surface);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:0;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  font-weight:400;
+  font-size:.78rem;
+}
+[data-page="exam"] .res-actions .ghost:hover{
+  background:var(--hover-tint);
+  border-color:var(--rule-strong);
+}
+
+/* ---------- PAGE: metodologia (methodology.html) ---------- */
+/* ============================================================
+   LEDGER / RÉGUAS — methodology.html
+   Isolated scope via [data-page="methodology"] (beats the inline
+   by specificity). Contract tokens only; no fixed color.
+   ============================================================ */
+
+/* ---------- HERO ---------- */
+[data-page="methodology"] .eyebrow{
+  font-weight:300;
+  font-size:.9rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--heading);
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  padding-bottom:.9rem;
+  border-bottom:1px solid var(--rule-strong);
+}
+/* red ruler tick before the eyebrow */
+[data-page="methodology"] .eyebrow::before{
+  content:"";
+  width:1.4rem;
+  height:1px;
+  background:var(--accent);
+  flex:none;
+}
+[data-page="methodology"] h1{
+  font-weight:300;
+  color:var(--heading);
+  letter-spacing:-0.01em;
+}
+[data-page="methodology"] .lede{
+  color:var(--text-muted);
+}
+[data-page="methodology"] .lede b{
+  color:var(--text);
+  font-weight:500;
+}
+
+/* ---------- STAT BAND (ledger) ---------- */
+[data-page="methodology"] .stats{
+  background:var(--border);
+  border:1px solid var(--rule-strong);
+  border-radius:0;
+}
+/* mobile: fixed 2×2 (auto-fit fit 3 columns and left 1 orphan on the 2nd row) */
+@media (max-width:640px){
+  [data-page="methodology"] .stats{ grid-template-columns:1fr 1fr; }
+}
+[data-page="methodology"] .stat{
+  background:var(--surface);
+  padding:1.15rem 1.2rem;
+}
+[data-page="methodology"] .stat .n{
+  font-family:var(--mono);
+  font-weight:400;
+  color:var(--heading);
+  letter-spacing:-0.02em;
+}
+[data-page="methodology"] .stat .l{
+  text-transform:uppercase;
+  font-weight:400;
+  font-size:.66rem;
+  letter-spacing:.13em;
+  color:var(--ink-mute);
+  margin-top:.55rem;
+}
+
+/* ---------- SCOPE BAR (panel with ruler frame) ---------- */
+[data-page="methodology"] .scopebar-wrap{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--rule-strong);
+  border-radius:0;
+  padding:1.3rem 1.4rem;
+}
+[data-page="methodology"] .scopebar-wrap::before{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid var(--border);
+  pointer-events:none;
+}
+[data-page="methodology"] .scopebar-wrap > *{position:relative}
+/* re-declares the inline color:#fff → token (otherwise breaks in light) */
+[data-page="methodology"] .scopebar-wrap > div:first-child{
+  color:var(--heading) !important;
+  font-weight:400 !important;
+  letter-spacing:.01em;
+}
+[data-page="methodology"] .scopebar{
+  border-radius:0;
+  height:.55rem;
+  margin:.9rem 0;
+}
+/* segments keep semantics (green=in-scope, amber=borderline, red=out-of-scope) */
+[data-page="methodology"] .sc-c{background:var(--green)}
+[data-page="methodology"] .sc-l{background:var(--amber)}
+[data-page="methodology"] .sc-i{background:var(--red)}
+[data-page="methodology"] .scope-legend{
+  color:var(--text-muted);
+  font-size:.78rem;
+}
+[data-page="methodology"] .scope-legend b{
+  color:var(--text);
+  font-weight:500;
+}
+[data-page="methodology"] .dot{border-radius:1px}
+[data-page="methodology"] .dot.c{background:var(--green)}
+[data-page="methodology"] .dot.l{background:var(--amber)}
+[data-page="methodology"] .dot.i{background:var(--red)}
+
+/* ---------- SECTION TITLES (h2) — thin uppercase + tick ---------- */
+[data-page="methodology"] h2{
+  text-transform:uppercase;
+  font-weight:300;
+  font-size:.9rem;
+  letter-spacing:.2em;
+  color:var(--heading);
+  padding-bottom:.9rem;
+  border-bottom:1px solid var(--rule-strong);
+  gap:.75rem;
+}
+[data-page="methodology"] h2::before{
+  content:"";
+  width:1.4rem;
+  height:1px;
+  border-radius:0;
+  background:var(--accent);
+}
+
+/* ---------- PROCESS STEPS (cards with frame + mono ID) ---------- */
+[data-page="methodology"] .step{
+  background:var(--surface);
+  border:1px solid var(--rule-strong);
+  border-radius:0;
+  transition:background .25s ease;
+}
+/* inner ruler frame (ledger) */
+[data-page="methodology"] .step::after{
+  content:"";
+  position:absolute;
+  inset:6px;
+  border:1px solid var(--border);
+  pointer-events:none;
+}
+[data-page="methodology"] .step:hover{background:var(--surface-hover)}
+[data-page="methodology"] .step::before{
+  font-family:var(--mono);
+  font-weight:400;
+  font-size:.78rem;
+  color:var(--accent);
+  letter-spacing:.05em;
+}
+[data-page="methodology"] .step h3{
+  color:var(--heading);
+  font-weight:600;
+}
+[data-page="methodology"] .step p{color:var(--text-muted)}
+[data-page="methodology"] .step b{color:var(--text);font-weight:500}
+
+/* informational TAG — re-declares rgba(88,166,255,…) via tokens */
+[data-page="methodology"] .tag{
+  font-family:var(--mono);
+  font-weight:400;
+  font-size:.66rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--blue);
+  background:var(--blue-soft);
+  border:1px solid var(--blue-soft);
+  border-radius:0;
+  padding:.12rem .5rem;
+}
+
+/* ---------- FINDINGS ---------- */
+[data-page="methodology"] .finding{
+  position:relative;
+  background:var(--surface);
+  border:1px solid var(--rule-strong);
+  border-left:2px solid var(--blue);
+  border-radius:0;
+  transition:background .25s ease;
+  overflow:hidden;
+}
+[data-page="methodology"] .finding:hover{background:var(--surface-hover)}
+/* red underline growing from center */
+[data-page="methodology"] .finding::after{
+  content:"";
+  position:absolute;
+  left:50%;right:50%;bottom:0;
+  height:1px;
+  background:var(--accent);
+  transition:left .3s ease,right .3s ease;
+}
+[data-page="methodology"] .finding:hover::after{left:0;right:0}
+[data-page="methodology"] .finding h4{
+  color:var(--heading);
+  font-weight:600;
+}
+[data-page="methodology"] .finding p{color:var(--text-muted)}
+[data-page="methodology"] .finding p i{color:var(--text);font-style:italic}
+
+/* ---------- CALLOUT — re-declares rgba(63,185,80,…) via tokens ---------- */
+[data-page="methodology"] .callout{
+  background:var(--green-soft);
+  border:1px solid var(--green-soft);
+  border-left:2px solid var(--green);
+  border-radius:0;
+}
+[data-page="methodology"] .callout h3{
+  color:var(--green-text);
+  font-weight:600;
+}
+[data-page="methodology"] .callout p{color:var(--text)}
+
+/* ---------- DISCLAIMER ---------- */
+[data-page="methodology"] .disclaimer{
+  border:1px dashed var(--border);
+  border-radius:0;
+  color:var(--text-muted);
+}
+[data-page="methodology"] .disclaimer b{color:var(--text)}
+[data-page="methodology"] .disclaimer a{color:var(--blue)}
+
+/* ---------- UPDATED ---------- */
+[data-page="methodology"] .updated{
+  text-transform:uppercase;
+  font-weight:300;
+  letter-spacing:.16em;
+  font-size:.68rem;
+  color:var(--text-muted);
+}
+[data-page="methodology"] a{color:var(--blue)}
+
+/* thinner frame on mobile, aligned with ledger.css */
+@media (max-width:640px){
+  [data-page="methodology"] .scopebar-wrap::before,
+  [data-page="methodology"] .step::after{inset:5px}
+}
+
+/* ==========================================================================
+   READING FONT — Atkinson Hyperlegible (self-hosted, offline)
+   Made by the Braille Institute for legibility. License: fonts/OFL.txt (SIL OFL).
+   Applied ONLY to prose (reading); uppercase labels and numbers stay mono/sans.
+   ========================================================================== */
+@font-face{font-family:"Atkinson Hyperlegible";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/AtkinsonHyperlegible-Regular.woff2") format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/AtkinsonHyperlegible-Bold.woff2") format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-style:italic;font-weight:400;font-display:swap;src:url("../fonts/AtkinsonHyperlegible-Italic.woff2") format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-style:italic;font-weight:700;font-display:swap;src:url("../fonts/AtkinsonHyperlegible-BoldItalic.woff2") format("woff2")}
+
+:root{ --prose:"Atkinson Hyperlegible", var(--sans); }
+
+/* general prose: content paragraphs + hub prose */
+main p, .prose{ font-family:var(--prose); }
+
+/* reading containers (non-<p>) per page */
+[data-page="questions"] .quiz-stem,
+[data-page="questions"] .option-btn,
+[data-page="questions"] .quiz-explanation{ font-family:var(--prose); }
+
+[data-page="acronyms"] .fc-back,
+[data-page="acronyms"] .fc-acronym.sentence-mode{ font-family:var(--prose); }
+
+[data-page="concepts"] .fc-front,
+[data-page="concepts"] .fc-back{ font-family:var(--prose); }
+
+[data-page="exam"] .q-stem,
+[data-page="exam"] .option,
+[data-page="exam"] .rv-q,
+[data-page="exam"] .rv-expl,
+[data-page="exam"] .res-verdict,
+[data-page="exam"] .res-sub{ font-family:var(--prose); }
+
+[data-page="methodology"] .lede{ font-family:var(--prose); }
+
+
+/* ==========================================================================
+   Remove the INNER FRAMES (double border) from panels — saves space.
+   Keeps the outer border, red underlines, markers and the step number.
+   ========================================================================== */
+[data-page="hub"] .card::before,
+[data-page="questions"] .quiz-stem::before,
+[data-page="acronyms"] .flashcard::before,
+[data-page="concepts"] .flashcard::before,
+[data-page="exam"] .card::before,
+[data-page="methodology"] .scopebar-wrap::before,
+[data-page="methodology"] .step::after{ display:none !important; }
+
+
+/* ==========================================================================
+   Hub: remove remaining rounding (outer corners, module grid, backup
+   buttons) and space the sections by 10px. Ledger identity is square.
+   ========================================================================== */
+[data-page="hub"] main{ gap:20px; }
+[data-page="hub"] main > section:first-of-type,
+[data-page="hub"] main > section:last-of-type{ border-radius:0; }
+[data-page="hub"] .mods{ border-radius:0; }
+[data-page="hub"] .backup-btn{ border-radius:0; }
+
+/* "Vai fazer a prova?": on mobile the table's min-content (cell padding)
+   was wider than the card and it overflowed to the right (looked pushed). Smaller padding to fit. */
+@media (max-width: 34rem){
+  [data-page="hub"] .exam-table td{ padding: .55rem .5rem; }
+  [data-page="hub"] .exam-table td.chk{ padding-left: .55rem; padding-right: .35rem; }
+  [data-page="hub"] .exam-table td.nm{ padding-right: .5rem; }
+}
+
+
+/* ==========================================================================
+   (2) Nav spans full width: no scrollbar-gutter reservation and the page's
+   own scrollbar is hidden (scrolling still works via wheel/touch/keyboard).
+   This removes the ~15px reserved on the right — the nav now reaches the edge
+   and looks identical across scrolling and fixed-height pages. --nav-height is
+   synced by JS (theme.js) so stats-wrapper sticks under the nav.
+   ========================================================================== */
+html{ scrollbar-width: none; }
+html::-webkit-scrollbar{ width: 0; height: 0; display: none; }
+
+
+/* ==========================================================================
+   One-off adjustments (owner requests)
+   ========================================================================== */
+/* Metodologia: remove the red bottom border on findings hover */
+[data-page="methodology"] .finding::after{ display:none !important; }
+
+/* Siglas: highlight of the acronym within the sentence.
+   It used to be a translucent red wash (--accent-soft) that vanished on dark
+   backgrounds (blue/brown). Now it's a SOLID, palette-aware "marker" with white
+   text on top — pop guaranteed by luminance on any background. */
+:root{ --mark-bg:rgba(230,57,70,.4); }
+/* Black Aura: borders/hairlines a bit lighter (they had almost no contrast on the brown) */
+[data-palette="black-aura"]{ --mark-bg:rgba(230,57,70,.4); --border:#352d26; --rule-strong:#463b32; }
+[data-palette="light"]{ --mark-bg:rgba(193,18,31,.38); }
+[data-page="acronyms"] .fc-acronym.sentence-mode mark{
+  background:var(--mark-bg); color:var(--heading); padding:.05rem .4rem;
+}
+
+
+/* ==========================================================================
+   Questões — (1) align the stem's right edge with options/buttons
+   and (2) responsive pin (fixed on desktop, natural flow <=720px).
+   ========================================================================== */
+/* (1) options/actions/kbd reserve the SAME gutter as #quiz-scroll
+   (scrollbar-gutter:stable + scrollbar-width:thin, without showing a bar via
+   overflow:hidden) → right edges match under overlay(0)/thin/classic scrollbars. */
+body[data-page="questions"] .fc-meta,
+body[data-page="questions"] .quiz-options,
+body[data-page="questions"] .quiz-actions{
+  overflow: hidden;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+}
+/* redundant textual verdict: visually hidden, kept for screen readers (aria-live) */
+body[data-page="questions"] .quiz-result{
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* (2) <=720px: release the height cap → the stem takes what it needs and the
+   PAGE scrolls; options come right below (no cramped little window). */
+@media (max-width: 720px){
+  body[data-page="questions"]{ height: auto; min-height: 100svh; }
+  body[data-page="questions"] #content{ overflow-y: visible; }
+  body[data-page="questions"] #quiz-scroll{
+    overflow: visible; flex: 0 0 auto; min-height: 0; scrollbar-gutter: auto;
+  }
+  body[data-page="questions"] .fc-meta,
+  body[data-page="questions"] .quiz-options,
+  body[data-page="questions"] .quiz-actions{
+    overflow: visible; scrollbar-gutter: auto;
+  }
+}
+
+
+/* Footer: trim vertical padding (was ~101px for a single line) */
+footer{ padding: 0.75rem clamp(1rem,4vw,2rem) 0.85rem; }
+@media (max-width:640px){ footer{ padding: 0.4rem clamp(1rem,4vw,2rem) 0.45rem; } }
+
+
+/* ==========================================================================
+   Conceitos — scenario mode: the front becomes the situation (cue) and the back
+   highlights the term with the same solid marker as Siglas. Tokenized (works
+   across all 3 palettes); no #fff nor translucent wash.
+   ========================================================================== */
+[data-page="concepts"] #fc-front.sentence-mode{
+  font-size: 1rem;
+  font-weight: 400; line-height: 1.75;
+  color: var(--text); font-family: var(--prose);
+  text-align: justify; text-indent: 1.7em; max-width: none;
+}
+/* slightly smaller body on the main texts */
+[data-page="concepts"] .fc-back-body{ font-size: clamp(0.86rem, 2.2vw, 0.98rem); }
+[data-page="concepts"] .conf{ font-size: clamp(0.82rem, 1.9vw, 0.9rem); }
+
+/* "?" button (circle) left of the domain + backing popup (Referências / Por que está aqui) */
+[data-page="concepts"] .fc-meta{ position: relative; }
+[data-page="concepts"] .fc-help{
+  display: inline-grid; place-items: center; flex: none; align-self: stretch; min-width: 0;
+  width: auto; height: auto; aspect-ratio: 1; padding: 0;
+  border: 1px solid var(--border); border-radius: 0;
+  background: transparent; color: var(--text-muted);
+  font: 700 .72rem/1 var(--sans); cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+[data-page="concepts"] .fc-help[hidden]{ display: none; }
+[data-page="concepts"] .fc-help:hover,
+[data-page="concepts"] .fc-help[aria-expanded="true"]{ color: var(--heading); border-color: var(--accent); }
+[data-page="concepts"] .fc-help-pop{
+  position: absolute; top: calc(100% + .5rem); left: 0; z-index: 60;
+  width: min(30rem, 86vw); max-height: 60vh; overflow-y: auto;
+  display: grid; gap: .7rem; text-align: left;
+  padding: .9rem 1rem;
+  background: var(--surface); border: 1px solid var(--rule-strong);
+  box-shadow: 0 12px 30px rgba(0,0,0,.32);
+}
+[data-page="concepts"] .fc-help-pop[hidden]{ display: none; }
+
+/* Stems on the other tabs: smaller + paragraph structure (left-aligned,
+   first line indented), consistent with Conceitos. */
+[data-page="questions"] .quiz-stem{
+  font-size: 1rem; font-weight: 400; line-height: 1.75;
+  text-align: justify; text-indent: 1.7em;
+}
+[data-page="acronyms"] .fc-acronym.sentence-mode{
+  font-size: 1rem; font-weight: 400; line-height: 1.75; max-width: none;
+  text-align: justify; text-indent: 1.7em;
+}
+[data-page="exam"] .q-stem{
+  font-size: 1rem; font-weight: 400; line-height: 1.75;
+  text-align: justify; text-indent: 1.7em;
+}
+[data-page="concepts"] .fc-back-body mark{
+  background: var(--mark-bg); color: var(--heading);
+  font-weight: 700; padding: .05rem .35rem; border-radius: 0;
+}
+
+/* Backing footer (Por que cai + Referências) — hairline + micro-accent labels */
+[data-page="concepts"] .fc-foot{
+  margin-top: 1rem; padding-top: .85rem;
+  border-top: 1px solid var(--border);
+  display: grid; gap: .6rem; text-align: left; width: 100%;
+}
+[data-page="concepts"] .fc-foot-row{ display: grid; gap: .18rem; }
+[data-page="concepts"] .fc-foot-lbl{
+  font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent); font-weight: 400;
+}
+[data-page="concepts"] .fc-foot-txt{
+  font-size: .82rem; line-height: 1.5; color: var(--text-muted);
+  font-family: var(--prose); text-align: justify; hyphens: auto;
+}
+
+
+/* ==========================================================================
+   Cross-tab standardization: "Mostrar resposta" button = .btn-next; progress
+   bars in the Conceitos minimalist design + ticks every 10%.
+   ========================================================================== */
+[data-page="concepts"] .btn-flip,
+[data-page="acronyms"] .btn-flip{
+  background: var(--accent-soft); border-color: var(--accent); color: var(--red-text);
+}
+[data-page="concepts"] .btn-flip:hover,
+[data-page="acronyms"] .btn-flip:hover{
+  background: var(--accent-soft); border-color: var(--accent); color: var(--red-text); opacity: 1;
+}
+
+[data-page="concepts"] .prog-wrap,
+[data-page="acronyms"] .prog-wrap,
+[data-page="questions"] .prog-wrap{
+  position: relative; height: .5rem; border-radius: 0;
+  background: var(--surface-sunken); border: 1px solid var(--border); overflow: hidden;
+}
+[data-page="concepts"] .prog-green, [data-page="concepts"] .prog-red,
+[data-page="acronyms"] .prog-green, [data-page="acronyms"] .prog-red,
+[data-page="questions"] .prog-green, [data-page="questions"] .prog-red{
+  background-image: none; border-radius: 0;
+}
+[data-page="concepts"] .prog-green,
+[data-page="acronyms"] .prog-green,
+[data-page="questions"] .prog-green{ background-color: var(--green); }
+[data-page="questions"] .prog-red{ background-color: var(--red); }
+/* vertical ticks every 10% (segment the bar into 10) */
+[data-page="concepts"] .prog-wrap::after,
+[data-page="acronyms"] .prog-wrap::after,
+[data-page="questions"] .prog-wrap::after{
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: repeating-linear-gradient(90deg,
+    var(--rule-strong) 0, var(--rule-strong) 1px, transparent 1px, transparent 10%);
+}
+
+/* Unique-ID badge (Conceitos/Siglas) — subtle mono, same Ledger vocabulary */
+[data-page="concepts"] .fc-id,
+[data-page="acronyms"] .fc-id{
+  font-family: var(--mono); font-size: .66rem; font-weight: 500;
+  color: var(--text-muted); border: 1px solid var(--border);
+  padding: .12rem .45rem; letter-spacing: .02em; border-radius: 0;
+}
+
+/* answer/explanation texts justified */
+[data-page="concepts"] .fc-back-body{ text-align: justify; }
+[data-page="acronyms"] .fc-explanation{ text-align: justify; }
+[data-page="questions"] .quiz-explanation{ text-align: justify; }
+/* Metodologia: justified paragraphs */
+[data-page="methodology"] .lede,
+[data-page="methodology"] .step p,
+[data-page="methodology"] .finding p{ text-align: justify; hyphens: auto; }
+/* Metodologia: disclaimer becomes a footnote aligned to the text column
+   (no side box; dashed rule only on top) so the text width matches the
+   rest of the content (lede, titles). */
+[data-page="methodology"] .disclaimer{
+  border: none;
+  border-top: 1px dashed var(--border);
+  border-radius: 0;
+  padding: 1.3rem 0 0;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ==========================================================================
+   Domain filter panel: top and dropdown in the SAME block (same width);
+   each domain on ONE line (num + name + bar + count), no weight; fixed-width
+   bars aligned (the total and the 5 domains).
+   ========================================================================== */
+[data-page="questions"] .stats-bar{ padding-left: 0; padding-right: 0; }
+[data-page="questions"] .stats-inner{
+  width: 100%; max-width: min(78rem, 100%); margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+  display: flex; align-items: center; gap: .6rem;
+}
+[data-page="questions"] .filter-affordance{
+  flex: none; display: inline-flex; align-items: center; gap: .3rem; color: var(--text-muted);
+}
+[data-page="questions"] .filter-icon,
+[data-page="acronyms"] .filter-icon,
+[data-page="concepts"] .filter-icon{ width: 1.05rem; height: 1.05rem; flex: none; }
+/* total bar: fills from the icon to the count (the longest one) */
+[data-page="questions"] .stats-inner .prog-wrap{ flex: 1; width: auto; max-width: none; }
+
+/* wider dropdown + shared grid (subgrid): the name column by the width
+   of the LONGEST title (no truncation), equal bars aligned start/end, (x/y) on the right. */
+[data-page="questions"] .domain-inner{ max-width: min(78rem, 100%); }
+[data-page="questions"] .domain-rows{
+  display: grid; grid-template-columns: auto auto 1fr auto;
+  column-gap: .6rem; row-gap: .5rem; align-items: center;
+}
+[data-page="questions"] .domain-row{
+  grid-column: 1 / -1; display: grid; grid-template-columns: subgrid;
+  align-items: center; padding: 0;
+}
+[data-page="questions"] .domain-name{ white-space: nowrap; overflow: visible; text-overflow: clip; }
+[data-page="questions"] .domain-row .prog-wrap{ width: auto; max-width: none; }
+
+/* Mobile: action buttons in 2×2 — 'don't know'/'skip' on top, 'undo'/'next'
+   below (undo on the left only appears after answering; next always on the right). */
+@media (max-width: 640px){
+  body[data-page="questions"] .quiz-actions{
+    display: grid; grid-template-columns: 1fr 1fr; gap: .5rem;
+  }
+  body[data-page="questions"] .quiz-actions .btn-dontknow{ grid-column: 1; grid-row: 1; }
+  body[data-page="questions"] .quiz-actions .btn-skip{ grid-column: 2; grid-row: 1; }
+  body[data-page="questions"] .quiz-actions .btn-undo{ grid-column: 1; grid-row: 2; }
+  body[data-page="questions"] .quiz-actions .btn-next{ grid-column: 2; grid-row: 2; margin-left: 0; }
+  /* domains without title on mobile: only x.0 · bar · (x/y) */
+  [data-page="questions"] .domain-rows{ grid-template-columns: auto 1fr auto; }
+  [data-page="questions"] .domain-name{ display: none; }
+  /* keyboard hint makes no sense on phones (and takes no space when hidden) */
+  [data-page="questions"] .kbd-hint{ display: none; }
+}
+
+
+/* (15) domain legend moved into prog-toolbar: right-aligned, vertically
+   centered; on mobile it wraps after the sentence (legend-br) and returns to flow on the left */
+[data-page="questions"] .prog-toolbar{ align-items: center; }
+[data-page="questions"] .domain-legend{ margin: 0 0 0 auto; }
+.legend-br{ display: none; }
+@media (max-width: 640px){
+  [data-page="questions"] .domain-legend{ margin: .25rem 0 0; width: 100%; }
+  .legend-br{ display: inline; }
+}
+
+/* (31) footer keyboard hint (Questões/Siglas/Conceitos): 1st line; copyright on the 2nd.
+   Still hidden on mobile. */
+footer .kbd-hint{ margin: 0 0 .45rem; text-align: center; }
+@media (max-width: 640px){ footer .kbd-hint{ display: none; } }
+
+/* "OPÇÕES" bar (Siglas and Conceitos): unified style, no bold */
+[data-page="acronyms"] .bar-affordance,
+[data-page="concepts"] .bar-affordance{
+  font-size: .75rem; font-weight: 300; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+[data-page="acronyms"] .prog-label,
+[data-page="concepts"] .prog-label,
+[data-page="questions"] .prog-label{
+  font-family: var(--mono); font-size: .82rem; font-weight: 400;
+  letter-spacing: 0; color: var(--text-muted); min-width: 0; text-align: left; flex: 0 1 auto;
+}
+
+/* ===== Unified card header (Questões = reference for Siglas and Conceitos) ===== */
+/* meta OUTSIDE the box: domain on the left, [state · id · ?] group on the right */
+[data-page="concepts"] .fc-meta,
+[data-page="acronyms"] .fc-meta,
+[data-page="questions"] .fc-meta{
+  position: relative; width: 100%; justify-content: flex-start; align-items: stretch; gap: 0;
+}
+.fc-dom:empty{ display: none; }   /* Siglas have no domain: hide the empty badge */
+[data-page="concepts"] .fc-meta-r,
+[data-page="acronyms"] .fc-meta-r,
+[data-page="questions"] .fc-meta-r{
+  margin-left: auto; display: inline-flex; align-items: stretch; gap: .5rem; flex-wrap: wrap;
+}
+/* (3) ID badge = same as quiz-qid-badge (accent, mono, square, thin border) */
+[data-page="concepts"] .fc-id,
+[data-page="acronyms"] .fc-id,
+[data-page="questions"] .fc-id{
+  display: inline-flex; align-items: center;
+  background: transparent; color: var(--accent); border: 1px solid var(--border); border-radius: 0;
+  font-family: var(--mono); font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+  padding: .2rem .65rem; white-space: nowrap;
+}
+/* (4) state chip = Siglas style (blue-soft, mono, uppercase, square), now in Conceitos and Questões */
+[data-page="concepts"] .fc-box,
+[data-page="questions"] .fc-box,
+[data-page="acronyms"] .fc-box{
+  display: inline-flex; align-items: center;
+  background: var(--blue-soft); border: 1px solid var(--blue); color: var(--blue); border-radius: 0;
+  text-transform: uppercase; letter-spacing: .12em; font-family: var(--mono); font-weight: 600;
+  font-size: .74rem; padding: .15rem .55rem; white-space: nowrap;
+}
+/* (2) "?" button (why study) + popup in Siglas and Questões, same as Conceitos */
+[data-page="acronyms"] .fc-help,
+[data-page="questions"] .fc-help{
+  display: inline-grid; place-items: center; flex: none; align-self: stretch; min-width: 0;
+  width: auto; height: auto; aspect-ratio: 1; padding: 0;
+  border: 1px solid var(--border); border-radius: 0; background: transparent; color: var(--text-muted);
+  font: 700 .72rem/1 var(--sans); cursor: pointer; transition: color .15s, border-color .15s;
+}
+[data-page="acronyms"] .fc-help[hidden],
+[data-page="questions"] .fc-help[hidden]{ display: none; }
+[data-page="acronyms"] .fc-help:hover, [data-page="acronyms"] .fc-help[aria-expanded="true"],
+[data-page="questions"] .fc-help:hover, [data-page="questions"] .fc-help[aria-expanded="true"]{
+  color: var(--heading); border-color: var(--accent);
+}
+/* popup anchored right (the group sits on the right) — applies to all three */
+[data-page="concepts"] .fc-help-pop,
+[data-page="acronyms"] .fc-help-pop,
+[data-page="questions"] .fc-help-pop{
+  position: absolute; top: calc(100% + .5rem); right: 0; left: auto; z-index: 60;
+  width: min(30rem, 86vw); max-height: 60vh; overflow-y: auto; display: grid; gap: .7rem; text-align: left;
+  padding: .9rem 1rem; background: var(--surface); border: 1px solid var(--rule-strong);
+  box-shadow: 0 12px 30px rgba(0,0,0,.32);
+}
+[data-page="acronyms"] .fc-help-pop[hidden],
+[data-page="questions"] .fc-help-pop[hidden]{ display: none; }
+[data-page="acronyms"] .fc-foot-row,
+[data-page="questions"] .fc-foot-row{ display: grid; gap: .18rem; }
+[data-page="acronyms"] .fc-foot-lbl,
+[data-page="questions"] .fc-foot-lbl{
+  font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); font-weight: 400;
+}
+[data-page="acronyms"] .fc-foot-txt,
+[data-page="questions"] .fc-foot-txt{
+  font-size: .82rem; line-height: 1.5; color: var(--text-muted); font-family: var(--prose);
+  text-align: justify; hyphens: auto;
+}
+/* (4) Questões "?" popup: fixed + positioned by JS — not clipped by quiz-meta,
+   which keeps overflow:hidden (reserves the scrollbar gutter and aligns the right edge) */
+[data-page="questions"] .fc-help-pop{ position: fixed; top: auto; right: auto; }
+
+/* "Mostrar resposta" (btn-flip) button on Siglas/Conceitos = same skin as the Questões option (.option-btn) */
+[data-page="acronyms"] .btn-flip,
+[data-page="concepts"] .btn-flip{
+  background: var(--surface); border: 1px solid var(--border); border-radius: 0; color: var(--text);
+  text-transform: none; letter-spacing: normal; font-weight: 400;
+  font-size: clamp(0.84rem, 2vw, 0.95rem); text-align: center; padding: 0.65rem 1rem;
+  justify-content: center;   /* (35) "Mostrar resposta" centered */
+}
+[data-page="acronyms"] .btn-flip:hover:not(:disabled),
+[data-page="concepts"] .btn-flip:hover:not(:disabled){
+  border-color: var(--accent); color: var(--heading); background: var(--hover-tint); opacity: 1;
+}
+[data-page="concepts"] .btn-flip::after{ display: none; }   /* kills the .btn underline animation */
+/* unified DOMAIN badge (Questões/Conceitos): filled accent-soft, uppercase, mono, square */
+[data-page="questions"] .fc-dom,
+[data-page="concepts"] .fc-dom{
+  display: inline-flex; align-items: center;
+  background: var(--accent-soft); border: 1px solid var(--accent); color: var(--red-text);
+  border-radius: 0; text-transform: uppercase; font-family: var(--mono); font-weight: 500;
+  letter-spacing: .08em; font-size: .72rem; padding: .15rem .55rem; white-space: nowrap;
+}
+/* domain: full name on desktop; only "x.0" on mobile (saves horizontal space) */
+[data-page="questions"] .fc-dom .qd-min,
+[data-page="concepts"] .fc-dom .qd-min{ display: none; }
+@media (max-width: 640px){
+  [data-page="questions"] .fc-dom .qd-full,
+  [data-page="concepts"] .fc-dom .qd-full{ display: none; }
+  [data-page="questions"] .fc-dom .qd-min,
+  [data-page="concepts"] .fc-dom .qd-min{ display: inline; }
+}
+
+/* ==========================================================================
+   Siglas/Conceitos — (33) gap in view-practice (replaces the fc-meta margin-bottom);
+   (36) answer area anchored to the card footer; (38) justified explanation;
+   (39/40/41) per-score count (0..5) colored + score border in Lookup.
+   ========================================================================== */
+/* (33) fc-meta ↔ flashcard spacing via container gap (fc-meta lost its margin-bottom) */
+[data-page="acronyms"] #view-practice,
+[data-page="concepts"] #view-practice{ display: flex; flex-direction: column; gap: 1.1rem; }
+
+/* (36) answer (Mostrar resposta / confidence ramp) anchored to the card bottom,
+   like the Questões options; flashcard padding preserved. */
+[data-page="acronyms"] .fc-actions,
+[data-page="acronyms"] .fc-rate,
+[data-page="concepts"] .fc-actions,
+[data-page="concepts"] .fc-rate{ margin-top: auto; }
+
+/* confidence ramp in a 2×3 grid; 6th item = Next button (Questões btn-next skin) */
+/* full-width: the ramp and "Mostrar resposta" reach the card edges (centered looked bad) */
+[data-page="acronyms"] .fc-rate,
+[data-page="concepts"] .fc-rate,
+[data-page="acronyms"] .fc-actions,
+[data-page="concepts"] .fc-actions{ max-width: none; }
+[data-page="acronyms"] .fc-rate.show,
+[data-page="concepts"] .fc-rate.show{ display: grid; grid-template-columns: 1fr 1fr; gap: .4rem; }
+/* mobile: one column (6×1) to fit the screen better */
+@media (max-width: 640px){
+  [data-page="acronyms"] .fc-rate.show,
+  [data-page="concepts"] .fc-rate.show{ grid-template-columns: 1fr; }
+}
+/* score buttons: same background/border as "Mostrar resposta"; square, number and title in
+   the score color, no bold (the sub stays faint) */
+[data-page="acronyms"] .conf,
+[data-page="concepts"] .conf{
+  background: var(--surface); border: 1px solid var(--border); border-radius: 0; font-weight: 400;
+}
+[data-page="acronyms"] .conf:hover:not(:disabled),
+[data-page="concepts"] .conf:hover:not(:disabled){ border-color: var(--c-tx, var(--accent)); background: var(--hover-tint); }
+[data-page="acronyms"] .conf .num,
+[data-page="concepts"] .conf .num{
+  background: transparent; border: 1px solid var(--c-tx, var(--border)); color: var(--c-tx, var(--text));
+  font-family: var(--mono); font-weight: 400;
+}
+[data-page="acronyms"] .conf .lbl,
+[data-page="concepts"] .conf .lbl{ color: var(--c-tx, var(--text)); font-weight: 400; }
+[data-page="acronyms"] .conf .sub,
+[data-page="concepts"] .conf .sub{ color: var(--text-muted); font-weight: 400; }
+[data-page="acronyms"] .conf.selected,
+[data-page="concepts"] .conf.selected{ border-color: var(--c-tx, var(--accent)); background: var(--hover-tint); }
+[data-page="acronyms"] .conf,
+[data-page="concepts"] .conf,
+[data-page="acronyms"] .conf .num,
+[data-page="concepts"] .conf .num{ border-color: var(--rule-strong); }   /* notes: same neutral gray border as Próxima; their color shows on hover/selection */
+[data-page="acronyms"] .conf:disabled,
+[data-page="concepts"] .conf:disabled{ cursor: default; opacity: .45; }
+[data-page="acronyms"] .conf.selected:disabled,
+[data-page="concepts"] .conf.selected:disabled{ opacity: 1; }   /* the chosen score stays highlighted */
+[data-page="acronyms"] .fc-next,
+[data-page="concepts"] .fc-next{
+  display: inline-flex; align-items: center; justify-content: center; gap: .4rem; min-height: 2.75rem;
+  padding: .5rem 1rem; background: transparent; border: 1px solid var(--rule-strong); color: var(--text-muted);
+  border-radius: 0; text-transform: uppercase; font-weight: 500; letter-spacing: .12em; font-size: .74rem;
+  cursor: pointer; transition: color .15s ease, border-color .15s ease;
+}
+[data-page="acronyms"] .fc-next:hover:not(:disabled),
+[data-page="concepts"] .fc-next:hover:not(:disabled){ color: var(--heading); border-color: var(--heading); background: transparent; }
+[data-page="acronyms"] .fc-next::after,
+[data-page="concepts"] .fc-next::after{ display: none; }   /* kills the .btn underline animation */
+[data-page="questions"] .tool-btn::after,
+[data-page="acronyms"] .tool-btn::after,
+[data-page="concepts"] .tool-btn::after{ display: none; }   /* backup buttons (Zerar/Exportar/Importar): no red underline on hover */
+
+/* (38) acronym explanation in Lookup, justified */
+[data-page="acronyms"] .list-explanation{ text-align: justify; hyphens: auto; }
+
+/* (39/40/41) per-score numbers — semantic ramp color (0 neutral · 1-2 red · 3 amber · 4-5 green) */
+.lv{ font-family: var(--mono); font-weight: 700; }
+.lv0{ color: var(--ink-mute); }
+.lv1, .lv2{ color: var(--red-text); }
+.lv3{ color: var(--amber); }
+.lv4, .lv5{ color: var(--green-text); }
+.lc-bd{ margin-left: .5rem; }
+.prog-detail .lv{ font-weight: 600; }
+
+/* (39/45) acronym/concept border in Lookup = color of the last received score */
+[data-page="acronyms"] .list-item.rated-1,
+[data-page="acronyms"] .list-item.rated-2,
+[data-page="concepts"] .list-item.rated-1,
+[data-page="concepts"] .list-item.rated-2{ border-color: var(--red); }
+[data-page="acronyms"] .list-item.rated-3,
+[data-page="concepts"] .list-item.rated-3{ border-color: var(--amber); }
+[data-page="acronyms"] .list-item.rated-4,
+[data-page="acronyms"] .list-item.rated-5,
+[data-page="concepts"] .list-item.rated-4,
+[data-page="concepts"] .list-item.rated-5{ border-color: var(--green); }
+

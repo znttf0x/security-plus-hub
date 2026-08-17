@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script>(function(){try{var p=localStorage.getItem("secplus-palette");if(p)document.documentElement.setAttribute("data-palette",p);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>Simulado – Security+ Hub</title>
+  <meta name="description" content="Simulado de CompTIA Security+ SY0-701 no formato do exame, com pontuação por domínio e lista de lições a estudar ao final.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Simulado – Security+ Hub">
+  <meta property="og:description" content="Simulado de CompTIA Security+ SY0-701 no formato do exame, com pontuação por domínio e lista de lições a estudar ao final.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/AtkinsonHyperlegible-Regular.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/AtkinsonHyperlegible-Bold.woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body data-page="exam">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+  <nav>
+        <button class="nav-burger" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C10.51 3.81 13 5 15 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Hub</a></li>
+      <li><a href="../questions/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Questões</a></li>
+      <li><a href="../acronyms/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/></svg>Siglas</a></li>
+      <li><a href="../concepts/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>Conceitos</a></li>
+      <li><a href="../exam/" class="active"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="12" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>Simulado</a></li>
+      <li><a href="../methodology/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Metodologia</a></li>
+  </ul>
+    <div class="nav-tools">
+      <div class="lang" data-lang="pt">
+        <button class="lang-btn" type="button" aria-label="Trocar idioma (em breve)" title="Idioma">
+          <svg class="flag flag-br" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" fill="#009c3b"/><path d="M14 3 25.5 10 14 17 2.5 10Z" fill="#ffdf00"/><circle cx="14" cy="10" r="4.2" fill="#002776"/></svg>
+          <svg class="flag flag-us" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" fill="#fff"/><g fill="#b22234"><rect width="28" height="1.54" y="0"/><rect width="28" height="1.54" y="3.08"/><rect width="28" height="1.54" y="6.15"/><rect width="28" height="1.54" y="9.23"/><rect width="28" height="1.54" y="12.31"/><rect width="28" height="1.54" y="15.38"/><rect width="28" height="1.54" y="18.46"/></g><rect width="12" height="10.77" fill="#3c3b6e"/></svg>
+        </button>
+      </div>
+      <div class="donate" data-open="false">
+        <button class="donate-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Apoiar o projeto" title="Apoiar o projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></button>
+        <div class="donate-menu" role="menu">
+          <iframe class="donate-widget" data-src="https://widget.livepix.gg/embed/c08f0806-b283-43b6-a6c8-7e44fef57aa9" title="Doação via LivePix (Pix)" width="240" height="276" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <span class="donate-note">Agradeça via Pix ;-)</span>
+        </div>
+      </div>
+      <div class="pal" data-open="false"><button class="pal-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Trocar paleta de cores" title="Paleta de cores"><svg class="pal-ico pal-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="pal-ico pal-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button><div class="pal-menu" role="menu"><button class="pal-opt" type="button" role="menuitemradio" data-p="black-pearl" aria-checked="true"><span class="pal-sw"></span>Black Pearl</button><button class="pal-opt" type="button" role="menuitemradio" data-p="black-aura" aria-checked="false"><span class="pal-sw"></span>Black Aura</button><button class="pal-opt" type="button" role="menuitemradio" data-p="light" aria-checked="false"><span class="pal-sw"></span>Light Mode</button></div></div>
+    </div>
+
+  </nav>
+
+  <main id="content">
+    <!-- ── START SCREEN ── -->
+    <section id="start">
+      <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Simulado</h1>
+      <div class="card">
+        <div class="facts">
+          <span><b id="fact-q">90</b> questões</span>
+          <span><b id="fact-min">90</b> minutos</span>
+          <span>aprovação de referência <b><span id="fact-pass">750</span>/<span id="fact-scale">900</span></b> (~<span id="fact-pct">83</span>%)</span>
+        </div>
+        <ul class="rules">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>O cronômetro corre; ao zerar, a prova é entregue automaticamente.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>Marque questões para revisar e volte a elas antes de finalizar.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Sem penalidade por chute — não deixe questões em branco.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="m10.29 3.86-8.48 14.7A2 2 0 0 0 3.53 22h16.94a2 2 0 0 0 1.72-3.44L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>Não recarregue a página durante a prova — o progresso do simulado não é salvo.</li>
+        </ul>
+        <div class="opt-row">
+          <label>Tamanho:</label>
+          <div class="seg-group" id="size-group">
+            <button data-size="90" class="on" type="button">90 (completo)</button>
+            <button data-size="45" type="button">45 (curto)</button>
+            <button data-size="20" type="button">20 (relâmpago)</button>
+          </div>
+        </div>
+        <button class="btn-primary" id="btn-start" type="button">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Iniciar simulado
+        </button>
+        <div class="last-result" id="last-result"></div>
+      </div>
+    </section>
+
+    <!-- ── EXAM ── -->
+    <section id="exam" class="hidden">
+      <div class="exam-top">
+        <span class="timer" id="timer" role="timer" aria-live="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="timer-txt">90:00</span></span>
+        <span class="exam-prog"><b id="prog-ans">0</b> respondidas · questão <b id="prog-cur">1</b>/<b id="prog-total">90</b></span>
+        <span class="top-actions">
+          <button class="mini-btn danger" id="btn-abort" type="button">Sair</button>
+          <button class="mini-btn" id="btn-finish-top" type="button">Finalizar</button>
+        </span>
+      </div>
+
+      <div class="q-stem" id="q-stem"></div>
+      <div class="options" id="options" role="radiogroup" aria-label="Alternativas"></div>
+
+      <div class="nav-row">
+        <button id="btn-prev" type="button">← Anterior</button>
+        <button class="flag-btn" id="btn-flag" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg><span id="flag-txt">Marcar p/ revisão</span></button>
+        <button id="btn-next" class="primary" type="button">Próxima →</button>
+      </div>
+
+      <div class="grid-wrap">
+        <div class="qgrid" id="qgrid"></div>
+        <div class="legend">
+          <span><i style="background:var(--blue)"></i>respondida</span>
+          <span><i style="background:var(--amber)"></i>marcada p/ revisão</span>
+          <span><i style="background:var(--surface)"></i>em branco</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESULT ── -->
+    <section id="result" class="hidden">
+      <div class="res-score">
+        <div class="res-pct" id="res-pct">—</div>
+        <div class="res-verdict" id="res-verdict"></div>
+        <div class="res-facts" id="res-facts"></div>
+        <p class="res-sub">Estimativa de estudo. O exame real usa pontuação ponderada (100–900, aprovação 750) e inclui PBQs — este simulado é só múltipla escolha.</p>
+      </div>
+      <div class="card">
+        <div class="grid-title" style="margin-bottom:0.8rem">Desempenho por domínio</div>
+        <div id="res-doms"></div>
+      </div>
+      <div class="card" id="study-card" style="display:none">
+        <div class="grid-title" style="margin-bottom:0.4rem">Conteúdos para estudar</div>
+        <p class="res-sub" style="margin:0 0 0.8rem">Aulas do Professor Messer ligadas às questões que você errou ou deixou em branco.</p>
+        <div id="study-list"></div>
+      </div>
+      <div class="review-toggle">
+        <button class="mini-btn" id="btn-toggle-review" type="button" style="width:100%;padding:0.7rem">Ver revisão das questões erradas / em branco</button>
+        <div id="review-list" class="hidden" style="margin-top:0.8rem"></div>
+      </div>
+      <div class="res-actions">
+        <button class="primary" id="btn-redo" type="button">Refazer simulado</button>
+        <a class="ghost" href="../questions/">Praticar por domínio</a>
+        <a class="ghost" href="../">Voltar ao Hub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>&copy; 2026 Security+ Hub &mdash; Material de estudo independente para a CompTIA Security+ (SY0-701). Não afiliado à CompTIA&reg;.</footer>
+
+  <script src="../assets/js/domains.js"></script>
+  <script src="../assets/js/messer-lessons.js"></script>
+  <script src="../assets/js/messer-q.js"></script>
+  <script>
+    'use strict';
+    /*
+     * Timed mock exam (simulado). Builds a weight-balanced question set from ../questions/*.txt,
+     * runs a countdown, tracks per-question selection and review flags, then scores by domain,
+     * lists study material, and feeds the shared adaptive-practice store. Reads q.stem/options/
+     * answer/domain from each question.
+     */
+    const $ = (id) => document.getElementById(id);
+    const prefersReduce = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+    /** Smooth-scroll to the top of the page, honoring reduced-motion. */
+    function scrollTop() { window.scrollTo({ top: 0, behavior: prefersReduce() ? 'auto' : 'smooth' }); }
+
+    /** Reflect the current question's chosen option on the option buttons in place (no re-render, so keyboard focus and scroll position survive). */
+    function markSelection() {
+      const q = exam[cur];
+      const btns = $('options').querySelectorAll('.option');
+      btns.forEach((b, di) => { const sel = q.chosen === di; b.classList.toggle('sel', sel); b.setAttribute('aria-checked', String(sel)); });
+    }
+    const { DOMAINS, EXAM, byId: DOM_BY } = window.SECPLUS;
+    const DOMAIN_IDS = ['1.0', '2.0', '3.0', '4.0', '5.0'];
+    const LS_RESULT = 'secplus:simulado:v1';
+    const LS_PROGRESS = 'secplus:progress:questoes:v2';   // adaptive store shared with the practice page
+    const PASS_FRAC = EXAM.passingScore / EXAM.scaleMax;   // 750/900 ≈ 0.833
+    // start-screen exam facts derived from EXAM (domains.js) — avoids drift if the format changes
+    (function () {
+      const s = (id, v) => { const e = document.getElementById(id); if (e && v != null) e.textContent = v; };
+      s('fact-q', EXAM.maxQuestions); s('fact-min', EXAM.minutes);
+      s('fact-pass', EXAM.passingScore); s('fact-scale', EXAM.scaleMax);
+      s('fact-pct', Math.round(PASS_FRAC * 100));
+    })();
+
+    let bank = {};        // domain id -> [questions]
+    let exam = [];        // drawn questions (with per-question state)
+    let cur = 0;
+    let size = 90;
+    let timeLeft = 0;     // seconds
+    let timerId = null;
+    let running = false;
+
+    /** Return a shuffled copy of an array (Fisher–Yates). */
+    function shuffle(a) { const r = a.slice(); for (let i = r.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; } return r; }
+
+    /**
+     * Load and parse the question bank from ../questions/<domain>.txt (one JSON question per line).
+     * @returns {Promise<number>} - total count of valid questions loaded across all domains
+     */
+    async function loadBank() {
+      DOMAIN_IDS.forEach(d => bank[d] = []);
+      for (const d of DOMAIN_IDS) {
+        try {
+          const res = await fetch('../questions/' + d + '.txt');
+          if (!res.ok) continue;
+          const txt = await res.text();
+          txt.split('\n').forEach(line => {
+            line = line.trim(); if (!line) return;
+            try {
+              const q = JSON.parse(line);
+              if (q && q.domain === d && Array.isArray(q.options) && q.options.length >= 2 && Number.isInteger(q.answer)) bank[d].push(q);
+            } catch (e) {}
+          });
+        } catch (e) {}
+      }
+      return DOMAIN_IDS.reduce((s, d) => s + bank[d].length, 0);
+    }
+
+    /**
+     * Distribute n questions across domains by exam weight (largest-remainder), capped by availability.
+     * @param {number} n - target question count
+     * @returns {Object} - map of domain id -> question count
+     */
+    function planCounts(n) {
+      const totalWeight = DOMAINS.reduce((s, d) => s + d.weight, 0);
+      const raw = DOMAINS.map(d => ({ id: d.id, exact: n * d.weight / totalWeight }));
+      let counts = {}; let used = 0;
+      raw.forEach(r => { counts[r.id] = Math.min(Math.floor(r.exact), bank[r.id].length); used += counts[r.id]; });
+      // hand out the remainder by largest fractional remainder, where questions are available
+      let rem = n - used;
+      const byRest = raw.map(r => ({ id: r.id, rest: r.exact - Math.floor(r.exact) })).sort((a, b) => b.rest - a.rest);
+      let i = 0, guard = 0;
+      while (rem > 0 && guard < 1000) {
+        const id = byRest[i % byRest.length].id;
+        if (counts[id] < bank[id].length) { counts[id]++; rem--; }
+        i++; guard++;
+        if (i % byRest.length === 0 && DOMAIN_IDS.every(d => counts[d] >= bank[d].length)) break;
+      }
+      return counts;
+    }
+
+    /** Build the exam array of size n: pick per domain, shuffle question order, and shuffle each question's options. */
+    function buildExam(n) {
+      const counts = planCounts(n);
+      let picked = [];
+      DOMAIN_IDS.forEach(d => { picked = picked.concat(shuffle(bank[d]).slice(0, counts[d])); });
+      picked = shuffle(picked);
+      exam = picked.map(q => {
+        const order = shuffle(q.options.map((_, i) => i));   // display index -> original option index
+        return {
+          id: q.id, domain: q.domain, stem: q.stem,
+          options: order.map(oi => q.options[oi]),
+          order: order, answer: q.answer, explanation: q.explanation || '',
+          chosen: null, flagged: false,
+        };
+      });
+    }
+
+    /* ── timer ── */
+    /** Format a second count as m:ss. */
+    function fmt(s) { const m = Math.floor(s / 60), ss = s % 60; return m + ':' + String(ss).padStart(2, '0'); }
+
+    /** Advance the countdown one second, update the timer display and warn/crit state, and auto-submit at zero. */
+    function tick() {
+      timeLeft--;
+      $('timer-txt').textContent = fmt(Math.max(timeLeft, 0));
+      const t = $('timer');
+      t.classList.toggle('warn', timeLeft <= 300 && timeLeft > 60);
+      t.classList.toggle('crit', timeLeft <= 60);
+      if (timeLeft <= 0) { finish(true); }
+    }
+
+    /* ── exam rendering ── */
+    /** Render the current question's stem, options, flag state, and navigation controls. */
+    function renderQuestion() {
+      const q = exam[cur];
+      $('q-stem').textContent = q.stem;
+      const opts = $('options'); opts.innerHTML = '';
+      q.options.forEach((txt, di) => {
+        const b = document.createElement('button');
+        b.className = 'option' + (q.chosen === di ? ' sel' : '');
+        b.type = 'button';
+        b.setAttribute('role', 'radio');
+        b.setAttribute('aria-checked', String(q.chosen === di));
+        b.innerHTML = '<span class="letter">' + String.fromCharCode(65 + di) + '</span><span>' + escapeHtml(txt) + '</span>';
+        b.addEventListener('click', () => { q.chosen = di; markSelection(); updateProgress(); renderGrid(); });
+        opts.appendChild(b);
+      });
+      const fb = $('btn-flag');
+      fb.classList.toggle('on', q.flagged);
+      $('flag-txt').textContent = q.flagged ? 'Marcada' : 'Marcar p/ revisão';
+      $('btn-prev').disabled = cur === 0;
+      $('btn-next').textContent = cur === exam.length - 1 ? 'Ir para o fim →' : 'Próxima →';
+      $('prog-cur').textContent = cur + 1;
+      renderGrid();
+    }
+    /** Escape a string for safe insertion as HTML text. */
+    function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+    /** Refresh the answered-count shown in the progress line. */
+    function updateProgress() {
+      const ans = exam.filter(q => q.chosen !== null).length;
+      $('prog-ans').textContent = ans;
+    }
+
+    /** Rebuild the question-navigation grid, marking answered, flagged, and current cells. */
+    function renderGrid() {
+      const g = $('qgrid'); g.innerHTML = '';
+      exam.forEach((q, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = i + 1;
+        if (q.chosen !== null) b.classList.add('answered');
+        if (q.flagged) b.classList.add('flag');
+        if (i === cur) b.classList.add('current');
+        b.addEventListener('click', () => { cur = i; renderQuestion(); scrollTop(); });
+        g.appendChild(b);
+      });
+    }
+
+    /** Move the current index by delta (bounded to the exam) and re-render. */
+    function go(delta) { const n = cur + delta; if (n >= 0 && n < exam.length) { cur = n; renderQuestion(); scrollTop(); } }
+
+    /** Toggle the review flag on the current question and refresh the flag button and grid. */
+    function toggleFlag() {
+      exam[cur].flagged = !exam[cur].flagged;
+      $('btn-flag').classList.toggle('on', exam[cur].flagged);
+      $('flag-txt').textContent = exam[cur].flagged ? 'Marcada' : 'Marcar p/ revisão';
+      renderGrid();
+    }
+
+    /* ── start / finish ── */
+    /** Build and begin a new exam: reset state, show the exam view, and start the countdown. */
+    function start() {
+      buildExam(size);
+      cur = 0;
+      timeLeft = size * 60;   // 1 min per question (proportional to the 90/90 format)
+      $('prog-total').textContent = exam.length;
+      $('timer-txt').textContent = fmt(timeLeft);
+      $('start').classList.add('hidden');
+      $('result').classList.add('hidden');
+      $('exam').classList.remove('hidden');
+      running = true;
+      renderQuestion(); updateProgress();
+      if (timerId) clearInterval(timerId);
+      timerId = setInterval(tick, 1000);
+    }
+
+    /**
+     * End the exam and show results, confirming first if blanks remain on a manual finish.
+     * @param {boolean} auto - true when triggered by the timer running out
+     */
+    function finish(auto) {
+      if (!running) return;
+      const blanks = exam.filter(q => q.chosen === null).length;
+      if (!auto && blanks > 0) {
+        if (!confirm('Você deixou ' + blanks + ' questão(ões) em branco. Finalizar mesmo assim?')) return;
+      }
+      running = false;
+      if (timerId) clearInterval(timerId);
+      bumpAdaptive();
+      $('exam').classList.add('hidden');
+      $('result').classList.remove('hidden');
+      renderResult(auto);
+      window.scrollTo({ top: 0 });
+    }
+
+    /**
+     * Feed the shared adaptive-practice store: each answered exam question bumps seen++ and
+     * correct++/wrong++, without wiping existing progress.
+     */
+    function bumpAdaptive() {
+      try {
+        let store;
+        try { store = JSON.parse(localStorage.getItem(LS_PROGRESS)); } catch (e) { store = null; }
+        if (!store || typeof store !== 'object' || !store.cards || typeof store.cards !== 'object') {
+          store = { v: 2, cards: {} };
+        }
+        const cards = store.cards;
+        const clampInt = (n) => (Number.isInteger(n) && n >= 0 ? n : 0);
+        exam.forEach(q => {
+          if (q.id === undefined || q.id === null) return;
+          if (q.chosen === null) return;   // blank: no engagement → don't pollute the adaptive weight
+          const id = String(q.id);
+          const prev = (cards[id] && typeof cards[id] === 'object') ? cards[id] : {};
+          const isCorrect = q.order[q.chosen] === q.answer;
+          cards[id] = {
+            seen: clampInt(prev.seen) + 1,
+            correct: clampInt(prev.correct) + (isCorrect ? 1 : 0),
+            wrong: clampInt(prev.wrong) + (isCorrect ? 0 : 1),
+          };
+        });
+        store.v = 2; store.cards = cards;
+        localStorage.setItem(LS_PROGRESS, JSON.stringify(store));
+      } catch (e) {}
+    }
+
+    /**
+     * Compute the score and per-domain breakdown, then render the result view (verdict, bars,
+     * wrong/blank review, study suggestions) and persist a summary of the run.
+     * @param {boolean} auto - true when the exam was auto-submitted on timeout
+     */
+    function renderResult(auto) {
+      let correct = 0;
+      const per = {}; DOMAIN_IDS.forEach(d => per[d] = { c: 0, t: 0 });
+      exam.forEach(q => {
+        per[q.domain].t++;
+        const isCorrect = q.chosen !== null && q.order[q.chosen] === q.answer;
+        if (isCorrect) { correct++; per[q.domain].c++; }
+      });
+      const pct = Math.round(correct / exam.length * 100);
+      // weighted score estimate (100–900), as on the Hub
+      let weighted = 0, wsum = 0;
+      DOMAINS.forEach(d => { const p = per[d.id]; if (p.t) { weighted += (d.weight / 100) * (p.c / p.t); wsum += d.weight / 100; } });
+      const normW = wsum ? weighted / wsum : 0;
+      const score900 = Math.round(100 + 800 * normW);
+      // verdict by the WEIGHTED score (score900 vs 750), consistent with the "~X/900" shown
+      const passed = score900 >= EXAM.passingScore;
+      const col = passed ? 'var(--green)' : score900 >= 650 ? 'var(--amber)' : 'var(--red)';
+      $('res-pct').textContent = pct + '%';
+      $('res-pct').style.color = col;
+      $('res-verdict').innerHTML = '<span class="dot" style="background:' + col + '"></span>' +
+        (passed ? 'Acima da linha de aprovação' : score900 >= 650 ? 'Quase lá — siga treinando' : 'Abaixo da linha — reforce os fracos');
+      $('res-facts').innerHTML =
+        '<span><b>' + correct + '</b>/' + exam.length + ' corretas</span>' +
+        '<span>nota estimada <b>~' + score900 + '</b>/900</span>' +
+        '<span>tempo usado <b>' + fmt(size * 60 - Math.max(timeLeft, 0)) + '</b></span>' +
+        (auto ? '<span style="color:var(--amber)">tempo esgotado</span>' : '');
+
+      const dd = $('res-doms'); dd.innerHTML = '';
+      DOMAINS.forEach(d => {
+        const p = per[d.id]; const dpct = p.t ? Math.round(p.c / p.t * 100) : 0;
+        const c = dpct >= 83 ? 'var(--green)' : dpct >= 60 ? 'var(--amber)' : 'var(--red)';
+        const row = document.createElement('div'); row.className = 'res-dom';
+        row.innerHTML = '<span class="res-dom-id">' + d.id + '</span>' +
+          '<span class="res-dom-name">' + d.namePt + '</span>' +
+          '<span class="res-dom-stat"><b>' + (p.t ? dpct + '%' : '—') + '</b> · ' + p.c + '/' + p.t + '</span>' +
+          '<div class="res-dom-bar" style="grid-column:1 / -1"><span style="width:' + dpct + '%;background:' + c + '"></span></div>';
+        dd.appendChild(row);
+      });
+
+      // review (wrong + blank)
+      const rl = $('review-list'); rl.innerHTML = '';
+      const wrongs = exam.filter(q => !(q.chosen !== null && q.order[q.chosen] === q.answer));
+      if (!wrongs.length) {
+        rl.innerHTML = '<p class="muted" style="text-align:center;padding:1rem">Gabarito perfeito — nada a revisar! 🎉</p>';
+      } else {
+        wrongs.forEach(q => {
+          const blank = q.chosen === null;
+          const div = document.createElement('div'); div.className = 'rev-item';
+          let html = '<span class="rv-tag ' + (blank ? 'blank' : 'wrong') + '">' + (blank ? 'em branco' : 'errada') + '</span>';
+          html += '<div class="rv-q"><span style="color:var(--blue);font-size:0.75rem">' + q.domain + '</span> · ' + escapeHtml(q.stem) + '</div>';
+          q.options.forEach((txt, di) => {
+            const isCorrect = q.order[di] === q.answer;
+            const isChosen = q.chosen === di;
+            if (isCorrect) html += '<div class="rv-opt correct">✓ ' + escapeHtml(txt) + '</div>';
+            else if (isChosen) html += '<div class="rv-opt chosen-wrong">✗ ' + escapeHtml(txt) + '</div>';
+          });
+          if (q.explanation) html += '<div class="rv-expl">' + escapeHtml(q.explanation) + '</div>';
+          div.innerHTML = html;
+          rl.appendChild(div);
+        });
+      }
+
+      // study topics — Messer lessons linked to the wrong/blank questions
+      const MQ = window.SECPLUS_MESSER_Q || {}, ML = window.SECPLUS_MESSER_LESSON || {};
+      const byLesson = {};
+      wrongs.forEach(q => {
+        const slug = MQ[q.id]; if (!slug) return;
+        const les = ML[slug]; if (!les) return;
+        const e = (byLesson[slug] = byLesson[slug] || { t: les[2], m: les[0], y: les[1], n: 0 });
+        e.n++;
+      });
+      const lessons = Object.values(byLesson).sort((a, b) => b.n - a.n);
+      const sc = $('study-card'), sl = $('study-list');
+      if (sc && sl) {
+        if (lessons.length) {
+          sl.innerHTML = '';
+          lessons.forEach(L => {
+            const row = document.createElement('div'); row.className = 'study-item';
+            let h = '<span class="si-t">' + escapeHtml(L.t) + '</span>' +
+              '<span class="si-n">' + L.n + (L.n > 1 ? ' questões' : ' questão') + '</span>' +
+              '<span class="si-links"><a href="' + L.m + '" target="_blank" rel="noopener noreferrer">Professor Messer</a>';
+            if (L.y) h += '<a href="' + L.y + '" target="_blank" rel="noopener noreferrer">YouTube</a>';
+            h += '</span>';
+            row.innerHTML = h;
+            sl.appendChild(row);
+          });
+          sc.style.display = '';
+        } else { sc.style.display = 'none'; }
+      }
+
+      // persist the last-exam summary (read by the start screen in renderLastResult)
+      try {
+        const rec = { pct: pct, score900: score900, correct: correct, total: exam.length, size: size, ts: Date.now() };
+        localStorage.setItem(LS_RESULT, JSON.stringify(rec));
+      } catch (e) {}
+    }
+
+    /** Show a one-line summary of the last saved exam on the start screen. */
+    function renderLastResult() {
+      try {
+        const raw = localStorage.getItem(LS_RESULT);
+        if (!raw) return;
+        const r = JSON.parse(raw);
+        if (!r || typeof r.pct !== 'number') return;
+        const d = new Date(r.ts);
+        const dd = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0');
+        $('last-result').innerHTML = 'Último simulado: <b>' + r.pct + '%</b> (' + r.correct + '/' + r.total + ') em ' + dd;
+      } catch (e) {}
+    }
+
+    /* ── events ── */
+    $('size-group').addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-size]'); if (!b) return;
+      size = parseInt(b.dataset.size, 10);
+      Array.prototype.forEach.call($('size-group').children, c => c.classList.toggle('on', c === b));
+      $('fact-q').textContent = size; $('fact-min').textContent = size;
+    });
+    $('btn-start').addEventListener('click', start);
+    $('btn-redo').addEventListener('click', () => { $('result').classList.add('hidden'); $('start').classList.remove('hidden'); renderLastResult(); window.scrollTo({ top: 0 }); });
+    $('btn-prev').addEventListener('click', () => go(-1));
+    $('btn-next').addEventListener('click', () => { if (cur === exam.length - 1) finish(false); else go(1); });
+    $('btn-flag').addEventListener('click', toggleFlag);
+    $('btn-finish-top').addEventListener('click', () => finish(false));
+    $('btn-abort').addEventListener('click', () => {
+      if (confirm('Sair do simulado? O progresso desta prova será perdido.')) {
+        running = false; if (timerId) clearInterval(timerId);
+        $('exam').classList.add('hidden'); $('start').classList.remove('hidden'); renderLastResult(); window.scrollTo({ top: 0 });
+      }
+    });
+    $('btn-toggle-review').addEventListener('click', () => {
+      const rl = $('review-list'); const hidden = rl.classList.toggle('hidden');
+      $('btn-toggle-review').textContent = hidden ? 'Ver revisão das questões erradas / em branco' : 'Ocultar revisão';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!running || $('exam').classList.contains('hidden')) return;
+      if (e.target instanceof HTMLInputElement) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      if (['1', '2', '3', '4'].includes(e.key)) {
+        const di = parseInt(e.key, 10) - 1;
+        if (di < exam[cur].options.length) { exam[cur].chosen = di; markSelection(); updateProgress(); renderGrid(); }
+      } else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      else if (e.key === 'f' || e.key === 'F') { toggleFlag(); }
+    });
+
+    // warn before leaving during the exam
+    window.addEventListener('beforeunload', (e) => { if (running) { e.preventDefault(); e.returnValue = ''; } });
+
+    /* ── init ── */
+    /** Bootstrap: load the bank, disable size options above what's available, and show the last result. */
+    (async function init() {
+      const total = await loadBank();
+      if (!total) {
+        $('start').innerHTML = '<div class="card" style="text-align:center"><h1>Não foi possível carregar as questões</h1>' +
+          '<p class="muted" style="margin-top:0.6rem">Sirva a pasta por HTTP (ex.: <code>python3 scripts/server.py</code>) e recarregue.</p></div>';
+        return;
+      }
+      // cap the size options to what's available
+      const maxN = total;
+      Array.prototype.forEach.call($('size-group').children, b => {
+        if (parseInt(b.dataset.size, 10) > maxN) b.disabled = true;
+      });
+      renderLastResult();
+    })();
+  </script>
+
+  <script src="../assets/js/theme.js"></script>
+</body>
+</html>

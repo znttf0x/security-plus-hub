@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Editors
+.vscode/
+.idea/
+*~
+*.swp
+*.swo
+*.bak
+*.orig
+
+# OS
+.DS_Store
+Thumbs.db
+._*
+.Spotlight-V100
+.Trashes
+Desktop.ini
+
+# Local
+.env
+.env.local
+.env.*.local
+*.log

@@ -1,0 +1,20 @@
+# Normalize line endings to LF in the repo (static web app served by GitHub Pages)
+* text=auto eol=lf
+
+# Binary assets — never normalize, never diff as text
+*.woff2 binary
+*.png   binary
+*.ico   binary
+
+# SVG is text, but pin LF
+*.svg   text eol=lf
+
+# The question/concept/acronym banks are JSONL living in .txt (now co-located with each page) —
+# count them as JSON so GitHub's language bar reflects the data, not "plain text".
+docs/questions/*.txt linguist-language=JSON linguist-detectable=true
+docs/concepts/*.txt  linguist-language=JSON linguist-detectable=true
+docs/acronyms/*.txt  linguist-language=JSON linguist-detectable=true
+
+# Keep the language bar honest: counts.js is generated, fonts are vendored
+docs/assets/js/counts.js linguist-generated=true
+docs/assets/fonts/**     linguist-vendored=true

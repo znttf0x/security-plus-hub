@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <script>(function(){try{var p=localStorage.getItem("secplus-palette");if(p)document.documentElement.setAttribute("data-palette",p);}catch(e){}})();</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <title>Questões – Security+ Hub</title>
+  <meta name="description" content="Banco de questões comentadas de CompTIA Security+ SY0-701, com prática adaptativa por domínio e links de estudo para cada item.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Questões – Security+ Hub">
+  <meta property="og:description" content="Banco de questões comentadas de CompTIA Security+ SY0-701, com prática adaptativa por domínio e links de estudo para cada item.">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/AtkinsonHyperlegible-Regular.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/AtkinsonHyperlegible-Bold.woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body data-page="questions">
+  <a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+  <!-- Top navigation -->
+  <nav>
+        <button class="nav-burger" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C10.51 3.81 13 5 15 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Hub</a></li>
+      <li><a href="../questions/" class="active"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>Questões</a></li>
+      <li><a href="../acronyms/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" x2="15" y1="20" y2="20"/><line x1="12" x2="12" y1="4" y2="20"/></svg>Siglas</a></li>
+      <li><a href="../concepts/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>Conceitos</a></li>
+      <li><a href="../exam/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="12" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>Simulado</a></li>
+      <li><a href="../methodology/"><svg class="nav-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Metodologia</a></li>
+  </ul>
+    <div class="nav-tools">
+      <div class="lang" data-lang="pt">
+        <button class="lang-btn" type="button" aria-label="Trocar idioma (em breve)" title="Idioma">
+          <svg class="flag flag-br" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" fill="#009c3b"/><path d="M14 3 25.5 10 14 17 2.5 10Z" fill="#ffdf00"/><circle cx="14" cy="10" r="4.2" fill="#002776"/></svg>
+          <svg class="flag flag-us" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" fill="#fff"/><g fill="#b22234"><rect width="28" height="1.54" y="0"/><rect width="28" height="1.54" y="3.08"/><rect width="28" height="1.54" y="6.15"/><rect width="28" height="1.54" y="9.23"/><rect width="28" height="1.54" y="12.31"/><rect width="28" height="1.54" y="15.38"/><rect width="28" height="1.54" y="18.46"/></g><rect width="12" height="10.77" fill="#3c3b6e"/></svg>
+        </button>
+      </div>
+      <div class="donate" data-open="false">
+        <button class="donate-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Apoiar o projeto" title="Apoiar o projeto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4Z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></button>
+        <div class="donate-menu" role="menu">
+          <iframe class="donate-widget" data-src="https://widget.livepix.gg/embed/c08f0806-b283-43b6-a6c8-7e44fef57aa9" title="Doação via LivePix (Pix)" width="240" height="276" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <span class="donate-note">Agradeça via Pix ;-)</span>
+        </div>
+      </div>
+      <div class="pal" data-open="false"><button class="pal-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Trocar paleta de cores" title="Paleta de cores"><svg class="pal-ico pal-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="pal-ico pal-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></button><div class="pal-menu" role="menu"><button class="pal-opt" type="button" role="menuitemradio" data-p="black-pearl" aria-checked="true"><span class="pal-sw"></span>Black Pearl</button><button class="pal-opt" type="button" role="menuitemradio" data-p="black-aura" aria-checked="false"><span class="pal-sw"></span>Black Aura</button><button class="pal-opt" type="button" role="menuitemradio" data-p="light" aria-checked="false"><span class="pal-sw"></span>Light Mode</button></div></div>
+    </div>
+
+  </nav>
+
+  <!-- Progress bar + per-domain filter dropdown -->
+  <div class="stats-wrapper">
+    <div class="stats-bar" id="stats-bar" role="button" tabindex="0"
+         aria-expanded="false" aria-controls="domain-dropdown"
+         aria-label="Filtrar por domínio e ver progresso">
+      <div class="stats-inner">
+        <span class="filter-affordance" title="Filtrar por domínio"><svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg></span>
+        <div class="prog-wrap" title="Progresso geral">
+          <div class="prog-green" id="prog-green"></div>
+          <div class="prog-red"   id="prog-red"></div>
+        </div>
+        <span class="prog-label" id="prog-label">(0 / 0)</span>
+      </div>
+    </div>
+    <div class="domain-dropdown" id="domain-dropdown">
+      <div class="domain-inner">
+        <div class="domain-rows" id="domain-rows"></div>
+        <div class="prog-toolbar">
+          <button class="tool-btn" id="btn-reset" type="button">Zerar progresso</button>
+          <button class="tool-btn" id="btn-export" type="button">Exportar</button>
+          <button class="tool-btn" id="btn-import" type="button">Importar</button>
+          <input type="file" id="import-file" accept="application/json,.json" hidden>
+          <div class="domain-legend">
+            Toque num domínio para incluí-lo ou excluí-lo do sorteio.<br class="legend-br">
+            <span class="legend-dot g"></span> acertos
+            <span class="legend-dot r"></span> erros
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz: question stem, options, feedback, and actions -->
+  <main id="content">
+    <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Questões</h1>
+
+    <div class="readonly-notice" id="readonly-notice" role="alert">
+      Não foi possível ler o progresso salvo — entrando em <strong>modo somente-leitura</strong>
+      para não sobrescrever seus dados. Suas respostas nesta sessão não serão gravadas até você zerar.
+      <br><button type="button" id="btn-clear-readonly">Zerar e continuar gravando</button>
+    </div>
+
+    <div class="content-area">
+      <div class="quiz-wrap" id="quiz-wrap">
+        <div class="fc-meta" id="fc-meta">
+          <span class="fc-dom" id="fc-dom">—</span>
+          <span class="fc-meta-r">
+            <span class="fc-box" id="fc-box"></span>
+            <span class="fc-id" id="fc-id">—</span>
+            <button class="fc-help" id="fc-help" type="button" aria-label="Por que estudar esta questão" aria-expanded="false" hidden>?</button>
+          </span>
+          <div class="fc-help-pop" id="fc-help-pop" role="dialog" aria-label="Respaldo de escopo" hidden></div>
+        </div>
+        <div class="quiz-scroll" id="quiz-scroll">
+          <div class="quiz-stem" id="quiz-stem">Carregando questões…</div>
+          <div class="quiz-result" id="quiz-result" role="status" aria-live="polite"></div>
+          <div class="quiz-explanation" id="quiz-explanation"></div>
+        </div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-actions">
+          <button class="btn btn-prev" id="btn-prev" type="button" style="display:none">← Anterior</button>
+          <button class="btn btn-dontknow" id="btn-dontknow" type="button">Não sei</button>
+          <button class="btn btn-skip" id="btn-skip" type="button">Pular</button>
+          <button class="btn btn-next" id="btn-next" type="button" disabled>Próxima →</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer: keyboard hint + disclaimer -->
+  <footer>
+    <div class="kbd-hint">
+      Teclado: <kbd>1</kbd>–<kbd>4</kbd> ou <kbd>A</kbd>–<kbd>D</kbd> respondem · <kbd>Enter</kbd> avança
+    </div>
+    &copy; 2026 Security+ Hub &mdash; Material de estudo independente para a CompTIA Security+ (SY0-701). Não afiliado à CompTIA&reg;.
+  </footer>
+
+  <script src="../assets/js/domains.js"></script>
+  <script src="../assets/js/messer.js"></script>
+  <script src="../assets/js/messer-lessons.js"></script>
+  <script src="../assets/js/messer-q.js"></script>
+  <script src="../assets/js/subtopics-q.js"></script>
+  <script src="../assets/js/google-q.js"></script>
+  <script src="../assets/js/rationale-q.js"></script>
+  <script src="../assets/js/glossary.js"></script>
+  <script>
+    'use strict';
+
+    /* Questões page: adaptive quiz engine. Loads and validates the question bank, runs a
+       weighted adaptive draw with per-domain review-debt "heat", renders answer feedback,
+       persists progress to localStorage, and provides the domain filter, review history,
+       and acronym/service term popups. */
+
+    // degrade with a message if the manifest (domains.js) is missing/corrupt, instead of failing silently
+    if (!window.SECPLUS || !window.SECPLUS.ids || !window.SECPLUS.byId) {
+      document.body.innerHTML = '<div role="alert" style="max-width:40rem;margin:4rem auto;padding:1.5rem 1.75rem;font-family:system-ui,sans-serif;color:#f0f0f0;background:#2a1a1a;border:1px solid #a33;border-radius:.6rem;text-align:center;line-height:1.5">Erro ao carregar os dados do app (<code>domains.js</code>). Sirva a pasta por HTTP (<code>python3 scripts/server.py</code>) e recarregue a página.</div>';
+      throw new Error('SECPLUS ausente — inicialização abortada.');
+    }
+
+    const DOMAINS = window.SECPLUS.ids;
+    const META    = window.SECPLUS.byId;
+    const LS_PROGRESS    = 'secplus:progress:questoes:v2';   // per-question progress {seen,correct,wrong}
+    const LS_PROGRESS_V1 = 'secplus:progress:questoes:v1';   // old aggregate (migration/backup)
+    const LS_FILTER      = 'secplus:filter:questoes:v1';
+    const RECENT_MAX = 8;   // cooldown: a question won't reappear until N other distinct ones have passed
+    const W_MIN = 0.15, W_MAX = 8, W_NEW = 1.5;   // bounds, and the weight of a never-seen item in the weighted draw
+
+    /* ── Elements ── */
+    const el = (id) => document.getElementById(id);
+    const prefersReduce = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const statsBar   = el('stats-bar');
+    const dropdown   = el('domain-dropdown');
+    const optsEl     = el('quiz-options');
+    const resultEl   = el('quiz-result');
+    const expEl      = el('quiz-explanation');
+    const stemEl     = el('quiz-stem');
+    const domBadge   = el('fc-dom');
+    const qidBadge   = el('fc-id');
+    const statusBadge = el('fc-box');
+    const qHelpBtn   = el('fc-help');
+    const qHelpPop   = el('fc-help-pop');
+    const btnNext = el('btn-next');
+    const btnSkip   = el('btn-skip');
+    const btnDontKnow  = el('btn-dontknow');
+    const btnPrev= el('btn-prev');
+    const roNotice   = el('readonly-notice');
+
+    /* ── State ── */
+    let allQuestions = [];
+    let recentIds = [];   // ids of the most recently shown questions (anti-repeat cooldown window)
+    let current = null;
+    let answered = false;
+    let readOnly = false;
+    let state = { v: 2, cards: {} };   // cards[id] = {seen, correct, wrong}
+    let seenGreen = 0, seenRed = 0;   // green/red aggregates DERIVED from state.cards
+    let domainStats = {};
+    let lastEntry = null;         // {q, outcome, chosenOrig, prev} of the last answered question (for undo/history)
+    let history = [];             // already-answered entries, in order
+    let reviewing = false;
+    let reviewPtr = -1;
+    const activeDomains = loadFilter();
+    DOMAINS.forEach(d => { domainStats[d] = { green: 0, red: 0, seen: 0, total: 0 }; });
+
+    /* ── Utilities ── */
+    /** Return a shuffled copy of `arr` (Fisher-Yates); does not mutate the input. */
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    /* ── Persistence (localStorage) ── */
+    /**
+     * Coerce each card to a valid state and drop ids not present in the question bank.
+     * @param {Object} cards - raw per-id progress map
+     * @returns {Object} - sanitized {id: {seen, correct, wrong}}
+     */
+    function sanitizeCards(cards) {
+      const clean = {};
+      if (!cards || typeof cards !== 'object' || Array.isArray(cards)) return clean;
+      const validIds = new Set(allQuestions.map(q => q.id));
+      for (const k in cards) {
+        const id = Number(k);
+        if (!validIds.has(id)) continue;
+        const c = cards[k] || {};                       // legacy box/due fields are ignored
+        let cor = parseInt(c.correct, 10); if (!Number.isFinite(cor) || cor < 0) cor = 0;
+        let wro = parseInt(c.wrong, 10);   if (!Number.isFinite(wro) || wro < 0) wro = 0;
+        let seen = parseInt(c.seen, 10);   if (!Number.isFinite(seen) || seen < 0) seen = 0;
+        if (seen < cor + wro) seen = cor + wro;         // migration: ensure seen >= recorded answers
+        clean[id] = { seen: seen, correct: cor, wrong: wro };
+      }
+      return clean;
+    }
+
+    /** Recompute the overall and per-domain aggregates from the per-question state. */
+    function recompute() {
+      seenGreen = 0; seenRed = 0;
+      DOMAINS.forEach(d => { domainStats[d] = { green: 0, red: 0, seen: 0, total: 0 }; });
+      for (const q of allQuestions) {
+        const ds = domainStats[q.domain];
+        if (ds) ds.total++;
+        const c = state.cards[q.id];
+        if (!c) continue;
+        if ((c.correct + c.wrong) > 0) {           // known = already answered
+          const ok = c.correct >= c.wrong;         // classify the question: mastered (green) vs. missed (red)
+          if (ok) { seenGreen++; if (ds) ds.green++; } else { seenRed++; if (ds) ds.red++; }
+          if (ds) ds.seen++;
+        }
+      }
+    }
+
+    /** Load saved progress from localStorage; fall back to read-only mode on unavailability/corruption. */
+    function loadState() {
+      let raw;
+      try { raw = localStorage.getItem(LS_PROGRESS); }
+      catch (e) { console.error('localStorage indisponível — modo somente-leitura.', e); readOnly = true; return; }
+      if (!raw) return;
+      try {
+        const o = JSON.parse(raw);
+        if (!o || typeof o !== 'object' || typeof o.cards !== 'object' || Array.isArray(o.cards)) throw new Error('shape');
+        state = { v: 2, cards: sanitizeCards(o.cards) };
+      } catch (e) {
+        console.error('Progresso salvo corrompido — modo somente-leitura.', e);
+        readOnly = true;
+      }
+    }
+
+    /** Preserve (once) the old v1 aggregate progress before the v2 format takes over. */
+    function backupV1IfNeeded() {
+      try {
+        const v1 = localStorage.getItem(LS_PROGRESS_V1);
+        if (v1 && !localStorage.getItem(LS_PROGRESS_V1 + ':bak')) {
+          localStorage.setItem(LS_PROGRESS_V1 + ':bak', v1);
+        }
+      } catch (e) { /* ignore */ }
+    }
+
+    let saveBroken = false;
+    /** Write the current state to localStorage; flags a save error if storage is full/blocked. */
+    function persist() {
+      if (readOnly) return;
+      // Multi-tab: the 'storage' listener below reloads when another tab writes. We do NOT reconcile
+      // by-maximum here — that would revive counts that Undo/Reset just reduced.
+      try {
+        localStorage.setItem(LS_PROGRESS, JSON.stringify(state));
+        if (saveBroken) { saveBroken = false; try { roNotice.classList.remove('show'); } catch (_) {} }  // saving recovered → hide the banner
+      }
+      catch (e) { console.error('Falha ao gravar progresso no localStorage.', e); flagSaveError(); }
+    }
+    /** Show an honest banner when saving fails (quota full/blocked): never pretend it saved. */
+    function flagSaveError() {
+      if (saveBroken) return;
+      saveBroken = true;
+      try {
+        roNotice.innerHTML = '<strong>Atenção: seu progresso não está sendo salvo.</strong> ' +
+          'O armazenamento do navegador está cheio ou bloqueado — respostas recentes podem se perder ao recarregar. ' +
+          'Libere espaço ou <button type="button" id="btn-save-export">exporte seu progresso agora</button>.';
+        roNotice.classList.add('show');
+        const b = el('btn-save-export');
+        if (b) b.addEventListener('click', () => el('btn-export').click());
+      } catch (_) {}
+    }
+
+    // Multi-tab guard: if another tab writes progress, reload instead of overwriting with a stale snapshot.
+    window.addEventListener('storage', (e) => {
+      if (e.key !== LS_PROGRESS || readOnly || e.newValue == null) return;
+      try {
+        const o = JSON.parse(e.newValue);
+        if (o && typeof o.cards === 'object' && !Array.isArray(o.cards)) {
+          state = { v: 2, cards: sanitizeCards(o.cards) };
+          applyProgress();
+        }
+      } catch (_) {}
+    });
+    // per-domain temperature: sync across tabs (its own key, non-critical)
+    window.addEventListener('storage', (e) => {
+      if (e.key !== LS_HEAT || readOnly || e.newValue == null) return;
+      try { heat = sanitizeHeat(JSON.parse(e.newValue)); } catch (_) {}
+    });
+
+    /** Load the active-domain filter from localStorage; default to all domains. @returns {Set<string>} */
+    function loadFilter() {
+      try {
+        const a = JSON.parse(localStorage.getItem(LS_FILTER));
+        if (Array.isArray(a)) {
+          const valid = a.filter(d => DOMAINS.includes(d));
+          if (valid.length) return new Set(valid);
+        }
+      } catch (e) { /* ignore, use the default */ }
+      return new Set(DOMAINS);
+    }
+
+    /** Persist the active-domain filter to localStorage. */
+    function persistFilter() {
+      try { localStorage.setItem(LS_FILTER, JSON.stringify([...activeDomains])); }
+      catch (e) { /* ignore */ }
+    }
+
+    /* ── Progress bars ── */
+    /**
+     * Fill a progress bar: known questions over total, split into contiguous green (mastered)
+     * and red (missed); the remainder is not-yet-seen. Hover shows the counts.
+     */
+    function setBar(greenId, redId, labelId, green, red, total) {
+      const gp = total ? (green / total * 100) : 0;
+      const rp = total ? (red   / total * 100) : 0;
+      const g = el(greenId), r = el(redId);
+      if (g) g.style.width = gp + '%';
+      if (r) { r.style.left = gp + '%'; r.style.right = 'auto'; r.style.width = rp + '%'; }
+      el(labelId).textContent = `${green + red} / ${total}`;
+      const wrap = g && g.closest('.prog-wrap');
+      if (wrap) wrap.title = `${green} ✓ acertadas · ${red} ✗ erradas · ${Math.max(0, total - green - red)} não vistas`;
+    }
+
+    /** Recompute aggregates and refresh the overall and per-domain progress bars. */
+    function applyProgress() {
+      recompute();
+      setBar('prog-green', 'prog-red', 'prog-label', seenGreen, seenRed, allQuestions.length);
+      DOMAINS.forEach((d, i) => {
+        const n = i + 1;
+        const dd = domainStats[d] || { green: 0, red: 0, total: 0 };
+        setBar(`d${n}-green`, `d${n}-red`, `d${n}-label`, dd.green, dd.red, dd.total);
+      });
+    }
+
+    /* ── Domain UI (built from the manifest) ── */
+    /** Build the domain filter rows (name, weight, progress bar) from the manifest. */
+    function buildDomainUI() {
+      const rows = el('domain-rows');
+      rows.innerHTML = '';
+      window.SECPLUS.DOMAINS.forEach((d, i) => {
+        const n = i + 1;
+        const active = activeDomains.has(d.id);
+        const row = document.createElement('div');
+        row.className = 'domain-row' + (active ? '' : ' inactive');
+        row.dataset.domain = d.id;
+        row.setAttribute('role', 'button');
+        row.tabIndex = 0;
+        row.setAttribute('aria-pressed', String(active));
+        row.setAttribute('aria-label', `${d.namePt} (${d.weight}%) — ${active ? 'incluído' : 'excluído'} do sorteio`);
+
+        const num = document.createElement('span');  num.className = 'domain-num';   num.textContent = d.id;
+        const name = document.createElement('span'); name.className = 'domain-name'; name.textContent = d.namePt;
+        const bar = document.createElement('div');   bar.className = 'prog-wrap';
+        const g = document.createElement('div'); g.className = 'prog-green'; g.id = `d${n}-green`;
+        const r = document.createElement('div'); r.className = 'prog-red';   r.id = `d${n}-red`;
+        bar.append(g, r);
+        const lab = document.createElement('span'); lab.className = 'prog-label'; lab.id = `d${n}-label`; lab.textContent = '(0 / 0)';
+
+        row.append(num, name, bar, lab);
+        row.addEventListener('click', () => toggleDomain(d.id));
+        row.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleDomain(d.id); }
+        });
+        rows.appendChild(row);
+      });
+    }
+
+    /** Toggle a domain in/out of the draw filter; keeps at least one active and re-draws when needed. */
+    function toggleDomain(id) {
+      const row = dropdown.querySelector(`.domain-row[data-domain="${id}"]`);
+      if (activeDomains.has(id)) {
+        if (activeDomains.size <= 1) {           // at least 1 active — give feedback instead of swallowing the click
+          if (row && !prefersReduce()) {
+            row.animate(
+              [{ transform: 'translateX(0)' }, { transform: 'translateX(-4px)' }, { transform: 'translateX(4px)' }, { transform: 'translateX(0)' }],
+              { duration: 220 }
+            );
+          }
+          return;
+        }
+        activeDomains.delete(id);
+      } else {
+        activeDomains.add(id);
+      }
+      const active = activeDomains.has(id);
+      if (row) {
+        row.classList.toggle('inactive', !active);
+        row.setAttribute('aria-pressed', String(active));
+        const meta = META[id];
+        row.setAttribute('aria-label', `${meta.namePt} (${meta.weight}%) — ${active ? 'incluído' : 'excluído'} do sorteio`);
+      }
+      persistFilter();
+      // re-draw when: the current question left the filter, OR we were in the "no questions in filter"
+      // state and now have candidates (recover without reload). Leave it alone while the user is seeing feedback/review.
+      if (!answered && !reviewing && (!current || !activeDomains.has(current.domain))) {
+        const nq = pickNext();
+        if (nq) showQuestion(nq);
+        else if (current) showNoFilterMatch();   // current left the filter and nothing remained
+      }
+    }
+
+    /* ── Dropdown open/close ── */
+    /** Open or close the domain filter dropdown, syncing ARIA and focus/inert state. */
+    function setDropdown(open) {
+      dropdown.classList.toggle('open', open);
+      statsBar.setAttribute('aria-expanded', String(open));
+      dropdown.inert = !open;                       // remove the controls from the focus flow when closed
+      dropdown.setAttribute('aria-hidden', String(!open));
+    }
+    statsBar.addEventListener('click', () => setDropdown(!dropdown.classList.contains('open')));
+    statsBar.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setDropdown(!dropdown.classList.contains('open')); }
+      else if (e.key === 'Escape') setDropdown(false);
+    });
+    document.addEventListener('click', (e) => {
+      if (!statsBar.contains(e.target) && !dropdown.contains(e.target)) setDropdown(false);
+    });
+
+    /* ── Per-DOMAIN probability matrix (review debt) ──
+       Missing, skipping, or saying "não sei" ADDS debt to a domain → it starts to
+       show up more; a correct answer pays debt off → it cools back to baseline. Debt
+       becomes a temperature T = 1 + 0.5·debt (range 1.0–4.0) that multiplies the
+       per-question weight in the draw. Persisted across sessions (the signal must survive
+       reload) under a key separate from progress — it doesn't affect v2 export/import/undo. */
+    const LS_HEAT = 'secplus:heat:questoes:v1';
+    const DEBT_MISS = 1.0, DEBT_SKIP = 0.5, DEBT_PAY = 1.0, DEBT_STEP = 0.5, DEBT_MAX = 6;
+    let heat = { v: 1, debt: {} };
+    DOMAINS.forEach(d => heat.debt[d] = 0);
+
+    /** Coerce loaded heat data to a valid {v, debt} shape, clamping each debt to [0, DEBT_MAX]. */
+    function sanitizeHeat(o) {
+      const clean = { v: 1, debt: {} };
+      const src = (o && typeof o.debt === 'object' && !Array.isArray(o.debt)) ? o.debt : {};
+      DOMAINS.forEach(d => {
+        let n = Number(src[d]);
+        if (!Number.isFinite(n) || n < 0) n = 0;
+        if (n > DEBT_MAX) n = DEBT_MAX;
+        clean.debt[d] = n;
+      });
+      return clean;
+    }
+    /** Load per-domain heat; a recomputable signal, so any failure/corruption resets it (never read-only). */
+    function loadHeat() {
+      try { heat = sanitizeHeat(JSON.parse(localStorage.getItem(LS_HEAT))); }
+      catch (_) { heat = sanitizeHeat(null); }
+    }
+    /** Persist per-domain heat to localStorage (best-effort; ignored in read-only). */
+    function saveHeat() {
+      if (readOnly) return;
+      try { localStorage.setItem(LS_HEAT, JSON.stringify(heat)); } catch (_) {}
+    }
+    /** Adjust a domain's review debt by `delta`, clamped to [0, DEBT_MAX]. */
+    function bumpDebt(dom, delta) {
+      const v = (heat.debt[dom] || 0) + delta;
+      heat.debt[dom] = Math.max(0, Math.min(DEBT_MAX, v));
+    }
+    /** Domain temperature used in the draw: 1.0 (baseline) … 4.0 (very hot). */
+    function tempOf(dom) { return 1 + DEBT_STEP * (heat.debt[dom] || 0); }
+
+    /* ── Adaptive weighted selection ── */
+    /**
+     * Per-item weight: wrong/new items show up more, well-mastered ones less.
+     * Never seen (seen 0) → 1.5; else w = (wrong+1)/(correct+1), clamped to [0.15, 8].
+     */
+    function weightOf(c) {
+      if (!c || !c.seen) return W_NEW;
+      let w = (c.wrong + 1) / (c.correct + 1);
+      if (w < W_MIN) w = W_MIN;
+      if (w > W_MAX) w = W_MAX;
+      return w;
+    }
+
+    /** WEIGHTED-RANDOM draw over a list of questions. */
+    function weightedPick(list) {
+      let total = 0;
+      const weights = list.map(q => { const w = weightOf(state.cards[q.id]) * tempOf(q.domain); total += w; return w; });
+      if (total <= 0) return list[Math.floor(Math.random() * list.length)];
+      let r = Math.random() * total;
+      for (let i = 0; i < list.length; i++) {
+        r -= weights[i];
+        if (r < 0) return list[i];
+      }
+      return list[list.length - 1];
+    }
+
+    /** Pick the next question: honor the domain filter and the ~8-recent cooldown, then draw by weight. */
+    function pickNext() {
+      const candidates = allQuestions.filter(q => activeDomains.has(q.domain));
+      if (!candidates.length) return null;
+      const rec = new Set(recentIds);
+      let pickable = candidates.filter(q => !rec.has(q.id));   // avoid repeating the last RECENT_MAX
+      if (!pickable.length) pickable = candidates;             // small filter: ignore the cooldown
+      return weightedPick(pickable);
+    }
+
+    /* ── Question validation ── */
+    /** True if `q` has the required shape (id, stem, options, in-range answer, known domain). */
+    function isValidQuestion(q) {
+      return q && Number.isInteger(q.id)
+        && typeof q.stem === 'string' && q.stem.trim()
+        && typeof q.explanation === 'string'
+        && Array.isArray(q.options) && q.options.length >= 2
+        && Number.isInteger(q.answer) && q.answer >= 0 && q.answer < q.options.length
+        && DOMAINS.includes(q.domain);
+    }
+
+    /* ── Loading ── */
+    /** Fetch and parse every domain's questions file, keeping only valid questions. @returns {Promise<boolean>} whether any fetch succeeded */
+    async function loadQuestions() {
+      allQuestions = [];
+      let anyOk = false;
+      for (const d of DOMAINS) {
+        try {
+          const res = await fetch(`${d}.txt`);
+          if (!res.ok) { console.error(`Falha ao carregar ${d}.txt: HTTP ${res.status}`); continue; }
+          anyOk = true;
+          const text = await res.text();
+          for (const line of text.split('\n')) {
+            const t = line.trim();
+            if (!t) continue;
+            let q;
+            try { q = JSON.parse(t); }
+            catch (e) { console.warn(`Linha JSON inválida em ${d}.txt ignorada:`, t); continue; }
+            if (!isValidQuestion(q)) { console.warn(`Questão inválida ignorada em ${d}.txt:`, q); continue; }
+            allQuestions.push(q);
+          }
+        } catch (e) {
+          console.error(`Erro de rede ao buscar ${d}.txt:`, e);
+        }
+      }
+      return anyOk;
+    }
+
+    /* ── Cross-link: acronyms cited in an explanation become terms with a popup (hover/focus), without leaving the page ── */
+    const ACRONYMS_MAP = {};
+    let acronymsReady = false;
+    /** Load the acronyms file into ACRONYMS_MAP so explanations can show term popups (best-effort). */
+    async function loadAcronyms() {
+      try {
+        const res = await fetch('../acronyms/acronyms.txt');
+        if (!res.ok) return;
+        const text = await res.text();
+        for (const line of text.split('\n')) {
+          const t = line.trim(); if (!t) continue;
+          let o; try { o = JSON.parse(t); } catch (e) { continue; }
+          if (!o.acronym || !Array.isArray(o.expansions)) continue;
+          ACRONYMS_MAP[o.acronym.toUpperCase()] = { exp: o.expansions.join(' · '), explic: o.explanation || '' };
+        }
+        acronymsReady = true;
+      } catch (e) { /* no popup if it fails — not critical */ }
+    }
+    /** HTML-escape a string via a detached element's textContent. */
+    function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+    /** HTML-escape a string for use inside a double-quoted attribute. */
+    function escAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
+    /* ── Services/tools glossary: cited names (ping, traceroute, Wireshark…) also get a popup ── */
+    const SERVICE_MAP = {}; let SERVICE_RE = null;
+    /** Build SERVICE_MAP and the matching regex from the services glossary (runs once). */
+    (function buildServices() {
+      const list = window.SECPLUS_SERVICES || []; const forms = [];
+      for (const s of list) {
+        if (!s || !s.t || !s.e) continue;
+        for (const f of [s.t].concat(s.a || [])) {
+          if (!f) continue; const k = f.toLowerCase();
+          if (!SERVICE_MAP[k]) { SERVICE_MAP[k] = { label: s.t, exp: s.e }; forms.push(f); }
+        }
+      }
+      if (!forms.length) return;
+      forms.sort((a, b) => b.length - a.length);
+      const esc = forms.map(f => f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+      SERVICE_RE = new RegExp('(?<![A-Za-z0-9])(' + esc.join('|') + ')(?![A-Za-z0-9])', 'gi');
+    })();
+    /**
+     * Escape the text, then wrap service names (1st pass, via placeholder) and UPPERCASE acronyms
+     * (2nd pass) in <span class="term"> for popups.
+     */
+    function linkifyTerms(text) {
+      let esc = escapeHtml(text);
+      const store = [];
+      if (SERVICE_RE) {
+        esc = esc.replace(SERVICE_RE, (m) => {
+          const rec = SERVICE_MAP[m.toLowerCase()]; if (!rec) return m;
+          store.push('<span class="term" tabindex="0" data-term="' + escAttr(m.toLowerCase()) +
+            '" aria-label="' + escAttr(rec.label + ': ' + rec.exp) + '">' + m + '</span>');
+          return '\u0000' + (store.length - 1) + '\u0000';
+        });
+      }
+      if (acronymsReady) {
+        esc = esc.replace(/\b([A-Z][A-Z0-9]{1,7})\b/g, (m, tok) => {
+          const rec = ACRONYMS_MAP[tok]; if (!rec) return m;
+          return '<span class="term" tabindex="0" data-acronym="' + tok +
+            '" aria-label="' + escAttr(tok + ': ' + rec.exp) + '">' + m + '</span>';
+        });
+      }
+      return esc.replace(/\u0000(\d+)\u0000/g, (_, i) => store[+i]);
+    }
+    // shared tooltip, positioned by JS (avoids overflow clipping), hidden on scroll/blur
+    const termTip = document.createElement('div');
+    termTip.id = 'term-tip'; termTip.setAttribute('role', 'tooltip');
+    document.body.appendChild(termTip);
+    /** Populate and position the shared term tooltip next to the given term element. */
+    function showTip(termEl) {
+      const tm = termEl.getAttribute('data-term');
+      let html = null;
+      if (tm) { const r = SERVICE_MAP[tm]; if (r) html = '<b>' + escapeHtml(r.label) + '</b><div class="tt-ex">' + escapeHtml(r.exp) + '</div>'; }
+      else { const s = termEl.getAttribute('data-acronym'); const rec = ACRONYMS_MAP[s]; if (rec) html = '<b>' + escapeHtml(s) + '</b> — ' + escapeHtml(rec.exp) + (rec.explic ? '<div class="tt-ex">' + escapeHtml(rec.explic) + '</div>' : ''); }
+      if (!html) return;
+      termTip.innerHTML = html;
+      termTip.classList.add('show');
+      const r = termEl.getBoundingClientRect();
+      const w = termTip.offsetWidth, h = termTip.offsetHeight;
+      termTip.style.left = Math.min(Math.max(r.left, 8), window.innerWidth - w - 8) + 'px';
+      const above = r.top > h + 12;
+      termTip.style.top = (above ? r.top - h - 8 : r.bottom + 8) + 'px';
+    }
+    /** Hide the shared term tooltip. */
+    function hideTip() { termTip.classList.remove('show'); }
+    document.addEventListener('mouseover', (e) => { const t = e.target.closest && e.target.closest('.term'); if (t) showTip(t); });
+    document.addEventListener('mouseout', (e) => { if (e.target.closest && e.target.closest('.term')) hideTip(); });
+    document.addEventListener('focusin', (e) => { const t = e.target.closest && e.target.closest('.term'); if (t) showTip(t); });
+    document.addEventListener('focusout', (e) => { if (e.target.closest && e.target.closest('.term')) hideTip(); });
+    window.addEventListener('scroll', hideTip, true);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideTip(); });
+
+    /* ── Empty / error screen ── */
+    /** Replace the quiz with an empty/error screen and a retry button. */
+    function showEmpty(fetchWorked) {
+      const wrap = el('quiz-wrap');
+      const msg = fetchWorked
+        ? 'Nenhuma questão válida foi encontrada nos arquivos de domínio.'
+        : 'Não foi possível carregar os arquivos de questões. Sirva a pasta do projeto por HTTP (ex.: <code>python3 scripts/server.py</code>) — abrir o arquivo direto do disco bloqueia o carregamento.';
+      wrap.innerHTML =
+        '<div class="quiz-empty">' +
+          '<h2>Sem questões para exibir</h2>' +
+          '<p>' + msg + '</p>' +
+          '<button type="button" id="btn-retry">Tentar de novo</button>' +
+        '</div>';
+      el('btn-retry').addEventListener('click', () => location.reload());
+    }
+
+    /**
+     * TRANSIENT "no questions in filter" state: does NOT destroy #quiz-wrap (keeps element refs),
+     * so re-including a domain in the filter recovers it — no page reload needed.
+     */
+    function showNoFilterMatch() {
+      current = null; answered = false; reviewing = false;
+      clearFeedback();
+      domBadge.textContent = ''; qidBadge.textContent = ''; statusBadge.textContent = '';
+      qHelpBtn.hidden = true; qHelpPop.hidden = true;
+      stemEl.textContent = 'Nenhuma questão nos domínios filtrados. Abra o filtro (barra acima) e inclua ao menos um domínio com questões carregadas.';
+      optsEl.innerHTML = '';
+      btnNext.disabled = true; btnSkip.disabled = true; btnDontKnow.disabled = true;
+      btnPrev.style.display = 'none';
+    }
+
+    /* ── Render ── */
+    /** Render the domain/id/status badges for the given question. */
+    function setDomainBadge(q) {
+      const meta = META[q.domain];
+      domBadge.innerHTML = meta
+        ? ('<span class="qd-min">' + q.domain + '</span><span class="qd-full">Domínio ' + q.domain + ' · ' + escapeHtml(meta.namePt) + '</span>')
+        : ('Domínio ' + q.domain);
+      qidBadge.textContent = 'Q' + q.id;
+      const cs = state.cards[q.id];
+      statusBadge.textContent = (cs && cs.seen) ? (cs.correct + '✓ · ' + cs.wrong + '✗') : 'Visto pela primeira vez';
+      setQuestionHelp(q);
+    }
+
+    /** Fill the "why is this here" help popup: references (objective · subtopic) + rationale. */
+    function setQuestionHelp(q) {
+      const rationale = (window.SECPLUS_RATIONALE_Q || {})[q.id];
+      const sub = window.SECPLUS_SUBTOPIC_Q ? window.SECPLUS_SUBTOPIC_Q[q.id] : null;
+      const ref = (sub && sub[0]) ? ('SY0-701 ' + sub[0] + (sub[1] ? ' · ' + sub[1] : '')) : (q.obj ? 'SY0-701 ' + q.obj : '');
+      if (rationale || ref) {
+        let h = '';
+        if (ref)    h += '<div class="fc-foot-row"><span class="fc-foot-lbl">Referências</span><span class="fc-foot-txt">' + escapeHtml(ref) + '</span></div>';
+        if (rationale) h += '<div class="fc-foot-row"><span class="fc-foot-lbl">Por que está aqui</span><span class="fc-foot-txt">' + escapeHtml(rationale) + '</span></div>';
+        qHelpPop.innerHTML = h; qHelpBtn.hidden = false;
+      } else { qHelpPop.innerHTML = ''; qHelpBtn.hidden = true; }
+      qHelpPop.hidden = true; qHelpBtn.setAttribute('aria-expanded', 'false');
+      squareHelp();
+    }
+    /**
+     * Make the "?" button square: width = the header row's stretched height (aspect-ratio
+     * doesn't carry a flex item's stretch height to its width, so we compute it in JS).
+     */
+    function squareHelp() {
+      if (!qHelpBtn || qHelpBtn.hidden) return;
+      qHelpBtn.style.width = qHelpBtn.getBoundingClientRect().height + 'px';
+    }
+    window.addEventListener('resize', squareHelp);
+    qHelpBtn.addEventListener('click', function () {
+      const open = qHelpBtn.getAttribute('aria-expanded') === 'true';
+      qHelpBtn.setAttribute('aria-expanded', String(!open));
+      qHelpPop.hidden = open;
+      if (!open) {   // opening: anchor the popup (position:fixed) just below and to the right of the "?"
+        const r = qHelpBtn.getBoundingClientRect();
+        qHelpPop.style.top = (r.bottom + 6) + 'px';
+        qHelpPop.style.right = Math.max(8, window.innerWidth - r.right) + 'px';
+        qHelpPop.style.left = 'auto';
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (!qHelpPop.hidden && !qHelpPop.contains(e.target) && e.target !== qHelpBtn) {
+        qHelpPop.hidden = true; qHelpBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /** Clear the result, undo button, and explanation blocks. */
+    function clearFeedback() {
+      resultEl.textContent = '';
+      resultEl.className = 'quiz-result';
+      removeUndo();
+      expEl.textContent = '';
+      expEl.className = 'quiz-explanation';
+      expEl.removeAttribute('tabindex');
+    }
+
+    /** Create an answer-option button labeled A/B/C…, tagging its original index. */
+    function makeOptionButton(pos, origIndex, text, onClick) {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.type = 'button';
+      btn.dataset.orig = String(origIndex);
+      const key = document.createElement('span');
+      key.className = 'opt-key';
+      key.textContent = String.fromCharCode(65 + pos);
+      btn.append(key, document.createTextNode(text));
+      if (onClick) btn.addEventListener('click', onClick);
+      return btn;
+    }
+
+    /** Render a fresh (unanswered) question, or the appropriate empty state when `q` is null. */
+    function showQuestion(q) {
+      reviewing = false;
+      reviewPtr = -1;
+      btnNext.textContent = 'Próxima →';
+      // no question: tell "empty bank" (a real error → destroy and offer reload)
+      // from "current filter has no questions" (transient, recoverable without reload)
+      if (!q) { if (allQuestions.length) showNoFilterMatch(); else showEmpty(true); return; }
+      current = q;
+      recentIds.push(q.id);                          // record in the cooldown window
+      if (recentIds.length > RECENT_MAX) recentIds.shift();
+      answered = false;
+      lastEntry = null;
+
+      setDomainBadge(q);
+      stemEl.textContent = q.stem;
+      clearFeedback();
+
+      // options shuffled; comparison uses the preserved ORIGINAL index
+      optsEl.innerHTML = '';
+      const order = shuffle(q.options.map((_, i) => i));
+      order.forEach((orig, pos) => {
+        optsEl.appendChild(makeOptionButton(pos, orig, q.options[orig], () => handleAnswer(orig)));
+      });
+
+      btnNext.disabled = true;
+      btnSkip.disabled = false;
+      btnDontKnow.disabled = false;
+      btnPrev.disabled = false;
+      btnPrev.style.display = history.length ? '' : 'none';
+
+      // focus management: move focus to the 1st option (instead of landing on <body>),
+      // but never steal focus while the filter is open
+      const first = optsEl.querySelector('.option-btn');
+      if (first && !dropdown.classList.contains('open')) first.focus();
+    }
+
+    /** Handle an option click: finish the question as correct or wrong. */
+    function handleAnswer(chosenOrig) {
+      if (answered || reviewing) return;
+      finishQuestion(chosenOrig === current.answer ? 'correct' : 'wrong', chosenOrig);
+    }
+
+    /** "Don't know": reveal the answer and count it as not-mastered, without inflating accuracy. */
+    function revealAnswer() {
+      if (!current || answered || reviewing) return;   // likewise: no current question, nothing to reveal
+      finishQuestion('reveal', null);   // "Não sei": counts as not-mastered (a miss), without inflating accuracy
+    }
+
+    /** After answering, disable all options and mark the correct one (✓) and the wrong pick (✗). */
+    function markOptions(q, chosenOrig) {
+      optsEl.querySelectorAll('.option-btn').forEach(btn => {
+        btn.disabled = true;
+        const o = Number(btn.dataset.orig);
+        if (o === q.answer) {
+          btn.classList.add('correct');
+          const m = document.createElement('span'); m.className = 'opt-mark'; m.textContent = '✓';
+          btn.appendChild(m);
+        } else if (o === chosenOrig) {
+          btn.classList.add('wrong');
+          const m = document.createElement('span'); m.className = 'opt-mark'; m.textContent = '✗';
+          btn.appendChild(m);
+        }
+      });
+    }
+
+    // external study-sources block — removes the need to "search by hand":
+    // curated sources for the domain (Professor Messer + canonical) + the objective label.
+    const MESSER_INDEX = 'https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-comptia-security-plus-course/';
+    /** Build the "go deeper" sources block (Messer/YouTube/Google links + objective/topic labels). */
+    function sourcesHTML(q) {
+      // the question's SPECIFIC lesson → Messer + YouTube;
+      // fallback: the objective's anchor lesson; fallback: the course index.
+      let mUrl = MESSER_INDEX, ytUrl = '', lessonTitle = '';
+      const slug = window.SECPLUS_MESSER_Q ? window.SECPLUS_MESSER_Q[q.id] : null;
+      const lesson = (slug && window.SECPLUS_MESSER_LESSON) ? window.SECPLUS_MESSER_LESSON[slug] : null;
+      if (lesson) { mUrl = lesson[0]; ytUrl = lesson[1]; lessonTitle = lesson[2]; }
+      else {
+        const mp = (window.SECPLUS_MESSER && q.obj) ? window.SECPLUS_MESSER[q.obj] : null;
+        if (mp) { mUrl = mp[0]; lessonTitle = mp[1]; }
+      }
+      const sub = window.SECPLUS_SUBTOPIC_Q ? window.SECPLUS_SUBTOPIC_Q[q.id] : null;
+      const obj = (sub && sub[0]) ? sub[0] : (q.obj || '');
+      const topic = (sub && sub[1]) ? sub[1] : '';
+      const tt = lessonTitle ? ' title="Aula: ' + String(lessonTitle).replace(/"/g, '') + '"' : '';
+      let h = '<span class="ff-label">Aprofundar</span>';
+      if (obj) h += '<span class="ff-sep">·</span><span class="ff-obj">Objetivo ' + obj + '</span>';
+      if (topic) h += '<span class="ff-sep">·</span><span class="ff-topic">' + escapeHtml(topic) + '</span>';
+      h += '<span class="ff-sep">·</span><a href="' + mUrl + '" target="_blank" rel="noopener noreferrer"' + tt + '>Professor Messer</a>';
+      if (ytUrl) h += '<a href="' + ytUrl + '" target="_blank" rel="noopener noreferrer"' + tt + '>YouTube</a>';
+      // Google button: a simple concept search (same footprint as the Messer/YouTube pills in quiz-sources)
+      const gq = window.SECPLUS_GOOGLE_Q ? window.SECPLUS_GOOGLE_Q[q.id] : null;
+      if (gq) {
+        const gUrl = 'https://www.google.com/search?q=' + encodeURIComponent(gq + ' "SY0-701"').replace(/%20/g, '+') + '&lr=lang_pt&hl=pt-BR&gl=BR';
+        h += '<a href="' + gUrl + '" target="_blank" rel="noopener noreferrer" title="Buscar no Google">Google</a>';
+      }
+      return '<div class="quiz-sources">' + h + '</div>';
+    }
+
+    /** Finalize the current question: record the outcome, update debt/aggregates, and render feedback. */
+    function finishQuestion(outcome, chosenOrig) {
+      answered = true;
+      const q = current;
+      markOptions(q, chosenOrig);
+
+      // update the per-question aggregates and keep a snapshot for undo
+      const id = q.id;
+      const prev = state.cards[id] ? Object.assign({}, state.cards[id]) : null;
+      const c = state.cards[id] || { seen: 0, correct: 0, wrong: 0 };
+      const known = outcome === 'correct';
+      c.seen++;
+      if (known) c.correct++; else c.wrong++;   // "reveal"/"não sei" counts as a miss
+      state.cards[id] = c;
+
+      // domain matrix: a correct answer pays off 1 unit of debt; a miss / "não sei" heats the domain
+      const prevDebt = heat.debt[q.domain] || 0;
+      bumpDebt(q.domain, known ? -DEBT_PAY : DEBT_MISS);
+      saveHeat();
+
+      lastEntry = { q, outcome, chosenOrig, prev, prevDebt };
+
+      const correct = q.options[q.answer];
+      if (outcome === 'correct')      setResult('✓ Correto', 'correct', true);
+      else if (outcome === 'wrong')   setResult('✗ Incorreto. Resposta certa: ' + correct, 'wrong', true);
+      else                            setResult('Resposta revelada (marcada como "não dominado"). Resposta certa: ' + correct, 'reveal', true);
+
+      expEl.innerHTML = linkifyTerms(q.explanation);
+      expEl.insertAdjacentHTML('beforeend', sourcesHTML(q));   // always offer where to study deeper — right or wrong
+      expEl.className = 'quiz-explanation show ' + outcome;
+
+      btnNext.disabled = false;
+      btnSkip.disabled = true;
+      btnDontKnow.disabled = true;
+      btnPrev.style.display = 'none';
+
+      persist();
+      applyProgress();
+
+      resultEl.scrollIntoView({ behavior: prefersReduce() ? 'auto' : 'smooth', block: 'nearest' });
+      // focus the explanation (tabindex -1) so screen readers announce it;
+      // Enter still advances via the global handler
+      expEl.setAttribute('tabindex', '-1');
+      expEl.focus();
+    }
+
+    /** Set the result banner text/style and, when requested, an Undo button. */
+    function setResult(text, cls, withUndo) {
+      resultEl.textContent = text;                 // kept only for screen readers (aria-live); visually hidden via CSS
+      resultEl.className = 'quiz-result show ' + cls;
+      removeUndo();
+      // Undo: next to "Pular", styled like the action buttons
+      if (withUndo && !readOnly) {
+        const u = document.createElement('button');
+        u.className = 'btn btn-undo';
+        u.type = 'button';
+        u.id = 'btn-undo';
+        u.textContent = 'Desfazer';
+        u.addEventListener('click', undoLast);
+        btnSkip.insertAdjacentElement('afterend', u);
+        // "Não sei": next to Undo, explains that we raise this domain's frequency
+        if (cls === 'reveal') {
+          const msg = document.createElement('span');
+          msg.className = 'undo-msg'; msg.id = 'undo-msg';
+          msg.textContent = 'Vamos aumentar a probabilidade de aparição de perguntas desse domínio';
+          u.insertAdjacentElement('afterend', msg);
+        }
+      }
+    }
+    /** Remove the Undo button and its adjacent message, if present. */
+    function removeUndo() { const u = el('btn-undo'); if (u) u.remove(); const m = el('undo-msg'); if (m) m.remove(); }
+
+    /** Revert the last answer: restore the exact prior card state and domain debt, then re-show the question. */
+    function undoLast() {
+      if (!answered || !lastEntry) return;
+      const { q, prev, prevDebt } = lastEntry;
+      if (prev) state.cards[q.id] = prev; else delete state.cards[q.id];   // restore the exact prior state
+      if (prevDebt != null) { heat.debt[q.domain] = prevDebt; saveHeat(); }   // and the domain's debt
+      lastEntry = null;
+      persist();
+      applyProgress();
+      showQuestion(q);   // re-show the SAME question, unanswered
+    }
+
+    /* ── Review previous questions (read-only) ── */
+    /** Step back through the answered history into read-only review mode. */
+    function goPrev() {
+      if (!history.length) return;
+      if (!reviewing) { reviewing = true; reviewPtr = history.length - 1; }
+      else if (reviewPtr > 0) { reviewPtr--; }
+      else return;
+      renderReview(history[reviewPtr]);
+    }
+
+    /** Render a past answered question in read-only review mode. */
+    function renderReview(entry) {
+      const q = entry.q;
+      setDomainBadge(q);
+      stemEl.textContent = q.stem;
+      clearFeedback();
+
+      optsEl.innerHTML = '';
+      q.options.forEach((alt, orig) => {
+        const btn = makeOptionButton(orig, orig, alt, null);
+        optsEl.appendChild(btn);
+      });
+      markOptions(q, entry.chosenOrig);
+
+      const correct = q.options[q.answer];
+      setResult('Revisão — resposta certa: ' + correct, 'review', false);
+      expEl.innerHTML = linkifyTerms(q.explanation);
+      expEl.className = 'quiz-explanation show review';
+
+      btnNext.disabled = false;
+      btnNext.textContent = '↩ Voltar';
+      btnSkip.disabled = true;
+      btnDontKnow.disabled = true;
+      btnPrev.style.display = '';
+      btnPrev.disabled = reviewPtr === 0;   // disable (don't hide) so focus isn't thrown to <body>
+      btnNext.focus();                        // keep focus on a stable control
+    }
+
+    /** Exit review mode and return to the live current question (or a fresh one if it left the filter). */
+    function resumeFromReview() {
+      reviewing = false;
+      reviewPtr = -1;
+      btnNext.textContent = 'Próxima →';
+      // if the current question left the filter during review, swap for a valid one
+      if (current && !activeDomains.has(current.domain)) showQuestion(pickNext());
+      else showQuestion(current);
+    }
+
+    /* ── Actions ── */
+    /** Skip the current question (a weak signal): warm the domain a little, then draw the next. */
+    function skip() {
+      if (!current || answered || reviewing) return;   // ignore clicks before the 1st render / in a no-question state
+      bumpDebt(current.domain, DEBT_SKIP); saveHeat();   // skip = weak signal (deferred); warms less, no undo
+      showQuestion(pickNext());
+    }
+
+    /** Advance: resume from review, or push the last entry to history and draw the next question. */
+    function next() {
+      if (reviewing) { resumeFromReview(); return; }
+      if (lastEntry) { history.push(lastEntry); lastEntry = null; }
+      showQuestion(pickNext());   // the weighted draw picks the next one
+    }
+
+    btnSkip.addEventListener('click', skip);
+    btnDontKnow.addEventListener('click', revealAnswer);
+    btnNext.addEventListener('click', next);
+    btnPrev.addEventListener('click', goPrev);
+
+    /* ── Global keyboard ── */
+    document.addEventListener('keydown', (e) => {
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (e.ctrlKey || e.metaKey || e.altKey) return;   // ignore modified shortcuts (Ctrl/Cmd/Alt+key)
+      if (dropdown.classList.contains('open')) {
+        if (e.key === 'Escape') { setDropdown(false); statsBar.focus(); }
+        return;   // keyboard is dedicated to the filter while it's open
+      }
+      if (!current) return;
+
+      if (reviewing) {
+        if (e.key === 'Enter') { e.preventDefault(); resumeFromReview(); }
+        return;
+      }
+      if (!answered) {
+        const btns = [...optsEl.querySelectorAll('.option-btn')];
+        let idx = -1;
+        if (/^[1-9]$/.test(e.key)) idx = Number(e.key) - 1;
+        else if (/^[a-z]$/i.test(e.key)) idx = e.key.toLowerCase().charCodeAt(0) - 97;
+        if (idx >= 0 && idx < btns.length) { e.preventDefault(); btns[idx].click(); }
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        btnNext.click();
+      }
+    });
+
+    /* ── Tools: reset / export / import ── */
+    el('btn-reset').addEventListener('click', () => {
+      if (!confirm('Zerar TODO o progresso das questões? Isto não pode ser desfeito.')) return;
+      state = { v: 2, cards: {} };
+      DOMAINS.forEach(d => heat.debt[d] = 0); saveHeat();   // also reset the per-domain temperature
+      readOnly = false;
+      roNotice.classList.remove('show');
+      persist();
+      applyProgress();
+      history = []; lastEntry = null;
+      current = null; recentIds = [];
+      showQuestion(pickNext());
+    });
+
+    el('btn-export').addEventListener('click', () => {
+      const data = JSON.stringify(state, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'securityplus-progresso-questoes.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    el('btn-import').addEventListener('click', () => el('import-file').click());
+    el('import-file').addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const o = JSON.parse(reader.result);
+          if (!o || typeof o.cards !== 'object' || Array.isArray(o.cards)) throw new Error('formato');
+          state = { v: 2, cards: sanitizeCards(o.cards) };   // validate/sanitize BEFORE overwriting
+          readOnly = false;
+          roNotice.classList.remove('show');
+          persist();
+          applyProgress();
+          alert('Progresso importado com sucesso.');
+        } catch (err) {
+          alert('Arquivo inválido: não foi possível importar o progresso.');
+          console.error(err);
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = '';   // allow re-importing the same file
+    });
+
+    el('btn-clear-readonly').addEventListener('click', () => {
+      readOnly = false;
+      roNotice.classList.remove('show');
+      state = { v: 2, cards: {} };
+      persist();
+      applyProgress();
+    });
+
+    /* ── Init ── */
+    /** Bootstrap the quiz: build UI, load questions/progress/heat, then show the first question. */
+    async function initQuiz() {
+      buildDomainUI();
+      setDropdown(false);   // panel starts inert (out of the focus/tab flow)
+      const fetchWorked = await loadQuestions();
+      if (!allQuestions.length) { showEmpty(fetchWorked); return; }
+      loadAcronyms();   // acronym popups in explanations (non-blocking; no popup if it fails)
+
+      backupV1IfNeeded();
+      loadState();
+      loadHeat();
+      if (readOnly) roNotice.classList.add('show');
+
+      applyProgress();
+      showQuestion(pickNext());
+    }
+
+    initQuiz();
+  </script>
+
+  <script src="../assets/js/theme.js"></script>
+</body>
+</html>
