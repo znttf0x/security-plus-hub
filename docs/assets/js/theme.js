@@ -80,14 +80,26 @@
       apply(current());   // sync the checked state (palette already applied in <head>)
     }
 
-    // Language: toggle the BR ↔ US flag (actual language switch comes later).
+    // Language: English is not available yet — show an "em breve" notice instead of switching.
     var lang = document.querySelector('.lang');
     if (lang) {
       var lb = lang.querySelector('.lang-btn');
-      if (lb) lb.addEventListener('click', function (e) {
-        e.stopPropagation();
-        lang.setAttribute('data-lang', lang.getAttribute('data-lang') === 'en' ? 'pt' : 'en');
-      });
+      if (lb) {
+        var langTip = document.createElement('span');
+        langTip.className = 'lang-soon';
+        langTip.setAttribute('role', 'status');
+        lang.appendChild(langTip);
+        var langTipT;
+        function hideLangTip() { lang.classList.remove('lang-soon-open'); langTip.textContent = ''; }
+        lb.addEventListener('click', function (e) {
+          e.stopPropagation();
+          langTip.textContent = 'Versão em inglês em breve';   // set on show so the live region actually announces
+          lang.classList.add('lang-soon-open');
+          clearTimeout(langTipT);
+          langTipT = setTimeout(hideLangTip, 2400);
+        });
+        document.addEventListener('click', hideLangTip);
+      }
     }
 
     // Hamburger: open/close the mobile links dropdown.
