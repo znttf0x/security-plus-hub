@@ -516,6 +516,12 @@ nav .nav-tools{
   color:var(--heading);
   vertical-align:middle;
 }
+/* mobile: tighter cells so all three columns (Peso · Precisão · Vistas) fit without
+   forcing a horizontal drag to see one's own progress */
+@media (max-width: 34rem){
+  [data-page="hub"] .dom-table th,
+  [data-page="hub"] .dom-table td{ padding:.5rem .5rem; }
+}
 /* vertical hairlines between columns (ledger) */
 [data-page="hub"] .dom-table th + th,
 [data-page="hub"] .dom-table td + td{border-left:1px solid var(--border)}
@@ -1457,6 +1463,11 @@ nav .nav-tools{
   [data-page="exam"] .nav-row button{ min-height: 4.4rem; }
   /* distance between the navigation buttons and the question grid */
   [data-page="exam"] #exam .grid-wrap{ margin-top: 1rem; }
+  /* size selector: stack the three long-labeled options full-width so they never get cut off */
+  [data-page="exam"] .opt-row{ display: flex; flex-direction: column; align-items: stretch; gap: .4rem; }
+  [data-page="exam"] .seg-group{ display: flex; flex-direction: column; width: 100%; }
+  [data-page="exam"] .seg-group button{ border-right: none; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  [data-page="exam"] .seg-group button:last-child{ border-bottom: none; }
 }
 [data-page="exam"] .grid-title{
   display:flex;
@@ -1998,6 +2009,26 @@ body[data-page="questions"] .quiz-result{
   }
 }
 
+/* (2b) <=720px: same height-cap release for the flashcard pages (Conceitos / Siglas).
+   They kept the desktop fixed-height shell (body:100dvh) on mobile, so the card was
+   trapped in a tiny scrollable .fc-stage above the confidence ramp — the revealed
+   explanation/scenario got crushed. Let the PAGE scroll: card, explanation and ramp
+   each take their natural height. */
+@media (max-width: 720px){
+  body[data-page="concepts"], body[data-page="acronyms"]{ height: auto; min-height: 100svh; }
+  body[data-page="concepts"] > main, body[data-page="acronyms"] > main{ min-height: 0; }
+  [data-page="concepts"] .content-area, [data-page="acronyms"] .content-area,
+  [data-page="concepts"] #view-practice, [data-page="acronyms"] #view-practice{ min-height: 0; }
+  [data-page="concepts"] .fc-stage, [data-page="acronyms"] .fc-stage{
+    flex: 0 0 auto; min-height: 0; overflow: visible;
+  }
+  [data-page="concepts"] #lista, [data-page="acronyms"] #lista{ overflow: visible; }
+  /* card sizes to content instead of a fixed 18rem that squeezed the explanation */
+  [data-page="concepts"] .flashcard, [data-page="acronyms"] .flashcard{
+    min-height: 0; justify-content: flex-start;
+  }
+}
+
 
 /* Footer: trim vertical padding (was ~101px for a single line) */
 footer{ padding: 0.75rem clamp(1rem,4vw,2rem) 0.85rem; }
@@ -2187,6 +2218,8 @@ footer{ padding: 0.75rem clamp(1rem,4vw,2rem) 0.85rem; }
   body[data-page="questions"] .quiz-actions .btn-skip{ grid-column: 2; grid-row: 1; }
   body[data-page="questions"] .quiz-actions .btn-undo{ grid-column: 1; grid-row: 2; }
   body[data-page="questions"] .quiz-actions .btn-next{ grid-column: 2; grid-row: 2; margin-left: 0; }
+  /* the "Não sei" undo message spans the full width instead of cramming one column */
+  body[data-page="questions"] .quiz-actions .undo-msg{ grid-column: 1 / -1; max-width: none; text-align: left; }
   /* domains without title on mobile: only x.0 · bar · (x/y) */
   [data-page="questions"] .domain-rows{ grid-template-columns: auto 1fr auto; }
   [data-page="questions"] .domain-name{ display: none; }
