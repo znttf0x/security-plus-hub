@@ -894,11 +894,13 @@
       persist();
       applyProgress();
 
-      resultEl.scrollIntoView({ behavior: prefersReduce() ? 'auto' : 'smooth', block: 'nearest' });
-      // focus the explanation (tabindex -1) so screen readers announce it;
-      // Enter still advances via the global handler
+      // bring the explanation (and its "Aprofundar" strip) to the top of the quiz
+      // scroll pane, then focus it for screen readers WITHOUT a second competing
+      // scroll — the old code let scrollIntoView and .focus() fight, so the feedback
+      // sometimes never came into view. Enter still advances via the global handler.
       expEl.setAttribute('tabindex', '-1');
-      expEl.focus();
+      expEl.scrollIntoView({ behavior: prefersReduce() ? 'auto' : 'smooth', block: 'start' });
+      expEl.focus({ preventScroll: true });
     }
 
     /** Set the result banner text/style and, when requested, an Undo button. */
