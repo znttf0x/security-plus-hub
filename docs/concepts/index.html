@@ -137,6 +137,8 @@
   <script src="../assets/js/domains.js"></script>
   <script src="../assets/js/glossary.js"></script>
   <script src="../assets/js/srs.js"></script>
+  <script src="../assets/js/flashcards.js"></script>
+  <script src="../assets/js/fc-util.js"></script>
   <script src="../assets/js/messer-lessons.js"></script>
   <script src="../assets/js/messer-c.js"></script>
   <script src="../assets/js/messer-nist.js"></script>
@@ -162,6 +164,7 @@
     const ALPHA = 0.5;               // confidence-EMA smoothing (hysteresis)
     const DOMAIN_IDS = ['1.0', '2.0', '3.0', '4.0', '5.0'];
     const DOM_META = (window.SECPLUS && window.SECPLUS.byId) || {};
+    const U = window.SECPLUS_FCUTIL, FC = window.SECPLUS_FC;   // shared view + state-transform cores
 
     let ALL = [];                 // concept records: {id, domain, front, back, difficulty, scenario, highlight, references, rationale}
     let BY = {};                  // id -> record
@@ -173,51 +176,9 @@
     let recent = [];
     let activeDomains = new Set(DOMAIN_IDS);   // active domain filter (all by default)
 
-    // A stored card is { seen, correct, wrong, [lvl, ema] }; the migration below is non-destructive and idempotent.
-    /** Round n and keep it only when it falls in the 1..5 level range, else null. */
-    function clampLvl(n) { n = Math.round(n); return (n >= 1 && n <= 5) ? n : null; }
-    /** Derive a legacy level (1..4) from a correct/wrong tally, or null when there is no history. */
-    function derivedLvl(correct, wrong) {
-      const a = correct + wrong;
-      if (a <= 0) return null;
-      const r = correct / a;
-      if (r >= 0.85) return 4;
-      if (r >= 0.60) return 3;
-      if (r >= 0.35) return 2;
-      return 1;
-    }
-    /**
-     * Validate and migrate a stored cards map, dropping unknown ids and coercing counters.
-     * @param {object} cards - raw cards object from storage or import
-     * @returns {object} - a clean cards map safe to assign to state
-     */
-    function sanitizeCards(cards) {
-      const clean = {};
-      if (!cards || typeof cards !== 'object') return clean;
-      const now = Date.now();
-      for (const k in cards) {
-        if (!BY[k]) continue;
-        const c = cards[k] || {};
-        let seen = parseInt(c.seen, 10);
-        let correct = parseInt(c.correct, 10);
-        let wrong = parseInt(c.wrong, 10);
-        if (!Number.isFinite(seen) || seen < 0) seen = 0;
-        if (!Number.isFinite(correct) || correct < 0) correct = 0;
-        if (!Number.isFinite(wrong) || wrong < 0) wrong = 0;
-        const rec = { seen: seen, correct: correct, wrong: wrong };
-        let lvl = clampLvl(c.lvl);
-        if (lvl == null) lvl = derivedLvl(correct, wrong);
-        if (lvl != null) {
-          rec.lvl = lvl;
-          let ema = parseFloat(c.ema);
-          if (!Number.isFinite(ema) || ema < 1 || ema > 5) ema = lvl;
-          rec.ema = Math.round(ema * 10) / 10;
-        }
-        SECPLUS_SRS.carryOrSeedTime(c, rec, SECPLUS_SRS.seedGradedCard, now);   // attach/carry h+lastSeen; never touches the counters
-        clean[k] = rec;
-      }
-      return clean;
-    }
+    // A stored card is { seen, correct, wrong, [lvl, ema], h, lastSeen }; the migration is non-destructive and idempotent.
+    /** Validate and migrate a stored cards map, dropping unknown concept ids and coercing counters (shared engine). */
+    function sanitizeCards(cards) { return FC.sanitizeCards(cards, (k) => !!BY[k]); }
 
     /* === Persistence === */
     /** Load saved progress from localStorage; fall back to read-only on failure or corruption. */
@@ -336,77 +297,13 @@
         acronymsReady = true;
       } catch (e) { /* no popup if it fails — not critical */ }
     }
-    /** Escape a string for safe insertion as HTML text. */
-    function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
-    /**
-     * Build the "Aprofundar" (deep-dive) links row for a concept: the matched Professor
-     * Messer lesson (site + YouTube), or the NIST glossary fallback, plus a Google search.
-     * @returns {string} - HTML for the sources row
-     */
-    function sourcesHTML(id, MAP, NMAP, SUBMAP, GMAP) {
-      const ML = window.SECPLUS_MESSER_LESSON || {};
-      const slug = MAP ? MAP[id] : null;
-      const les = slug ? ML[slug] : null;
-      const nist = (!les && NMAP) ? NMAP[id] : null;
-      const sub = SUBMAP ? SUBMAP[id] : null;   // [objective, official sub-topic]
-      let h = '<span class="ff-label">Aprofundar</span>';
-      if (sub && sub[0]) h += '<span class="ff-sep">·</span><span class="ff-obj">Objetivo ' + sub[0] + '</span>';
-      if (sub && sub[1]) h += '<span class="ff-sep">·</span><span class="ff-topic">' + escapeHtml(sub[1]) + '</span>';
-      const pills = [];
-      if (les) {
-        const tt = les[2] ? ' title="Aula: ' + String(les[2]).replace(/"/g, '') + '"' : '';
-        pills.push('<a href="' + les[0] + '" target="_blank" rel="noopener noreferrer"' + tt + '>Professor Messer</a>');
-        if (les[1]) pills.push('<a href="' + les[1] + '" target="_blank" rel="noopener noreferrer"' + tt + '>YouTube</a>');
-      } else if (nist && nist[0]) {
-        const tt = nist[1] ? ' title="NIST: ' + String(nist[1]).replace(/"/g, '') + '"' : '';
-        pills.push('<a href="' + nist[0] + '" target="_blank" rel="noopener noreferrer"' + tt + '>NIST Glossary</a>');
-      }
-      const g = GMAP ? GMAP[id] : null;   // [term_pt, term_en]
-      if (g && g[0]) {
-        const terms = g[1] ? (g[0] + ' ' + g[1]) : g[0];
-        const url = 'https://www.google.com/search?q=' + encodeURIComponent('o que é ' + terms).replace(/%20/g, '+') + '&hl=pt-BR&gl=BR';
-        pills.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer" title="Buscar no Google (resposta em pt-br)">Google</a>');
-      }
-      for (let i = 0; i < pills.length; i++) h += (i === 0 ? '<span class="ff-sep">·</span>' : '') + pills[i];   // (37) "·" only before the first button
-      return h;
-    }
-    /** Escape a string for safe insertion into a double-quoted HTML attribute. */
-    function escAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
-    /* === Service/tool glossary: cited names (ping, traceroute, Wireshark…) also get a popup === */
-    const SERVICE_MAP = {}; let SERVICE_RE = null;
-    (function buildServices() {
-      const list = window.SECPLUS_SERVICES || []; const forms = [];
-      for (const s of list) {
-        if (!s || !s.t || !s.e) continue;
-        for (const f of [s.t].concat(s.a || [])) {
-          if (!f) continue; const k = f.toLowerCase();
-          if (!SERVICE_MAP[k]) { SERVICE_MAP[k] = { label: s.t, exp: s.e }; forms.push(f); }
-        }
-      }
-      if (!forms.length) return;
-      forms.sort((a, b) => b.length - a.length);
-      const esc = forms.map(f => f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-      SERVICE_RE = new RegExp('(?<![A-Za-z0-9])(' + esc.join('|') + ')(?![A-Za-z0-9])', 'gi');
-    })();
-    /** Wrap known service names and acronyms found in text with .term popup spans. */
+    /** Escaping + sources row: shared view helpers (single source in fc-util.js). */
+    const escapeHtml = U.escapeHtml, escAttr = U.escAttr, sourcesHTML = U.sourcesHTML;
+    /* === Service/tool glossary + term linkifier: shared engine (fc-util.js) === */
+    const { map: SERVICE_MAP, re: SERVICE_RE } = U.buildServiceIndex(window.SECPLUS_SERVICES || []);
+    /** Wrap known service names and cited acronyms in text with .term popup spans (concepts: no skip token). */
     function linkifyTerms(text) {
-      let esc = escapeHtml(text);
-      const store = [];
-      if (SERVICE_RE) {
-        esc = esc.replace(SERVICE_RE, (m) => {
-          const rec = SERVICE_MAP[m.toLowerCase()]; if (!rec) return m;
-          store.push('<span class="term" tabindex="0" data-term="' + escAttr(m.toLowerCase()) +
-            '" aria-label="' + escAttr(rec.label + ': ' + rec.exp) + '">' + m + '</span>');
-          return '\u0000' + (store.length - 1) + '\u0000';
-        });
-      }
-      if (acronymsReady) {
-        esc = esc.replace(/\b([A-Z][A-Z0-9]{1,7})\b/g, (m, tok) => {
-          if (!ACRONYMS_UP[tok]) return m;
-          return '<span class="term" tabindex="0" data-acronym="' + tok + '" aria-label="' + escAttr(tok + ': ' + ACRONYMS_UP[tok].exp) + '">' + m + '</span>';
-        });
-      }
-      return esc.replace(/\u0000(\d+)\u0000/g, (_, i) => store[+i]);
+      return U.linkifyTerms(text, { serviceRe: SERVICE_RE, serviceMap: SERVICE_MAP, acronymsUp: ACRONYMS_UP, ready: acronymsReady });
     }
     /**
      * Render the back text via linkifyTerms; when highlight is set, wrap its first
@@ -423,29 +320,8 @@
       return linkifyTerms(before) + '<mark>' + linkifyTerms(hit) + '</mark>' + linkifyTerms(after);
     }
 
-    const termTip = document.createElement('div');
-    termTip.id = 'term-tip'; termTip.setAttribute('role', 'tooltip'); document.body.appendChild(termTip);
-    /** Populate and position the shared term tooltip for a hovered/focused .term element. */
-    function showTip(elx) {
-      const tm = elx.getAttribute('data-term');
-      let html = null;
-      if (tm) { const r = SERVICE_MAP[tm]; if (r) html = '<b>' + escapeHtml(r.label) + '</b><div class="tt-ex">' + escapeHtml(r.exp) + '</div>'; }
-      else { const s = elx.getAttribute('data-acronym'); const rec = ACRONYMS_UP[s]; if (rec) html = '<b>' + escapeHtml(s) + '</b> — ' + escapeHtml(rec.exp) + (rec.explic ? '<div class="tt-ex">' + escapeHtml(rec.explic) + '</div>' : ''); }
-      if (!html) return;
-      termTip.innerHTML = html;
-      termTip.classList.add('show');
-      const r = elx.getBoundingClientRect(); const w = termTip.offsetWidth, h = termTip.offsetHeight;
-      termTip.style.left = Math.min(Math.max(r.left, 8), window.innerWidth - w - 8) + 'px';
-      termTip.style.top = (r.top > h + 12 ? r.top - h - 8 : r.bottom + 8) + 'px';
-    }
-    /** Hide the shared term tooltip. */
-    function hideTip() { termTip.classList.remove('show'); }
-    document.addEventListener('mouseover', (e) => { const t = e.target.closest && e.target.closest('.term'); if (t) showTip(t); });
-    document.addEventListener('mouseout', (e) => { if (e.target.closest && e.target.closest('.term')) hideTip(); });
-    document.addEventListener('focusin', (e) => { const t = e.target.closest && e.target.closest('.term'); if (t) showTip(t); });
-    document.addEventListener('focusout', (e) => { if (e.target.closest && e.target.closest('.term')) hideTip(); });
-    window.addEventListener('scroll', hideTip, true);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hideTip(); });
+    // shared term tooltip (#term-tip + delegated hover/focus listeners) — single source in fc-util.js
+    U.initTermTooltip({ serviceMap: SERVICE_MAP, acronymsUp: ACRONYMS_UP });
 
     // Scope-backing popup (Referências / Por que está aqui) on the "?" next to the domain.
     (function () {
@@ -470,22 +346,11 @@
     function levelOf(id) { const st = state.cards[id]; return (st && st.lvl >= 1 && st.lvl <= 5) ? st.lvl : 0; }
     /** Count concepts per level (index 0 = unrated) across a pool, defaulting to ALL. */
     function levelCounts(pool) { const c = [0, 0, 0, 0, 0, 0]; for (const r of (pool || ALL)) c[levelOf(r.id)]++; return c; }
-    /** Build the per-level count breakdown HTML (optionally including the unrated bucket). */
-    function levelBreakdownHTML(lc, includeZero) {
-      const parts = [];
-      for (let i = includeZero ? 0 : 1; i <= 5; i++)
-        parts.push('<span class="lv lv' + i + '" title="' + (i === 0 ? 'sem nota' : 'nota ' + i) + '">' + lc[i] + '</span>');
-      return parts.join(' · ');
-    }
+    /** Per-level count breakdown HTML: shared (fc-util.js). */
+    const levelBreakdownHTML = U.levelBreakdownHTML;
 
-    // Weight from confidence (EMA): low confidence/novelty pulls up; mastery pulls down.
-    /** Compute an id's sampling weight from the forgetting-curve recall (via SECPLUS_SRS). */
-    function weightOf(id, now) {
-      const st = statusOf(id);
-      if (!st || !st.seen || st.ema == null) return W_NEW;   // never rated -> 3.0
-      // forgetting-curve weight: odds of failure (1-R)/R from the memory half-life
-      return SECPLUS_SRS.srsWeight(SECPLUS_SRS.recall(st.h, st.lastSeen, now));
-    }
+    /** Compute a card's sampling weight from the forgetting-curve recall (shared engine). */
+    function weightOf(id, now) { return FC.weightOf(statusOf(id), now, W_NEW); }
 
     /** Pick the next card: weighted random draw within the filter, honoring the recent cooldown. */
     function pickNext(avoidId) {
@@ -521,17 +386,8 @@
     function commitRating() {
       if (!current || pendingLvl == null) return;
       const id = current.id;
-      const prev = statusOf(id) || { seen: 0, correct: 0, wrong: 0 };
-      const ema = (prev.ema == null) ? pendingLvl : Math.round((prev.ema + ALPHA * (pendingLvl - prev.ema)) * 10) / 10;
-      const nowTs = Date.now();
-      const sr = SECPLUS_SRS.review(prev.h, prev.lastSeen, nowTs, SECPLUS_SRS.gradeForRating(pendingLvl));  // a low rating stays due
-      state.cards[id] = {
-        seen: prev.seen + 1,
-        correct: prev.correct + (pendingLvl >= 4 ? 1 : 0),
-        wrong: prev.wrong + (pendingLvl <= 2 ? 1 : 0),
-        lvl: pendingLvl, ema: ema,
-        h: sr.h, lastSeen: sr.lastSeen
-      };
+      // shared engine computes the new record ({seen,correct,wrong,lvl,ema,h,lastSeen}); a low rating stays due
+      state.cards[id] = FC.nextRecord(statusOf(id), pendingLvl, Date.now(), ALPHA);
       persist();
       updateProgress();
     }
