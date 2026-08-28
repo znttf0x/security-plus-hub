@@ -1,6 +1,6 @@
 /* Single source of truth for the CompTIA Security+ SY0-701 domains and exam format.
    Aligned with the official CompTIA Security+ SY0-701 Exam Objectives (V7.0).
-   Consumed by index.html, questions.html, concepts.html and exam.html.
+   Consumed by index.html, questions/, concepts/ and exam/.
    Owns and exports window.SECPLUS: { DOMAINS, EXAM, ids, byId }. */
 (function () {
   // Per-question external study links point to Professor Messer + YouTube (see messer.js /

@@ -318,7 +318,7 @@
       Array.prototype.forEach.call(document.querySelectorAll('.dom-row'), row => {
         const go = () => {
           try { localStorage.setItem('secplus:filter:questoes:v1', JSON.stringify([row.getAttribute('data-dom')])); } catch (e) {}
-          location.href = 'questions.html';
+          location.href = 'questions/';
         };
         row.addEventListener('click', go);
         row.addEventListener('keydown', (ev) => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); go(); } });

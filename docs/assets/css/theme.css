@@ -702,7 +702,7 @@ nav .nav-tools{
   [data-page="hub"] .backup-btn{flex:1}
 }
 
-/* ---------- PAGE: questoes (questions.html) ---------- */
+/* ---------- PAGE: questoes (questions/) ---------- */
 /* ============================================================
    LEDGER / RÉGUAS — QUESTÕES page (quiz)
    All rules scoped to [data-page="questions"] to beat the inline
@@ -960,7 +960,7 @@ nav .nav-tools{
   color: var(--text);
 }
 
-/* ---------- PAGE: siglas (acronyms.html) ---------- */
+/* ---------- PAGE: siglas (acronyms/) ---------- */
 /* ============================================================
    LEDGER / RÉGUAS — SIGLAS (scope [data-page="acronyms"])
    Acronym flashcards, A–Z index, search, term popups.
@@ -1103,7 +1103,7 @@ nav .nav-tools{
 [data-page="acronyms"] .list-explanation{ color:var(--text-muted); }
 [data-page="acronyms"] .list-empty{ color:var(--text-muted); }
 
-/* ---------- PAGE: conceitos (concepts.html) ---------- */
+/* ---------- PAGE: conceitos (concepts/) ---------- */
 /* ===== LEDGER / RÉGUAS — CONCEITOS (isolated scope) ===== */
 
 /* ---- STATS BAR ---- */
@@ -1193,7 +1193,7 @@ nav .nav-tools{
 [data-page="concepts"] .list-back { color: var(--text-muted); }
 [data-page="concepts"] .list-empty { color: var(--text-muted); text-transform: uppercase; font-weight: 300; letter-spacing: .16em; }
 
-/* ---------- PAGE: simulado (exam.html) ---------- */
+/* ---------- PAGE: simulado (exam/) ---------- */
 /* ============================================================
    LEDGER / RÉGUAS · SIMULADO
    All rules scoped by [data-page="exam"] to beat the inline
@@ -2020,11 +2020,6 @@ footer{ padding: 0.75rem clamp(1rem,4vw,2rem) 0.85rem; }
 }
 
 /* Backing footer (Por que cai + Referências) — hairline + micro-accent labels */
-[data-page="concepts"] .fc-foot{
-  margin-top: 1rem; padding-top: .85rem;
-  border-top: 1px solid var(--border);
-  display: grid; gap: .6rem; text-align: left; width: 100%;
-}
 [data-page="concepts"] .fc-foot-row{ display: grid; gap: .18rem; }
 [data-page="concepts"] .fc-foot-lbl{
   font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
