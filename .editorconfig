@@ -15,6 +15,6 @@ indent_size = 4
 trim_trailing_whitespace = false
 
 # JSONL data banks — one long object per line; leave content untouched
-[data/**]
+[docs/{questions,concepts,acronyms}/*.txt]
 trim_trailing_whitespace = false
 insert_final_newline = false
