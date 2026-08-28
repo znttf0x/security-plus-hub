@@ -166,8 +166,7 @@
       const btns = $('options').querySelectorAll('.option');
       btns.forEach((b, di) => { const sel = q.chosen === di; b.classList.toggle('sel', sel); b.setAttribute('aria-checked', String(sel)); });
     }
-    const { DOMAINS, EXAM, byId: DOM_BY } = window.SECPLUS;
-    const DOMAIN_IDS = ['1.0', '2.0', '3.0', '4.0', '5.0'];
+    const { DOMAINS, EXAM, ids: DOMAIN_IDS, byId: DOM_BY } = window.SECPLUS;   // ids from the single source, not a local copy
     const LS_RESULT = 'secplus:simulado:v1';
     const LS_PROGRESS = 'secplus:progress:questoes:v2';   // adaptive store shared with the practice page
     const PASS_FRAC = EXAM.passingScore / EXAM.scaleMax;   // 750/900 ≈ 0.833
@@ -205,7 +204,7 @@
             line = line.trim(); if (!line) return;
             try {
               const q = JSON.parse(line);
-              if (q && q.domain === d && Array.isArray(q.options) && q.options.length >= 2 && Number.isInteger(q.answer)) bank[d].push(q);
+              if (q && q.domain === d && Array.isArray(q.options) && q.options.length >= 2 && Number.isInteger(q.answer) && q.answer >= 0 && q.answer < q.options.length) bank[d].push(q);
             } catch (e) {}
           });
         } catch (e) {}
@@ -329,11 +328,14 @@
     /* ── start / finish ── */
     /** Build and begin a new exam: reset state, show the exam view, and start the countdown. */
     function start() {
+      const avail = DOMAIN_IDS.reduce((s, d) => s + ((bank[d] && bank[d].length) || 0), 0);
+      if (avail > 0) size = Math.min(size, avail);   // never build a bigger exam than exists
       buildExam(size);
       cur = 0;
       timeLeft = size * 60;   // 1 min per question (proportional to the 90/90 format)
       $('prog-total').textContent = exam.length;
       $('timer-txt').textContent = fmt(timeLeft);
+      $('timer').classList.remove('warn', 'crit');   // clear a previous run's low-time red state
       $('start').classList.add('hidden');
       $('result').classList.add('hidden');
       $('exam').classList.remove('hidden');
@@ -398,7 +400,7 @@
         });
         store.v = 2; store.cards = cards;
         localStorage.setItem(LS_PROGRESS, JSON.stringify(store));
-      } catch (e) {}
+      } catch (e) { console.warn('Simulado: falha ao gravar o progresso adaptativo (cota cheia?).', e); }
     }
 
     /**
