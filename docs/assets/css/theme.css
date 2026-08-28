@@ -753,11 +753,6 @@ nav .nav-tools{
   letter-spacing: 0;
 }
 [data-page="questions"] .domain-name { color: var(--text); }
-[data-page="questions"] .domain-weight {
-  font-family: var(--mono);
-  color: var(--text-muted);
-  letter-spacing: 0;
-}
 [data-page="questions"] .prog-toolbar { border-top: 1px solid var(--rule-strong); }
 
 /* ── tool buttons (reset/export/import): hairline + uppercase + center underline ── */
@@ -1430,15 +1425,6 @@ nav .nav-tools{
   border-color:var(--accent);
 }
 
-/* keyboard hint */
-[data-page="exam"] .kbd-hint{color:var(--text-muted)}
-[data-page="exam"] .kbd-hint kbd{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:0;
-  font-family:var(--mono);
-}
-
 /* ---------- navigation grid (ledger) ---------- */
 [data-page="exam"] .grid-wrap{
   border-top:1px solid var(--rule-strong);
@@ -1703,50 +1689,6 @@ nav .nav-tools{
   margin-top:.55rem;
 }
 
-/* ---------- SCOPE BAR (panel with ruler frame) ---------- */
-[data-page="methodology"] .scopebar-wrap{
-  position:relative;
-  background:var(--surface);
-  border:1px solid var(--rule-strong);
-  border-radius:0;
-  padding:1.3rem 1.4rem;
-}
-[data-page="methodology"] .scopebar-wrap::before{
-  content:"";
-  position:absolute;
-  inset:6px;
-  border:1px solid var(--border);
-  pointer-events:none;
-}
-[data-page="methodology"] .scopebar-wrap > *{position:relative}
-/* re-declares the inline color:#fff → token (otherwise breaks in light) */
-[data-page="methodology"] .scopebar-wrap > div:first-child{
-  color:var(--heading) !important;
-  font-weight:400 !important;
-  letter-spacing:.01em;
-}
-[data-page="methodology"] .scopebar{
-  border-radius:0;
-  height:.55rem;
-  margin:.9rem 0;
-}
-/* segments keep semantics (green=in-scope, amber=borderline, red=out-of-scope) */
-[data-page="methodology"] .sc-c{background:var(--green)}
-[data-page="methodology"] .sc-l{background:var(--amber)}
-[data-page="methodology"] .sc-i{background:var(--red)}
-[data-page="methodology"] .scope-legend{
-  color:var(--text-muted);
-  font-size:.78rem;
-}
-[data-page="methodology"] .scope-legend b{
-  color:var(--text);
-  font-weight:500;
-}
-[data-page="methodology"] .dot{border-radius:1px}
-[data-page="methodology"] .dot.c{background:var(--green)}
-[data-page="methodology"] .dot.l{background:var(--amber)}
-[data-page="methodology"] .dot.i{background:var(--red)}
-
 /* ---------- SECTION TITLES (h2) — thin uppercase + tick ---------- */
 [data-page="methodology"] h2{
   text-transform:uppercase;
@@ -1838,19 +1780,6 @@ nav .nav-tools{
 [data-page="methodology"] .finding p{color:var(--text-muted)}
 [data-page="methodology"] .finding p i{color:var(--text);font-style:italic}
 
-/* ---------- CALLOUT — re-declares rgba(63,185,80,…) via tokens ---------- */
-[data-page="methodology"] .callout{
-  background:var(--green-soft);
-  border:1px solid var(--green-soft);
-  border-left:2px solid var(--green);
-  border-radius:0;
-}
-[data-page="methodology"] .callout h3{
-  color:var(--green-text);
-  font-weight:600;
-}
-[data-page="methodology"] .callout p{color:var(--text)}
-
 /* ---------- DISCLAIMER ---------- */
 [data-page="methodology"] .disclaimer{
   border:1px dashed var(--border);
@@ -1872,7 +1801,6 @@ nav .nav-tools{
 
 /* thinner frame on mobile, aligned with ledger.css */
 @media (max-width:640px){
-  [data-page="methodology"] .scopebar-wrap::before,
   [data-page="methodology"] .step::after{inset:5px}
 }
 
@@ -1921,7 +1849,6 @@ main p, .prose{ font-family:var(--prose); }
 [data-page="acronyms"] .flashcard::before,
 [data-page="concepts"] .flashcard::before,
 [data-page="exam"] .card::before,
-[data-page="methodology"] .scopebar-wrap::before,
 [data-page="methodology"] .step::after{ display:none !important; }
 
 

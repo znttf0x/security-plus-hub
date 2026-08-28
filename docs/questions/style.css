@@ -93,25 +93,6 @@
       width: 100%;
     }
 
-    .page-header {
-      text-align: center;
-      max-width: min(78rem, 100%);
-      width: 100%;
-      margin-bottom: 1.5rem;
-    }
-
-    .page-header h1 {
-      font-size: clamp(1.4rem, 5vw, 2rem);
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 0.4rem;
-    }
-
-    .page-header p {
-      color: var(--text-muted);
-      font-size: clamp(0.85rem, 2vw, 0.95rem);
-    }
-
     .content-area {
       width: 100%;
       max-width: min(78rem, 100%);
@@ -220,13 +201,6 @@
     .domain-row.inactive { opacity: 0.35; }
     .domain-row.inactive .domain-name { text-decoration: line-through; }
 
-    .domain-head {
-      display: flex;
-      align-items: baseline;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
     .domain-num {
       font-size: 0.74rem;
       font-weight: 700;
@@ -240,15 +214,6 @@
       color: var(--text);
       flex: 1;
     }
-
-    .domain-weight {
-      font-size: 0.74rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
-
-    .domain-barline { display: flex; align-items: center; gap: 0.6rem; }
 
     .prog-wrap {
       position: relative;

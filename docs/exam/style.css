@@ -29,8 +29,6 @@
 
     /* ── START ── */
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 0.85rem; padding: clamp(1.1rem, 3.5vw, 1.6rem); }
-    .start-head { text-align: center; margin-bottom: 1.25rem; }
-    .start-head p { color: var(--text-muted); font-size: 0.92rem; margin-top: 0.4rem; line-height: 1.5; }
     .facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.25rem; margin: 1rem 0; color: var(--text-muted); font-size: 0.86rem; }
     .facts b { color: #fff; }
     .rules { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin: 1rem 0 1.25rem; }
@@ -60,9 +58,6 @@
     .mini-btn:hover { color: #fff; border-color: var(--text-muted); }
     .mini-btn.danger:hover { color: var(--red); border-color: var(--red); }
 
-    .qdom { font-size: 0.74rem; color: var(--text-muted); margin-bottom: 0.35rem; }
-    .qdom b { color: var(--blue); }
-    .flagline { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.6rem; }
     .q-stem { font-size: clamp(1rem, 2.6vw, 1.15rem); font-weight: 600; color: #fff; line-height: 1.5; margin-bottom: 1rem; }
     .flag-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; background: none; border: 1px solid var(--border); color: var(--text-muted); border-radius: 0.45rem; padding: 0.3rem 0.6rem; font-size: 0.76rem; font-weight: 600; cursor: pointer; white-space: normal; text-align: center; }
     .flag-btn svg { width: 0.9rem; height: 0.9rem; }
@@ -80,8 +75,6 @@
     .nav-row button:hover:not(:disabled) { border-color: var(--text-muted); }
     .nav-row button:disabled { opacity: 0.4; cursor: default; }
     .nav-row .primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .kbd-hint { font-size: 0.72rem; color: var(--text-muted); text-align: center; margin-top: 0.8rem; }
-    .kbd-hint kbd { background: var(--surface); border: 1px solid var(--border); border-radius: 0.25rem; padding: 0.05rem 0.35rem; font-size: 0.7rem; }
 
     /* navigation grid */
     .grid-wrap { margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1rem; }
