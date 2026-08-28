@@ -14,6 +14,7 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 
 PORT = 8080
 BASE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'docs')  # serve docs/ (same as GitHub Pages)
+BASE_REAL = os.path.realpath(BASE_DIR)
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -22,6 +23,16 @@ class Handler(SimpleHTTPRequestHandler):
     Sends no-store on every response so local edits to the data files / JS are
     never masked by the browser's heuristic cache during development. The app lives in docs/ (served as the web root), so no root redirect is needed.
     """
+
+    def translate_path(self, path):
+        """Confine served files to docs/: the base handler already drops '..' from the
+        URL, this also blocks symlink escapes by resolving the real path. Anything that
+        resolves outside docs/ maps to a non-existent path, so it 404s."""
+        mapped = super().translate_path(path)
+        real = os.path.realpath(mapped)
+        if real != BASE_REAL and not real.startswith(BASE_REAL + os.sep):
+            return os.path.join(BASE_REAL, '.__forbidden__')
+        return mapped
 
     def end_headers(self):
         """Cache fonts (immutable); no-store everything else so local edits aren't masked."""
