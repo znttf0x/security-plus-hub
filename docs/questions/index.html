@@ -136,6 +136,7 @@
   <script src="../assets/js/rationale-q.js"></script>
   <script src="../assets/js/glossary.js"></script>
   <script src="../assets/js/srs.js"></script>
+  <script src="../assets/js/fc-util.js"></script>
   <script>
     'use strict';
 
@@ -579,7 +580,7 @@
       } catch (e) { /* no popup if it fails — not critical */ }
     }
     /** HTML-escape a string via a detached element's textContent. */
-    function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s == null ? '' : s; return d.innerHTML; }
+    function escapeHtml(s) { return window.SECPLUS_FCUTIL.escapeHtml(s); }   // shared helper (single source in fc-util.js)
     /** HTML-escape a string for use inside a double-quoted attribute. */
     function escAttr(s) { return escapeHtml(s).replace(/"/g, '&quot;'); }
     /* ── Services/tools glossary: cited names (ping, traceroute, Wireshark…) also get a popup ── */

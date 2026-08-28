@@ -146,6 +146,7 @@
   <script src="../assets/js/messer-lessons.js"></script>
   <script src="../assets/js/messer-q.js"></script>
   <script src="../assets/js/srs.js"></script>
+  <script src="../assets/js/fc-util.js"></script>
   <script>
     'use strict';
     /*
@@ -291,7 +292,7 @@
       renderGrid();
     }
     /** Escape a string for safe insertion as HTML text. */
-    function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+    function escapeHtml(s) { return window.SECPLUS_FCUTIL.escapeHtml(s); }   // shared helper (handles null/undefined)
 
     /** Refresh the answered-count shown in the progress line. */
     function updateProgress() {
