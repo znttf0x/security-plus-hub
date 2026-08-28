@@ -317,8 +317,8 @@
       }
       const g = GMAP ? GMAP[id] : null;   // [term_pt, term_en]
       if (g && g[0]) {
-        const terms = g[1] ? ('"' + g[0] + '" "' + g[1] + '"') : ('"' + g[0] + '"');
-        const url = 'https://www.google.com/search?q=' + encodeURIComponent('o que é ' + terms + ' "SY0-701"').replace(/%20/g, '+') + '&lr=lang_pt&hl=pt-BR&gl=BR';
+        const terms = g[1] ? (g[0] + ' ' + g[1]) : g[0];
+        const url = 'https://www.google.com/search?q=' + encodeURIComponent('o que é ' + terms).replace(/%20/g, '+') + '&hl=pt-BR&gl=BR';
         pills.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer" title="Buscar no Google (resposta em pt-br)">Google</a>');
       }
       for (let i = 0; i < pills.length; i++) h += (i === 0 ? '<span class="ff-sep">·</span>' : '') + pills[i];   // (37) "·" only before the 1st pill, not between pills
