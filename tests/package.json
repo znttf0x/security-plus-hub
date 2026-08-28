@@ -1,0 +1,15 @@
+{
+  "name": "security-plus-hub-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Versioned test suite for the Security+ Hub static site (SY0-701).",
+  "type": "module",
+  "scripts": {
+    "test": "node run.mjs",
+    "test:unit": "node ../scripts/srs.test.cjs && node unit/flashcards.test.cjs",
+    "test:e2e": "node e2e/pages.test.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.0"
+  }
+}
