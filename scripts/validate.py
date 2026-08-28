@@ -49,12 +49,15 @@ def validate_questions():
     ids = {}
     stems = {}
     correct_by_index = collections.Counter()
+    per_file = collections.Counter()
+    existing = []
     total = 0
     for d in DOMAINS:
         path = os.path.join(BASE, 'docs', 'questions', f'{d}.txt')
         if not os.path.exists(path):
             err(f'docs/questions/{d}.txt: missing file')
             continue
+        existing.append(d)
         with open(path, encoding='utf-8') as f:
             for ln, line in enumerate(f, 1):
                 t = line.strip()
@@ -74,7 +77,7 @@ def validate_questions():
                     continue
 
                 qid = q['id']
-                if not isinstance(qid, int):
+                if not isinstance(qid, int) or isinstance(qid, bool):
                     err(f'{loc}: id must be an integer')
                 elif qid in ids:
                     err(f'{loc}: duplicate id {qid} (already at {ids[qid]})')
@@ -91,11 +94,12 @@ def validate_questions():
                 if not all(isinstance(a, str) and a.strip() for a in opts):
                     err(f'{loc}: every option must be a non-empty string')
                     continue
-                if len(set(opts)) != len(opts):
+                _optkeys = [re.sub(r'\s+', ' ', a.strip().lower()) for a in opts]
+                if len(set(_optkeys)) != len(_optkeys):
                     err(f'{loc}: duplicate options')
 
                 r = q['answer']
-                if not isinstance(r, int) or not (0 <= r < len(opts)):
+                if not isinstance(r, int) or isinstance(r, bool) or not (0 <= r < len(opts)):
                     err(f'{loc}: answer {r} out of range 0..{len(opts)-1}')
                     continue
 
@@ -111,6 +115,7 @@ def validate_questions():
                         stems[key] = loc
 
                 total += 1
+                per_file[d] += 1
                 correct_by_index[r] += 1
 
                 # quality heuristics (warnings)
@@ -123,6 +128,12 @@ def validate_questions():
                     low = a.lower()
                     if any(w in low.split() for w in ABSOLUTES):
                         warn(f'{loc}: option {chr(65+i)} uses an absolute term ({a!r}) — usually a tell')
+
+    for d in existing:
+        if per_file[d] == 0:
+            err(f'docs/questions/{d}.txt: file exists but has no valid questions')
+    if total == 0:
+        err('docs/questions: the question bank is empty')
 
     if total:
         # correct-index position bias
@@ -210,6 +221,7 @@ def validate_concepts():
         warn('docs/concepts/concepts.txt: missing (concept module not populated yet)')
         return 0
     ids = {}
+    fronts = {}
     total = 0
     with open(path, encoding='utf-8') as f:
         for ln, line in enumerate(f, 1):
@@ -226,7 +238,7 @@ def validate_concepts():
                 if field not in o:
                     err(f'{loc}: missing required field: {field}')
             cid = o.get('id')
-            if not isinstance(cid, int):
+            if not isinstance(cid, int) or isinstance(cid, bool):
                 err(f'{loc}: id must be an integer')
             elif cid in ids:
                 err(f'{loc}: duplicate id {cid} (already at {ids[cid]})')
@@ -237,6 +249,12 @@ def validate_concepts():
             for field in ('front', 'back'):
                 if not isinstance(o.get(field), str) or not o.get(field, '').strip():
                     err(f'{loc}: {field} empty or not a string')
+            if isinstance(o.get('front'), str) and o['front'].strip():
+                fkey = _norm_stem(o['front'])
+                if fkey in fronts:
+                    err(f'{loc}: duplicate front (same as {fronts[fkey]})')
+                else:
+                    fronts[fkey] = loc
             total += 1
     print(f'  concepts: {total} records across {len(ids)} unique ids')
     return total
