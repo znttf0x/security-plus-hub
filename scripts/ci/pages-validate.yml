@@ -1,0 +1,41 @@
+# GitHub Actions workflow — SERVER-SIDE CI gate (optional; stronger than the
+# local scripts/hooks/pre-push hook, because it also runs on pull requests and
+# cannot be bypassed with --no-verify).
+#
+# NOT YET ACTIVE. Pushing files under .github/workflows/ requires the `workflow`
+# OAuth scope, which the committing token lacked, so this file lives here instead.
+# To enable server-side CI:
+#   1) grant the scope:   gh auth refresh -h github.com -s workflow
+#   2) move it into place: git mv scripts/ci/pages-validate.yml .github/workflows/validate.yml
+#   3) git commit -S && git push
+# The local pre-push hook (scripts/hooks/pre-push) already runs these same checks
+# before every push, so the deploy is gated even without this workflow.
+name: validate
+
+# Gate the bank + counts before the Pages deploy: GitHub Pages serves docs/
+# statically and never runs these checks, so a broken bank or a stale
+# counts.js could otherwise ship silently.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      # validate.py checks the JSONL bank (valid JSON, required fields, duplicate
+      # ids/options/fronts, answer range, bool guards) and regenerates counts.js.
+      # It exits non-zero on errors (warnings stay warnings — the bank has some
+      # intentional ones, so --strict is not used here).
+      - name: Validate the question/concept/acronym bank
+        run: python3 scripts/validate.py
+      # validate.py rewrote counts.js from the data; if it now differs from what
+      # was committed, the single source of counts was stale — fail.
+      - name: Fail if counts.js is out of sync with the data
+        run: git diff --exit-code docs/assets/js/counts.js

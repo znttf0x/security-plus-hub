@@ -39,3 +39,25 @@ node e2e/pages.test.mjs
   fonts, CSS parsing) are filtered from the error check.
 - A real headless browser (Playwright/Puppeteer) is intentionally **not** used: it does not
   install in the CI sandbox. jsdom exercises the same scripts and the progress-critical flows.
+
+## Pre-push gate (validate before the Pages deploy)
+
+GitHub Pages serves `docs/` statically and never runs `validate.py`, so a broken bank or a
+stale `counts.js` could ship silently. A versioned git hook runs those checks **before the
+push** that triggers the deploy. Enable it once per clone:
+
+```sh
+git config core.hooksPath scripts/hooks
+```
+
+Then every `git push` first runs `scripts/hooks/pre-push`, which:
+1. runs `python3 scripts/validate.py` (blocks the push on any bank error; the 121 intentional
+   warnings stay warnings), and
+2. fails if `docs/assets/js/counts.js` is out of sync with the data.
+
+Emergency bypass: `git push --no-verify`.
+
+A stronger **server-side** equivalent (also runs on pull requests) lives at
+`scripts/ci/pages-validate.yml`. It is not active yet — pushing under `.github/workflows/`
+needs the `workflow` OAuth scope. To turn it on: `gh auth refresh -h github.com -s workflow`,
+then `git mv scripts/ci/pages-validate.yml .github/workflows/validate.yml` and commit.

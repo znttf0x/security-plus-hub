@@ -1,0 +1,30 @@
+#!/bin/sh
+# pre-push CI gate — runs the same checks as the GitHub Actions workflow
+# (scripts/ci/pages-validate.yml) locally, BEFORE the push that triggers the
+# GitHub Pages deploy. GitHub Pages serves docs/ statically and never runs these
+# checks, so this hook is what stops a broken bank or a stale counts.js from
+# shipping. Enable once per clone with:
+#   git config core.hooksPath scripts/hooks
+# Emergency bypass:  git push --no-verify
+set -e
+
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+echo "pre-push: validating the question/concept/acronym bank..."
+if ! python3 scripts/validate.py; then
+  echo "pre-push: BLOCKED — validate.py reported errors. Fix them (or push with --no-verify)." >&2
+  exit 1
+fi
+
+# validate.py regenerated counts.js from the data; if it now differs from the
+# committed file, the single source of counts was stale. Restore it and block.
+if ! git diff --quiet -- docs/assets/js/counts.js; then
+  git checkout -- docs/assets/js/counts.js 2>/dev/null || true
+  echo "pre-push: BLOCKED — counts.js is out of sync with the data." >&2
+  echo "          Run 'python3 scripts/gen_counts.py' and commit the result." >&2
+  exit 1
+fi
+
+echo "pre-push: OK — bank valid, counts.js in sync."
+exit 0
