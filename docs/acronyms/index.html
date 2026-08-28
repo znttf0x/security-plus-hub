@@ -146,7 +146,7 @@
     const LS = 'secplus:siglas:v2';   // v2: progress keyed by internal id (was: by acronym)
     const RECENT_MAX = 8;     // cooldown: a card won't reappear until ~N other distinct ones pass
     const W_NEW = 3.0;        // weight of a never-rated card (between level 2 and 3)
-    const W_MIN = 0.15, W_MAX = 8;   // weight bounds
+    // weight bounds now live in srs.js (SECPLUS_SRS clamps in srsWeight)
     const ALPHA = 0.5;        // confidence EMA smoothing (hysteresis)
 
     let ALL = [];                 // [{id, acronym, expansions:[...]}]

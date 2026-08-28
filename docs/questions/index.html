@@ -156,7 +156,7 @@
     const LS_PROGRESS_V1 = 'secplus:progress:questoes:v1';   // old aggregate (migration/backup)
     const LS_FILTER      = 'secplus:filter:questoes:v1';
     const RECENT_MAX = 8;   // cooldown: a question won't reappear until N other distinct ones have passed
-    const W_MIN = 0.15, W_MAX = 8, W_NEW = 1.5;   // bounds, and the weight of a never-seen item in the weighted draw
+    const W_NEW = 1.5;   // weight of a never-seen item in the weighted draw (bounds live in srs.js)
 
     /* ── Elements ── */
     const el = (id) => document.getElementById(id);

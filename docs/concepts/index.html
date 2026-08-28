@@ -157,7 +157,7 @@
     const LS = 'secplus:conceitos:v1';
     const LS_FILTER = 'secplus:filter:conceitos:v1';
     const RECENT_MAX = 8;            // cooldown: avoid repeating the last ~8 items
-    const W_MIN = 0.15, W_MAX = 8;   // weight bounds
+    // weight bounds now live in srs.js (SECPLUS_SRS clamps in srsWeight)
     const W_NEW = 3.0;               // weight of a never-rated item (between level 2 and 3)
     const ALPHA = 0.5;               // confidence-EMA smoothing (hysteresis)
     const DOMAIN_IDS = ['1.0', '2.0', '3.0', '4.0', '5.0'];
@@ -479,7 +479,7 @@
     }
 
     // Weight from confidence (EMA): low confidence/novelty pulls up; mastery pulls down.
-    /** Compute an id's sampling weight from its confidence EMA (clamped to [W_MIN, W_MAX]). */
+    /** Compute an id's sampling weight from the forgetting-curve recall (via SECPLUS_SRS). */
     function weightOf(id, now) {
       const st = statusOf(id);
       if (!st || !st.seen || st.ema == null) return W_NEW;   // never rated -> 3.0
