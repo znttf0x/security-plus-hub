@@ -136,6 +136,7 @@
 
   <script src="../assets/js/domains.js"></script>
   <script src="../assets/js/glossary.js"></script>
+  <script src="../assets/js/srs.js"></script>
   <script src="../assets/js/messer-lessons.js"></script>
   <script src="../assets/js/messer-c.js"></script>
   <script src="../assets/js/messer-nist.js"></script>
@@ -193,6 +194,7 @@
     function sanitizeCards(cards) {
       const clean = {};
       if (!cards || typeof cards !== 'object') return clean;
+      const now = Date.now();
       for (const k in cards) {
         if (!BY[k]) continue;
         const c = cards[k] || {};
@@ -211,6 +213,7 @@
           if (!Number.isFinite(ema) || ema < 1 || ema > 5) ema = lvl;
           rec.ema = Math.round(ema * 10) / 10;
         }
+        SECPLUS_SRS.carryOrSeedTime(c, rec, SECPLUS_SRS.seedGradedCard, now);   // attach/carry h+lastSeen; never touches the counters
         clean[k] = rec;
       }
       return clean;
@@ -477,13 +480,11 @@
 
     // Weight from confidence (EMA): low confidence/novelty pulls up; mastery pulls down.
     /** Compute an id's sampling weight from its confidence EMA (clamped to [W_MIN, W_MAX]). */
-    function weightOf(id) {
+    function weightOf(id, now) {
       const st = statusOf(id);
       if (!st || !st.seen || st.ema == null) return W_NEW;   // never rated -> 3.0
-      let w = 0.2 * Math.pow(3, 5 - st.ema);                 // ema1 -> 16.2 (clamped to 8) … ema5 -> 0.2
-      if (w < W_MIN) w = W_MIN;
-      if (w > W_MAX) w = W_MAX;
-      return w;
+      // forgetting-curve weight: odds of failure (1-R)/R from the memory half-life
+      return SECPLUS_SRS.srsWeight(SECPLUS_SRS.recall(st.h, st.lastSeen, now));
     }
 
     /** Pick the next card: weighted random draw within the filter, honoring the recent cooldown. */
@@ -494,8 +495,9 @@
       let cand = pool.filter(r => r.id !== avoidId && !rec.has(r.id));
       if (!cand.length) cand = pool.filter(r => r.id !== avoidId);
       if (!cand.length) cand = pool;
+      const now = Date.now();
       let total = 0;
-      const w = cand.map(r => { const x = weightOf(r.id); total += x; return x; });
+      const w = cand.map(r => { const x = weightOf(r.id, now); total += x; return x; });
       let t = Math.random() * total;
       for (let i = 0; i < cand.length; i++) {
         t -= w[i];
@@ -521,11 +523,14 @@
       const id = current.id;
       const prev = statusOf(id) || { seen: 0, correct: 0, wrong: 0 };
       const ema = (prev.ema == null) ? pendingLvl : Math.round((prev.ema + ALPHA * (pendingLvl - prev.ema)) * 10) / 10;
+      const nowTs = Date.now();
+      const sr = SECPLUS_SRS.review(prev.h, prev.lastSeen, nowTs, SECPLUS_SRS.gradeForRating(pendingLvl));  // a low rating stays due
       state.cards[id] = {
         seen: prev.seen + 1,
         correct: prev.correct + (pendingLvl >= 4 ? 1 : 0),
         wrong: prev.wrong + (pendingLvl <= 2 ? 1 : 0),
-        lvl: pendingLvl, ema: ema
+        lvl: pendingLvl, ema: ema,
+        h: sr.h, lastSeen: sr.lastSeen
       };
       persist();
       updateProgress();

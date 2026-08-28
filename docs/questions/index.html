@@ -135,6 +135,7 @@
   <script src="../assets/js/google-q.js"></script>
   <script src="../assets/js/rationale-q.js"></script>
   <script src="../assets/js/glossary.js"></script>
+  <script src="../assets/js/srs.js"></script>
   <script>
     'use strict';
 
@@ -214,6 +215,7 @@
       const clean = {};
       if (!cards || typeof cards !== 'object' || Array.isArray(cards)) return clean;
       const validIds = new Set(allQuestions.map(q => q.id));
+      const now = Date.now();
       for (const k in cards) {
         const id = Number(k);
         if (!validIds.has(id)) continue;
@@ -222,7 +224,9 @@
         let wro = parseInt(c.wrong, 10);   if (!Number.isFinite(wro) || wro < 0) wro = 0;
         let seen = parseInt(c.seen, 10);   if (!Number.isFinite(seen) || seen < 0) seen = 0;
         if (seen < cor + wro) seen = cor + wro;         // migration: ensure seen >= recorded answers
-        clean[id] = { seen: seen, correct: cor, wrong: wro };
+        const rec = { seen: seen, correct: cor, wrong: wro };
+        SECPLUS_SRS.carryOrSeedTime(c, rec, SECPLUS_SRS.seedQuestionCard, now);   // attach/carry h+lastSeen; never touches the counters
+        clean[id] = rec;
       }
       return clean;
     }
@@ -488,18 +492,17 @@
      * Per-item weight: wrong/new items show up more, well-mastered ones less.
      * Never seen (seen 0) → 1.5; else w = (wrong+1)/(correct+1), clamped to [0.15, 8].
      */
-    function weightOf(c) {
+    function weightOf(c, now) {
       if (!c || !c.seen) return W_NEW;
-      let w = (c.wrong + 1) / (c.correct + 1);
-      if (w < W_MIN) w = W_MIN;
-      if (w > W_MAX) w = W_MAX;
-      return w;
+      // forgetting-curve weight: odds of failure (1-R)/R from the memory half-life
+      return SECPLUS_SRS.srsWeight(SECPLUS_SRS.recall(c.h, c.lastSeen, now));
     }
 
     /** WEIGHTED-RANDOM draw over a list of questions. */
     function weightedPick(list) {
+      const now = Date.now();
       let total = 0;
-      const weights = list.map(q => { const w = weightOf(state.cards[q.id]) * tempOf(q.domain); total += w; return w; });
+      const weights = list.map(q => { const w = weightOf(state.cards[q.id], now) * tempOf(q.domain); total += w; return w; });
       if (total <= 0) return list[Math.floor(Math.random() * list.length)];
       let r = Math.random() * total;
       for (let i = 0; i < list.length; i++) {
@@ -868,6 +871,9 @@
       const known = outcome === 'correct';
       c.seen++;
       if (known) c.correct++; else c.wrong++;   // "reveal"/"não sei" counts as a miss
+      const nowTs = Date.now();
+      const sr = SECPLUS_SRS.review(c.h, c.lastSeen, nowTs, SECPLUS_SRS.gradeForOutcome(outcome));  // advance the forgetting curve; a miss stays due
+      c.h = sr.h; c.lastSeen = sr.lastSeen;
       state.cards[id] = c;
 
       // domain matrix: a correct answer pays off 1 unit of debt; a miss / "não sei" heats the domain

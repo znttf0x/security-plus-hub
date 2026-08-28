@@ -145,6 +145,7 @@
   <script src="../assets/js/domains.js"></script>
   <script src="../assets/js/messer-lessons.js"></script>
   <script src="../assets/js/messer-q.js"></script>
+  <script src="../assets/js/srs.js"></script>
   <script>
     'use strict';
     /*
@@ -374,6 +375,7 @@
         }
         const cards = store.cards;
         const clampInt = (n) => (Number.isInteger(n) && n >= 0 ? n : 0);
+        const now = Date.now();
         exam.forEach(q => {
           if (q.id === undefined || q.id === null) return;
           if (q.chosen === null) return;   // blank: no engagement → don't pollute the adaptive weight
@@ -385,6 +387,14 @@
             correct: clampInt(prev.correct) + (isCorrect ? 1 : 0),
             wrong: clampInt(prev.wrong) + (isCorrect ? 0 : 1),
           };
+          // advance (or at least carry) the shared forgetting-curve schedule so a mock exam
+          // never strips h/lastSeen from the practice engine's cards
+          if (typeof SECPLUS_SRS !== 'undefined') {
+            const sr = SECPLUS_SRS.review(prev.h, prev.lastSeen, now, SECPLUS_SRS.gradeForOutcome(isCorrect ? 'correct' : 'wrong'));
+            cards[id].h = sr.h; cards[id].lastSeen = sr.lastSeen;
+          } else if (Number.isFinite(prev.h) && Number.isFinite(prev.lastSeen)) {
+            cards[id].h = prev.h; cards[id].lastSeen = prev.lastSeen;
+          }
         });
         store.v = 2; store.cards = cards;
         localStorage.setItem(LS_PROGRESS, JSON.stringify(store));
