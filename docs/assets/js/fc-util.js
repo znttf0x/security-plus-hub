@@ -53,10 +53,10 @@
       var ttn = nist[1] ? ' title="NIST: ' + String(nist[1]).replace(/"/g, '') + '"' : '';
       pills.push('<a href="' + nist[0] + '" target="_blank" rel="noopener noreferrer"' + ttn + '>NIST Glossary</a>');
     }
-    var g = GMAP ? GMAP[id] : null;   // [term_pt, term_en]
-    if (g && g[0]) {
-      var terms = g[1] ? (g[0] + ' ' + g[1]) : g[0];
-      var url = 'https://www.google.com/search?q=' + encodeURIComponent('o que é ' + terms).replace(/%20/g, '+') + '&hl=pt-BR&gl=BR';
+    var g = GMAP ? GMAP[id] : null;   // [term_pt, term_en] auto-query, OR a full query-string override
+    if (g && (typeof g === 'string' ? g : g[0])) {
+      var query = (typeof g === 'string') ? g : ('o que é ' + (g[1] ? (g[0] + ' ' + g[1]) : g[0]));
+      var url = 'https://www.google.com/search?q=' + encodeURIComponent(query).replace(/%20/g, '+') + '&hl=pt-BR&gl=BR';
       pills.push('<a href="' + url + '" target="_blank" rel="noopener noreferrer" title="Buscar no Google (resposta em pt-br)">Google</a>');
     }
     for (var i = 0; i < pills.length; i++) h += (i === 0 ? '<span class="ff-sep">·</span>' : '') + pills[i];   // "·" only before the first pill
