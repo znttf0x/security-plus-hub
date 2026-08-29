@@ -853,7 +853,7 @@
       // Google button: a simple concept search (same footprint as the Messer/YouTube pills in quiz-sources)
       const gq = window.SECPLUS_GOOGLE_Q ? window.SECPLUS_GOOGLE_Q[q.id] : null;
       if (gq) {
-        const gUrl = 'https://www.google.com/search?q=' + encodeURIComponent(gq).replace(/%20/g, '+') + '&hl=pt-BR&gl=BR';
+        const gUrl = 'https://www.google.com/search?q=' + encodeURIComponent(gq + ' SY0-701 lang:pt-br').replace(/%20/g, '+') + '&hl=pt-BR&gl=BR';
         h += '<a href="' + gUrl + '" target="_blank" rel="noopener noreferrer" title="Buscar no Google">Google</a>';
       }
       return '<div class="quiz-sources">' + h + '</div>';
